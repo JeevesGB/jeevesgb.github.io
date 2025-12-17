@@ -3,8 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JeevesGB - Portfolio</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS -->
+    <title>JeevesGB</title>
+    <link rel="stylesheet" href="assets/css/PSone.css">
+    <!-- Optional: Use a retro pixel font like Press Start 2P -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Additional retro styles */
+        body {
+            font-family: 'Press Start 2P', cursive; /* Pixel font for that 90s feel */
+            background-color: #0000ff; /* Neon Blue */
+            color: #ff00ff; /* Neon Pink */
+        }
+
+        header {
+            background-color: #ff00ff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        header nav ul {
+            list-style-type: none;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        header nav ul li a:hover {
+            color: yellow; /* Hover effect */
+        }
+
+        h1, h2 {
+            color: #00ff00; /* Neon Green */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        a {
+            color: #ffff00; /* Neon Yellow */
+        }
+
+        a:hover {
+            color: #ff4500; /* Hover effect */
+        }
+
+        footer {
+            background-color: #ff00ff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .retro-button {
+            background-color: #ff00ff;
+            color: white;
+            padding: 15px;
+            border: 2px solid #ff4500;
+            font-family: 'Press Start 2P', sans-serif;
+        }
+
+        .retro-button:hover {
+            background-color: #ff4500;
+            color: black;
+        }
+
+        section {
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #222;
+            border-radius: 10px;
+        }
+
+        /* Marquee scrolling text for extra retro flair */
+        marquee {
+            font-size: 1.5rem;
+            color: yellow;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,9 +100,11 @@
         </nav>
     </header>
     
+    <marquee>Welcome to my Retro 90's Portfolio!</marquee>
+    
     <section id="about">
         <h1>About Me</h1>
-        <p>Hello! I'm Jej, I have an interest in coding and game modding.</p>
+        <p>Hello! I'm Jej, I have an interest in coding and game modding. I'm passionate about creating tools for modding and enhancing gaming experiences!</p>
     </section>
     
     <section id="projects">
