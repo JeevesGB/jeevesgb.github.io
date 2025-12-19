@@ -1,164 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JeevesGB</title>
-    <link rel="stylesheet" href="assets/css/PSone.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JeevesGB</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Press Start 2P', cursive; 
-            background-color: #5bb0ff; 
-            color: #db0f97; /* description */
-            font-size: .95rem;
-        }
+<style>
+:root {
+  --bg: #5bb0ff;
+  --panel: #3d87e7;
+  --text: #ffffff;
+  --accent: #00ffb3;
+  --highlight: #ffd700;
+  --danger: #db0f97;
+}
 
-        header { 
-            background-color: #5bb0ff;
-            color: rgb(255, 217, 0);
-            padding: 1px 0;
-            text-align: center;
-            font-size: 1rem; /* toolname */
-        }
+* {
+  box-sizing: border-box;
+}
 
-        header nav ul {
-            list-style-type: none;
-        }
+body {
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
 
-        header nav ul li {
-            display: inline;
-            margin: 0 1px;
-        }
+/* CRT scanlines */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
 
-        header nav ul li a {
-            color: rgb(0, 225, 255);
-            text-decoration: none;
-        }
+/* Layout */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
 
-        header nav ul li a:hover {
-            color: rgb(0, 74, 233); 
-        }
+/* Header / Nav */
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
 
-        h1, h2 { 
-            color: #00ffb3; 
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-            font-size: 2rem; /* title */
-        }
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
 
-        a {
-            color: #ffff00; 
-            font-size: 1.5rem; /* toolname */
-        }
+nav li {
+  display: inline-block;
+  margin: 0 0.3rem;
+}
 
-        a:hover {
-            color: #ff4500;
-        }
+nav a {
+  color: var(--highlight);
+  text-decoration: none;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid transparent;
+}
 
-        footer {
-            background-color: #ff00ff;
-            color: white;
-            text-align: center;
-            padding: 5px;
-        }
+nav a:hover {
+  border: 1px solid var(--highlight);
+  background-color: rgba(0,0,0,0.2);
+}
 
-        .retro-button {
-            background-color: #ff00ff;
-            color: white;
-            padding: 5px;
-            border: 1px solid #ff4500;
-            font-family: 'Press Start 2P', sans-serif;
-        }
+/* Status bar */
+.status-bar {
+  text-align: center;
+  font-size: 0.6rem;
+  color: var(--highlight);
+  margin-bottom: 1rem;
+  animation: blink 1.5s steps(2) infinite;
+}
 
-        .retro-button:hover {
-            background-color: #ff4500;
-            color: black;
-        }
+@keyframes blink {
+  50% { opacity: 0; }
+}
 
-        section {
-            padding: .01rem;
-            margin-top: 5px;
-            background-color: #3d87e7;
-            border-radius: 5px;
-        }
+/* Panels */
+section {
+  background-color: var(--panel);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid rgba(0,0,0,0.3);
+}
 
-        /* Marquee scrolling text for extra retro flair */
-        marquee {
-            font-size: .5rem;
-            color: yellow;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
-    </style>
+/* Headings */
+h1 {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-top: 0;
+  text-shadow: 1px 1px 0 #000;
+}
+
+h2 {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Projects */
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.3);
+}
+
+.project-list li:last-child {
+  border-bottom: none;
+}
+
+.project-title {
+  color: var(--highlight);
+}
+
+.project-desc {
+  display: block;
+  color: #ffd1f0;
+  font-size: 0.65rem;
+  margin-left: 1rem;
+}
+
+/* Links */
+a {
+  color: var(--highlight);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.8);
+  margin-top: 1rem;
+}
+</style>
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <marquee>Merry Christmas!</marquee>
-    
-    <section id="about">
-        <h1>About Me</h1>
-        <p>My name Jej, I have an interest in coding and game modding.</p>
-    </section>
-    
-    <section id="projects">
-        <h1>My Projects</h1>
-        <ul>
-            <li>
-                <h2><a href="https://github.com/JeevesGB/pPainter" target="_blank">pPainter</a></h2>
-                <p>A tool to edit palettes of .TIM image files.</p>
-            </li>
-            <li>
-                <h2><a href="https://github.com/JeevesGB/img2pdf" target="_blank">img2pdf</a></h2>
-                <p>A tool to convert images to PDF format.</p>
-            </li>
-            <li>
-                <h2><a href="https://github.com/JeevesGB/timview" target="_blank">TIMView</a></h2>
-                <p>A tool to view and convert .TIM image files.</p>
-            </li>
-            <li>
-                <h2><a href="https://github.com/JeevesGB/png2tga" target="_blank">PNG2TGA</a></h2>
-                <p>A tool to convert PNG images to TGA format.</p>
-            </li>
-            <li>
-                <h2><a href="https://github.com/JeevesGB/TXT2CSV" target="_blank">TXT2CSV</a></h2>
-                <p>A tool for modifying and creating Gran Turismo 2 .CSV files.</p>
-            </li>
-            <li>
-                <h2><a href="https://github.com/JeevesGB/TXT2CSV-3" target="_blank">TXT2CSV3</a></h2>
-                <p>A tool for modifying and creating Gran Turismo 3 .CSV files.</p>
-            </li>
-            <li>
-                <h2><a href="https://github.com/JeevesGB/JEJ-FM" target="_blank">JEJ-FM</a></h2>
-                <p>A simple radio for Windows.</p>
-            </li>
-            <li>
-                <h2><a href="https://github.com/JeevesGB/GTDyno" target="_blank">GTDyno</a></h2>
-                <p>A tool for creating engine files for Gran Turismo 2/3.</p>
-            </li>
-            <li>
-                <h2><a href="https://github.com/JeevesGB/Click-The-Twingo" target="_blank">Click The Twingo</a></h2>
-                <p>A simple clicker game written in Python.</p>
-            </li>
-        </ul>
-    </section>
-    
-    <section id="contact">
-        <h1>Contact Me</h1>
-        <p>You can reach me at <a href="mailto:it.is.jej@gmail.com">it.is.jej@gmail.com</a>.</p>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 JeevesGB | All Rights Reserved</p>
-    </footer>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#projects">PROJECTS</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="status-bar">MERRY CHRISTMAS!</div>
+
+<main class="container">
+
+<section id="about">
+  <h1>About Me</h1>
+  <p>
+    My name is Jej, I am interested in coding and game modification.
+  </p>
+</section>
+
+<section id="projects">
+  <h1>My Projects</h1>
+  <ul class="project-list">
+    <li>
+      <span class="project-title"><a href="https://github.com/JeevesGB/pPainter" target="_blank">pPainter</a></span>
+      <span class="project-desc">Edit palettes of .TIM image files</span>
+    </li>
+    <li>
+      <span class="project-title"><a href="https://github.com/JeevesGB/img2pdf" target="_blank">img2pdf</a></span>
+      <span class="project-desc">Convert images to PDF</span>
+    </li>
+    <li>
+      <span class="project-title"><a href="https://github.com/JeevesGB/timview" target="_blank">TIMView</a></span>
+      <span class="project-desc">View and convert .TIM images</span>
+    </li>
+    <li>
+      <span class="project-title"><a href="https://github.com/JeevesGB/png2tga" target="_blank">PNG2TGA</a></span>
+      <span class="project-desc">Convert PNG images to TGA</span>
+    </li>
+    <li>
+      <span class="project-title"><a href="https://github.com/JeevesGB/TXT2CSV" target="_blank">TXT2CSV</a></span>
+      <span class="project-desc">Gran Turismo 2 .CSV tools</span>
+    </li>
+    <li>
+      <span class="project-title"><a href="https://github.com/JeevesGB/TXT2CSV-3" target="_blank">TXT2CSV3</a></span>
+      <span class="project-desc">Gran Turismo 3 .CSV tools</span>
+    </li>
+    <li>
+      <span class="project-title"><a href="https://github.com/JeevesGB/JEJ-FM" target="_blank">JEJ-FM</a></span>
+      <span class="project-desc">Simple Windows radio</span>
+    </li>
+    <li>
+      <span class="project-title"><a href="https://github.com/JeevesGB/GTDyno" target="_blank">GTDyno</a></span>
+      <span class="project-desc">Engine creator for GT2 / GT3</span>
+    </li>
+    <li>
+      <span class="project-title"><a href="https://github.com/JeevesGB/Click-The-Twingo" target="_blank">Click The Twingo</a></span>
+      <span class="project-desc">Python clicker game</span>
+    </li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h1>Contact</h1>
+  <p>
+    Email:
+    <a href="mailto:it.is.jej@gmail.com">it.is.jej@gmail.com</a>
+  </p>
+</section>
+
+<footer>
+  © 2025 JeevesGB — All Rights Reserved
+</footer>
+
+</main>
 </body>
 </html>
