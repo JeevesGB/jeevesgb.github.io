@@ -3,48 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <title>TXT-2-CSV (Web)</title>
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #1e1e1e;
-        color: #ddd;
-        margin: 20px;
-    }
-    select, input, button {
-        background: #2b2b2b;
-        color: #ddd;
-        border: 1px solid #444;
-        padding: 6px;
-    }
-    button {
-        cursor: pointer;
-        margin-top: 8px;
-    }
-    .container {
-        max-width: 600px;
-    }
-    .scroll {
-        max-height: 400px;
-        overflow-y: auto;
-        border: 1px solid #444;
-        padding: 5px;
-        margin-top: 10px;
-    }
-    .row {
-        display: flex;
-        margin-bottom: 4px;
-    }
-    .row label {
-        width: 200px;
-        font-size: 12px;
-    }
-    .row input {
-        flex: 1;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background: #1e1e1e;
+    color: #ddd;
+    margin: 20px;
+}
+select, input, button {
+    background: #2b2b2b;
+    color: #ddd;
+    border: 1px solid #444;
+    padding: 6px;
+}
+button {
+    cursor: pointer;
+    margin-top: 8px;
+}
+.container {
+    max-width: 600px;
+}
+.scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #444;
+    padding: 5px;
+    margin-top: 10px;
+}
+.row {
+    display: flex;
+    margin-bottom: 4px;
+}
+.row label {
+    width: 200px;
+    font-size: 12px;
+}
+.row input {
+    flex: 1;
+}
 </style>
 </head>
-<body>
 
+<body>
 <div class="container">
     <h2>TXT-2-CSV (Web)</h2>
 
@@ -59,8 +60,9 @@
     <p id="status"></p>
 </div>
 
-
 <script>
+/* ================= HEADERS ================= */
+
 const headers = {
     "Brake": ["CarId", "Price", "Stage", "BrakingPower", "FrontBrakesUnknown", "RearBrakesUnknown"],
     "BrakeController": ["CarId", "Price", "Stage", "MaxFrontBias", "Unknown", "Unknown2", "DefaultBias", "MaxRearBias", "Unknown3", "Unknown4"],
@@ -94,10 +96,9 @@ const headers = {
     "TurbineKit": ["CarId", "Price", "Stage", "BoostGaugeLimit", "LowRPMBoost", "HighRPMBoost", "SpoolRate", "Unknown1", "Unknown2", "Unknown3", "RPMIncrease", "RedlineIncrease", "HighRPMPowerMultiplier", "LowRPMPowerMultiplier"],
     "Wheel": ["WheelId", "StageMaybe", "Unknown", "Unknown2", "Unknown3"]
 };
-</script>
 
 
-/* === INIT DROPDOWN === */
+/* ================= INIT ================= */
 const tabSelect = document.getElementById("tabSelect");
 const inputArea = document.getElementById("inputArea");
 const status = document.getElementById("status");
@@ -110,11 +111,14 @@ Object.keys(headers).forEach(key => {
 });
 
 tabSelect.addEventListener("change", buildFields);
+tabSelect.selectedIndex = 0;
+buildFields();
 
-/* === BUILD INPUT FIELDS === */
+/* ================= BUILD INPUTS ================= */
 function buildFields() {
     inputArea.innerHTML = "";
     const selected = tabSelect.value;
+
     headers[selected].forEach(h => {
         const row = document.createElement("div");
         row.className = "row";
@@ -131,7 +135,7 @@ function buildFields() {
     });
 }
 
-/* === EXPORT CSV === */
+/* ================= EXPORT CSV ================= */
 function exportCSV() {
     const selected = tabSelect.value;
     const cols = headers[selected];
@@ -152,7 +156,7 @@ function exportCSV() {
     status.textContent = "CSV generated.";
 }
 
-/* === IMPORT CSV === */
+/* ================= IMPORT CSV ================= */
 function importCSV() {
     const input = document.createElement("input");
     input.type = "file";
@@ -164,7 +168,10 @@ function importCSV() {
 
         reader.onload = () => {
             const lines = reader.result.split(/\r?\n/);
-            if (lines.length < 2) return alert("Invalid CSV");
+            if (lines.length < 2) {
+                alert("Invalid CSV");
+                return;
+            }
 
             const values = lines[1].split(",");
             const inputs = [...inputArea.querySelectorAll("input")];
@@ -175,12 +182,12 @@ function importCSV() {
 
             status.textContent = "CSV imported.";
         };
+
         reader.readAsText(file);
     };
 
     input.click();
 }
 </script>
-
 </body>
 </html>
