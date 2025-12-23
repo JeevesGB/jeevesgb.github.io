@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TXT-2-CSV (Web)</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #1e1e1e;
+        color: #ddd;
+        margin: 20px;
+    }
+    select, input, button {
+        background: #2b2b2b;
+        color: #ddd;
+        border: 1px solid #444;
+        padding: 6px;
+    }
+    button {
+        cursor: pointer;
+        margin-top: 8px;
+    }
+    .container {
+        max-width: 600px;
+    }
+    .scroll {
+        max-height: 400px;
+        overflow-y: auto;
+        border: 1px solid #444;
+        padding: 5px;
+        margin-top: 10px;
+    }
+    .row {
+        display: flex;
+        margin-bottom: 4px;
+    }
+    .row label {
+        width: 200px;
+        font-size: 12px;
+    }
+    .row input {
+        flex: 1;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>TXT-2-CSV (Web)</h2>
+
+    <label>Select Tab:</label><br>
+    <select id="tabSelect"></select>
+
+    <div class="scroll" id="inputArea"></div>
+
+    <button onclick="exportCSV()">Generate CSV</button>
+    <button onclick="importCSV()">Import CSV</button>
+
+    <p id="status"></p>
+</div>
+
+<script>
+/* === HEADERS (direct port from Python) === */
+const headers = {
+    Brake: ["CarId","Price","Stage","BrakingPower","FrontBrakesUnknown","RearBrakesUnknown"],
+    BrakeController: ["CarId","Price","Stage","MaxFrontBias","Unknown","Unknown2","DefaultBias","MaxRearBias","Unknown3","Unknown4"],
+    Car: ["CarId","Brake","BrakeController","Steer","Chassis","Lightweight","RacingModify","Engine","PortPolish","EngineBalance","Displacement","Computer","NATune","TurbineKit","Drivetrain","Flywheel","Clutch","PropellerShaft","LSD","Gear","Suspension","Intercooler","Muffler","TiresFront","TiresRear","ActiveStabilityControl","TractionControlSystem","RimsCode3","ManufacturerID","HasAllTiresBought","Unknown","Price"],
+    Engine: ["CarId","LayoutName","ValvetrainName","Aspiration","SoundFile","TorqueCurve1","TorqueCurve2","TorqueCurve3","TorqueCurve4","TorqueCurve5","TorqueCurve6","TorqueCurve7","TorqueCurve8","TorqueCurve9","TorqueCurve10","TorqueCurve11","TorqueCurve12","TorqueCurve13","TorqueCurve14","TorqueCurve15","TorqueCurve16","Displacement","DisplayedPower","MaxPowerRPM","DisplayedTorque","MaxTorqueRPMName","PowerMultiplier","ClutchReleaseRPM","IdleRPM","MaxRPM","RedlineRPM","TorqueCurveRPM1","TorqueCurveRPM2","TorqueCurveRPM3","TorqueCurveRPM4","TorqueCurveRPM5","TorqueCurveRPM6","TorqueCurveRPM7","TorqueCurveRPM8","TorqueCurveRPM9","TorqueCurveRPM10","TorqueCurveRPM11","TorqueCurveRPM12","TorqueCurveRPM13","TorqueCurveRPM14","TorqueCurveRPM15","TorqueCurveRPM16","TorqueCurvePoints"]
+    // (You can paste the rest exactly the same way — no logic changes needed)
+};
+
+/* === INIT DROPDOWN === */
+const tabSelect = document.getElementById("tabSelect");
+const inputArea = document.getElementById("inputArea");
+const status = document.getElementById("status");
+
+Object.keys(headers).forEach(key => {
+    const opt = document.createElement("option");
+    opt.value = key;
+    opt.textContent = key;
+    tabSelect.appendChild(opt);
+});
+
+tabSelect.addEventListener("change", buildFields);
+
+/* === BUILD INPUT FIELDS === */
+function buildFields() {
+    inputArea.innerHTML = "";
+    const selected = tabSelect.value;
+    headers[selected].forEach(h => {
+        const row = document.createElement("div");
+        row.className = "row";
+
+        const label = document.createElement("label");
+        label.textContent = h;
+
+        const input = document.createElement("input");
+        input.dataset.header = h;
+
+        row.appendChild(label);
+        row.appendChild(input);
+        inputArea.appendChild(row);
+    });
+}
+
+/* === EXPORT CSV === */
+function exportCSV() {
+    const selected = tabSelect.value;
+    const cols = headers[selected];
+    const inputs = [...inputArea.querySelectorAll("input")];
+
+    const values = inputs.map(i => i.value);
+    const csv = [
+        cols.join(","),
+        values.map(v => `"${v.replace(/"/g, '""')}"`).join(",")
+    ].join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `${selected}.csv`;
+    a.click();
+
+    status.textContent = "CSV generated.";
+}
+
+/* === IMPORT CSV === */
+function importCSV() {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".csv";
+
+    input.onchange = () => {
+        const file = input.files[0];
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            const lines = reader.result.split(/\r?\n/);
+            if (lines.length < 2) return alert("Invalid CSV");
+
+            const values = lines[1].split(",");
+            const inputs = [...inputArea.querySelectorAll("input")];
+
+            inputs.forEach((inp, i) => {
+                if (values[i]) inp.value = values[i].replace(/^"|"$/g, "");
+            });
+
+            status.textContent = "CSV imported.";
+        };
+        reader.readAsText(file);
+    };
+
+    input.click();
+}
+</script>
+
+</body>
+</html>
