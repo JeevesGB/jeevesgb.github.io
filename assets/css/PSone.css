@@ -39,7 +39,7 @@ body {
   font-family:"Final Fantasy Script Collection - Final Fantasy VII";
   font-size: 40px;
   background-color: black;
-  color: white;
+  color: rgb(255, 255, 255);
   font-smooth: never;
   -webkit-font-smoothing : none;
   line-height: 20px;
@@ -116,7 +116,7 @@ button[disabled]{
 .container {
   position: relative;
   background-image: linear-gradient(#0D2289, #06093B);
-  border: 1px solid #c6c6c6;
+  border: 1px solid #ffffff;
   border-radius: 8px;
   box-shadow: inset 0px 0px 2px 2px rgba(0, 0, 0, 0.3);
   margin: 1rem;
@@ -181,7 +181,7 @@ input:disabled:-ms-input-placeholder {
   position:absolute;
   display:border;
   content:'';
-  border:2px solid white;
+  border:2px solid rgb(87, 87, 87);
   border-radius: 7px;
   height:100%;
   width:100%;
@@ -192,9 +192,9 @@ input:disabled:-ms-input-placeholder {
 }
 .title {
   text-transform: uppercase;
-  color: #AAA9AF;
+  color: #adadad;
   -webkit-transform: scale(1, 0.5);
-  color: lightgrey;
+  color: rgb(189, 189, 189);
   text-shadow: 4px 4px black;
   font-size: 50px;
   line-height: 4px;
