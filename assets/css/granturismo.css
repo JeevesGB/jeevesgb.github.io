@@ -62,6 +62,11 @@ body {
   text-shadow: 0 0 6px var(--gt2-glow);
 }
 
+body {
+  text-align: center;
+}
+
+
 /* ===== Navigation buttons (CENTERED) ===== */
 nav.field {
   display: flex;
