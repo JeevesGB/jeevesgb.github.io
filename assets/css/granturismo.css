@@ -1,0 +1,180 @@
+/* ==============================
+   Gran Turismo 2 inspired theme
+   ============================== */
+
+:root {
+  --gt2-bg: #0b0e14;
+  --gt2-panel: #151a22;
+  --gt2-panel-dark: #10141b;
+  --gt2-border: #1f2530;
+
+  --gt2-text: #fc6209;
+  --gt2-muted: #9aa0aa;
+
+  --gt2-red: #c4161c;
+  --gt2-blue: #1f3a5f;
+
+  --gt2-glow: rgba(252, 98, 9, 0.35);
+}
+
+/* ===== Reset & base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(
+    circle at top,
+    #111827 0%,
+    var(--gt2-bg) 60%
+  );
+  color: var(--gt2-text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+/* ===== Layout containers ===== */
+.container {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 22px;
+  background: linear-gradient(
+    180deg,
+    var(--gt2-panel) 0%,
+    var(--gt2-panel-dark) 100%
+  );
+  border: 1px solid var(--gt2-border);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* ===== Titles ===== */
+.title {
+  text-align: center;
+  font-size: 1.65rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px var(--gt2-glow);
+}
+
+/* ===== Navigation buttons (CENTERED) ===== */
+nav.field {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+nav .btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(
+    180deg,
+    #2a4f7f 0%,
+    var(--gt2-blue) 100%
+  );
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #2c4f7a;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 2px 6px rgba(0,0,0,0.4);
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+nav .btn:hover {
+  background: linear-gradient(
+    180deg,
+    #d11a22 0%,
+    var(--gt2-red) 100%
+  );
+  border-color: var(--gt2-red);
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.2),
+    0 4px 10px rgba(0,0,0,0.6);
+}
+
+/* ===== Media list (CENTERED embeds & images) ===== */
+.music-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.music-list iframe,
+.music-list img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ===== Project list ===== */
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-list li {
+  padding: 14px 10px;
+  border-bottom: 1px solid #242a35;
+}
+
+.project-list li:last-child {
+  border-bottom: none;
+}
+
+.project-title a {
+  color: var(--gt2-text);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.project-title a:hover {
+  color: var(--gt2-red);
+  text-shadow: 0 0 4px rgba(196,22,28,0.6);
+}
+
+.project-desc {
+  display: block;
+  margin-top: 6px;
+  color: var(--gt2-muted);
+  font-size: 0.9rem;
+}
+
+/* ===== Embedded media styling ===== */
+iframe {
+  border: 1px solid var(--gt2-border);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* ===== Footer / dark section ===== */
+.container.dark {
+  background: #080a0f;
+  border-color: #141820;
+  color: var(--gt2-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ===== Links (global safety + focus) ===== */
+a {
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--gt2-red);
+  outline-offset: 2px;
+}
