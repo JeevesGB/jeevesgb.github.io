@@ -1,5 +1,5 @@
 /* ==============================
-   Gran Turismo 2 inspired theme
+   Gran Turismo inspired theme 
    ============================== */
 
 :root {
@@ -8,13 +8,13 @@
   --gt2-panel-dark: #10141b;
   --gt2-border: #1f2530;
 
-  --gt2-text: #fc6209;
-  --gt2-muted: #9aa0aa;
+  --gt2-text: #F79400;
+  --gt2-muted: #B5B5B5;
 
   --gt2-red: #c4161c;
-  --gt2-blue: #1f3a5f;
+  --gt2-blue: #0042FF;
 
-  --gt2-glow: rgba(252, 98, 9, 0.35);
+  --gt2-glow: #7B3900;
 }
 
 /* ===== Reset & base ===== */
@@ -84,7 +84,7 @@ nav .btn {
   );
   color: #fff;
   text-decoration: none;
-  border: 1px solid #2c4f7a;
+  border: 1px solid #0042FF;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.15),
     0 2px 6px rgba(0,0,0,0.4);
@@ -97,7 +97,7 @@ nav .btn {
 nav .btn:hover {
   background: linear-gradient(
     180deg,
-    #d11a22 0%,
+    #CE0000 0%,
     var(--gt2-red) 100%
   );
   border-color: var(--gt2-red);
