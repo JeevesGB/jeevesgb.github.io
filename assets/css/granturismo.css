@@ -52,6 +52,25 @@ body {
     0 8px 20px rgba(0,0,0,0.4);
 }
 
+.file-tree {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.95rem;
+
+  text-align: left;
+  white-space: pre;
+  line-height: 1.4;
+
+  color: #f5a623; /* matches your orange theme */
+  background: rgba(0, 0, 0, 0.35);
+
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+
 /* ===== Titles ===== */
 .title {
   text-align: center;
