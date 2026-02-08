@@ -126,6 +126,46 @@ nav .btn:hover {
     0 4px 10px rgba(0,0,0,0.6);
 }
 
+/* ===== Download button ===== */
+.btn.download {
+  display: inline-block;
+  margin: 16px auto;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+
+  background: linear-gradient(
+    180deg,
+    #f5a623 0%,
+    var(--gt2-text) 100%
+  );
+  color: #000;
+
+  border: 1px solid #f5a623;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 4px 12px rgba(0,0,0,0.6);
+
+  text-transform: uppercase;
+}
+
+.btn.download:hover {
+  background: linear-gradient(
+    180deg,
+    #CE0000 0%,
+    var(--gt2-red) 100%
+  );
+  color: #fff;
+  border-color: var(--gt2-red);
+
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.25),
+    0 6px 16px rgba(0,0,0,0.75);
+}
+
+
 /* ===== Media list (CENTERED embeds & images) ===== */
 .music-list {
   display: flex;
