@@ -8,7 +8,8 @@
 </head>
 
 <body>
-      <!-- Navigation -->
+
+  <!-- Navigation -->
   <div class="container">
     <nav class="field">
       <a href="../../index.html" class="btn primary">Home</a>
@@ -20,7 +21,9 @@
       <a href="../../pages/music.html" class="btn primary">Music</a>
       <a href="https://jeevesgb.itch.io/" class="btn primary">Itch.io</a>
     </nav>
-      <p></p>
+
+    <p></p>
+
     <nav class="field">
       <a href="../../pages/homoligation.html" class="btn primary">
         Homoligation Documents
@@ -28,39 +31,59 @@
       <a href="https://discord.gg/m5fmspHa9m" class="btn primary">
         Gran Turismo 2 Concept &amp; Spec VII Discord
       </a>
-      <a href="option.html" class="btn primary">Option Tuning Car Battle Research</a>
+      <a href="option.html" class="btn primary">
+        Option Tuning Car Battle Research
+      </a>
     </nav>
   </div>
 
-  <main class="container">
-    <article class="field">
+  <!-- Page Layout -->
+  <div class="page-layout">
 
-        <h1>Option Tuning Car Battle Research</h1>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h3>Contents</h3>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#game-background">Game Background</a></li>
+        <li><a href="#file-structure">Game File Structure</a></li>
+        <li><a href="#sound-files">Sound Files</a></li>
+      </ul>
+    </aside>
 
-        <p>
+    <!-- Main Content -->
+    <div class="main-content">
+
+      <div class="container">
+        <article class="field">
+
+          <h1 id="overview">Option Tuning Car Battle Research</h1>
+
+          <p>
             This page documents research into the game from the perspective of someone
-            new to game modification, this page will document that.
-        </p>
+            new to game modification.
+          </p>
 
-        <section>
+          <section id="game-background">
             <h2>Game Background</h2>
+
             <p>
-                Option Tuning Car Battle: Spec-R is a street-racing driving game released for the PlayStation on May 11, 2000 in Japan, developed and published by MTO. 
-                It is the third and final entry in the Option Tuning Car Battle series, a franchise based on the popular Japanese car tuning magazine Option and features many cars that were shown in both magazines and DVD's.
+              Option Tuning Car Battle: Spec-R is a street-racing driving game released
+              for the PlayStation on May 11, 2000 in Japan, developed and published by MTO.
+              It is the third and final entry in the Option Tuning Car Battle series.
             </p>
+
             <p>
-                Many popular tuning companies are featured such as Veilside, Mines, Re-Ammmiya anongst others. The game also notably has both a Visual and Mechanical damage model where if you mess up your shifts a lot your car 
-                will start smoking and you have a noticable loss in power, Visual damage is pretty simple but also a nice touch. The handling of the cars is also rather good with the car getting unsettled and move after jumping or hitting curbs wrong.
+              Many popular tuning companies are featured such as Veilside, Mines,
+              Re-Amemiya amongst others. The game includes both visual and mechanical
+              damage systems.
             </p>
-        </section>
+          </section>
 
-    </article>
-  </main>
+          <section id="file-structure">
+            <h2>Game File Structure</h2>
 
-<section>
-  <h2>Game File Structure</h2>
-
-  <pre class="file-tree">
+<pre class="file-tree">
 ROOT
 ├── C0 - .car files
 ├── C1 - .car files
@@ -69,45 +92,50 @@ ROOT
 ├── C4 - .car files
 ├── C5 - .car files
 ├── C6 - empty
-├── CS - track files, .BIN & .TIX (.TIX Contains textures)
-├── EV1 - more car related files .VOI format
-├── EV2 - more car related files .VOI format
-├── EV3 - more car related files .VOI format
+├── CS - track files
+├── EV1 - .VOI files
+├── EV2 - .VOI files
+├── EV3 - .VOI files
 ├── OTHER - OTHER1.BIN
-├── RACE - CAMERA.BIN & RACE.BIN 
-├── SE - audio files .SHB & .VHB formats
-├── SUB0 - multiple .BIN files such as ARCMENU, CAR, CARLG, CARSELE, CHAMENU, COMPLET... possibly menus.
-├── SUB1 - MC_CAR.BIN & MC_SYS.BIN 
-├── SUB2 - CONFIG.BIN, RECODES.BIN, STAFF.BIN, VICTORY.BIN 
-├── SUB3 - AMBG.BIN, CHMBG.BIN, CTTLBG0.BIN, CTTLBG1.BIN, CTTLBG2.BIN, RIVBG.BIN, TMABG.BIN, TTLBG.BIN, TUNBG.BIN possibly background files
-├── WHEEL1 - wheels are .TIM images
-├── WHEEL2 - wheels are .TIM images
-├── WHEEL3 - wheels are .TIM images
-├── X_STR - END.STR, MTO.STR & OPEN.STR
-├── Z_DA - DA00.DA, DA01.DA, DA03.DA, DA04.DA, DA05.DA, DA06.DA, DA07.DA, DA08.DA, ZZZ.DA
+├── RACE - CAMERA.BIN & RACE.BIN
+├── SE - .SHB & .VHB audio
+├── SUB folders - menu and system files
+├── WHEEL folders - .TIM images
+├── X_STR - video files
+├── Z_DA - data archives
 ├── SLPS_025.87
 └── SYSTEM.CNF
-  </pre>
-</section>
+</pre>
 
-  <main class="container">
-    <h3>Sound Files</h3>
-    <p>
-      The sound files are in the SE folder and are in .SHB and .VHB formats, these formats are used in multiple games but are not very common. 
-      <p></p>
-      The .SHB files contain the actual audio data while the .VHB files contain metadata about the audio such as loop points, volume, etc.
+          </section>
 
-        <p>
-        I was able to extract the audio data from these files and have uploaded them here:
-        </p>
-        <a
-    href="https://archive.org/download/option-tuning-car-battle-exported-sounds/Option_Tuning_Car_Battle_exported_sounds.rar"
-    class="btn download"
-    download
-  >
-    Option Tuning Car Battle Sound Files
-  </a>
-  </main>
+          <section id="sound-files">
+            <h2>Sound Files</h2>
 
+            <p>
+              The sound files are located in the SE folder and use .SHB and .VHB formats.
+              .SHB contains audio data, while .VHB contains metadata such as loop points.
+            </p>
+
+            <p>
+              Extracted audio archive:
+            </p>
+
+            <a
+              href="https://archive.org/download/option-tuning-car-battle-exported-sounds/Option_Tuning_Car_Battle_exported_sounds.rar"
+              class="btn download"
+              download
+            >
+              Option Tuning Car Battle Sound Files
+            </a>
+
+          </section>
+
+        </article>
+      </div>
+
+    </div>
+  </div>
 
 </body>
+</html>

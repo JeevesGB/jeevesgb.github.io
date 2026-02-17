@@ -17,8 +17,7 @@
   --gt2-glow: #7B3900;
 }
 
-/* ===== Reset & base ===== */
-*,
+
 *::before,
 *::after {
   box-sizing: border-box;
@@ -36,7 +35,6 @@ body {
   line-height: 1.5;
 }
 
-/* ===== Layout containers ===== */
 .container {
   max-width: 900px;
   margin: 32px auto;
@@ -70,8 +68,6 @@ body {
   max-width: 100%;
 }
 
-
-/* ===== Titles ===== */
 .title {
   text-align: center;
   font-size: 1.65rem;
@@ -85,8 +81,6 @@ body {
   text-align: center;
 }
 
-
-/* ===== Navigation buttons (CENTERED) ===== */
 nav.field {
   display: flex;
   justify-content: center;
@@ -126,7 +120,6 @@ nav .btn:hover {
     0 4px 10px rgba(0,0,0,0.6);
 }
 
-/* ===== Download button ===== */
 .btn.download {
   display: inline-block;
   margin: 16px auto;
@@ -165,8 +158,6 @@ nav .btn:hover {
     0 6px 16px rgba(0,0,0,0.75);
 }
 
-
-/* ===== Media list (CENTERED embeds & images) ===== */
 .music-list {
   display: flex;
   flex-direction: column;
@@ -180,7 +171,6 @@ nav .btn:hover {
   max-width: 100%;
 }
 
-/* ===== Project list ===== */
 .project-list {
   list-style: none;
   padding: 0;
@@ -214,7 +204,6 @@ nav .btn:hover {
   font-size: 0.9rem;
 }
 
-/* ===== Embedded media styling ===== */
 iframe {
   border: 1px solid var(--gt2-border);
   box-shadow:
@@ -222,7 +211,6 @@ iframe {
     0 4px 12px rgba(0,0,0,0.5);
 }
 
-/* ===== Footer / dark section ===== */
 .container.dark {
   background: #080a0f;
   border-color: #141820;
@@ -231,7 +219,6 @@ iframe {
   text-align: center;
 }
 
-/* ===== Links (global safety + focus) ===== */
 a {
   pointer-events: auto;
   position: relative;
@@ -241,4 +228,60 @@ a {
 a:focus-visible {
   outline: 2px solid var(--gt2-red);
   outline-offset: 2px;
+}
+
+.page-layout {
+  display: flex;
+  max-width: 1200px;
+  margin: 32px auto;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 250px;
+  padding: 18px;
+  background: linear-gradient(
+    180deg,
+    var(--gt2-panel) 0%,
+    var(--gt2-panel-dark) 100%
+  );
+  border: 1px solid var(--gt2-border);
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+  text-align: left;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: var(--gt2-text);
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin: 8px 0;
+}
+
+.sidebar a {
+  color: var(--gt2-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.sidebar a:hover {
+  color: var(--gt2-red);
+}
+
+/* Main content area */
+.main-content {
+  flex: 1;
 }
