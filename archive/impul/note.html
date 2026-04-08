@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMPUL NOTE complete</title>
+  <style>
+    body {
+      background: #000;
+      color: #4c4c4c;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 24px;
+    }
+
+    .page-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      text-align: right;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .breadcrumb a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: #f00;
+    }
+
+    .breadcrumb span {
+      margin: 0 4px;
+      color: #888;
+    }
+
+    /* Header banner area */
+    .page-header {
+      background: #000;
+      border-top: 3px solid #aaa;
+      border-bottom: 3px solid #aaa;
+      margin-bottom: 0;
+      overflow: hidden;
+    }
+
+    .page-header img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Main content card */
+    .content-card {
+      background: #fff;
+      padding: 24px;
+    }
+
+    /* Car image */
+    .car-image-wrapper {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .car-image-wrapper img {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    /* Color swatches */
+    .color-swatches {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .color-swatches img {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+    }
+
+    .color-swatches img:hover {
+      border-color: #f00;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+
+    /* Section heading */
+    .section-heading {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+    /* Equipment table */
+    .equip-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin-bottom: 24px;
+    }
+
+    .equip-table td {
+      border: 1px solid #999;
+      padding: 6px 10px;
+      background: #fff;
+      color: #333;
+      vertical-align: middle;
+    }
+
+    .equip-table td.row-label {
+      white-space: nowrap;
+      font-weight: normal;
+      min-width: 90px;
+    }
+
+    .equip-table td.col-header {
+      text-align: center;
+      background: #f5f5f5;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .equip-table td.check {
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .equip-table td.sub-item {
+      font-size: 0.78rem;
+      color: #555;
+    }
+
+    /* Options table */
+    .options-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin-bottom: 8px;
+    }
+
+    .options-table tr + tr td {
+      border-top: 1px solid #ccc;
+    }
+
+    .options-table td {
+      padding: 5px 8px;
+      vertical-align: middle;
+      color: #333;
+    }
+
+    .options-table td.price {
+      text-align: right;
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    .options-table td.note {
+      white-space: nowrap;
+      color: #555;
+      font-size: 0.78rem;
+    }
+
+    .table-note {
+      font-size: 0.78rem;
+      color: #555;
+      margin-top: 6px;
+    }
+
+    /* Price table */
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin-bottom: 12px;
+    }
+
+    .price-table td {
+      border: 1px solid #999;
+      padding: 6px 10px;
+      background: #fff;
+      vertical-align: middle;
+      color: #333;
+    }
+
+    .price-table td.col-header {
+      text-align: center;
+      background: #f5f5f5;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .price-table td.price-val {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .price-table td.notes-cell {
+      font-size: 0.78rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .price-disclaimer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #808080;
+      margin-top: 8px;
+    }
+
+    /* Footer */
+    .page-footer {
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 2px solid #aaa;
+    }
+
+    .page-footer img {
+      height: 16px;
+      width: auto;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+
+  <div class="page-header">
+    <img src="img/note/mt_E11.gif" alt="IMPUL NOTE complete header" /> <img src="img/note/mt_E11_550.jpg" alt="IMPUL NOTE complete header" />
+  </div>
+
+  <div class="content-card">
+
+    <div class="car-image-wrapper">
+      <img src="img/note/note.png" alt="IMPUL NOTE complete" id="car-photo" />
+    </div>
+
+
+    <hr>
+
+    <div class="section-heading">IMPUL NOTE コンプリート　主要装備一覧表</div>
+    <table class="equip-table">
+      <thead>
+        <tr>
+          <td class="col-header" colspan="2"></td>
+          <td class="col-header">コンプリートバージョン</td>
+          <td class="col-header">Ｓバージョン</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-label">ボディカラー</td>
+          <td>ノート純正色</td>
+          <td class="check">●</td>
+          <td class="check">●</td>
+        </tr>
+        <tr>
+          <td class="row-label" rowspan="5">エアロパーツ<br>他エクステリア</td>
+          <td>フロントバンパー<span class="sub-item">（グリル付）</span></td>
+          <td class="check">●</td>
+          <td class="check">●</td>
+        </tr>
+        <tr>
+          <td>サイドステップ</td>
+          <td class="check">●</td>
+          <td class="check">●</td>
+        </tr>
+        <tr>
+          <td>リアハーフスポイラー</td>
+          <td class="check">●</td>
+          <td class="check">●</td>
+        </tr>
+        <tr>
+          <td>リアウイング</td>
+          <td class="check">●</td>
+          <td class="check">●</td>
+        </tr>
+        <tr>
+          <td>レーシングトリム</td>
+          <td class="check">オプション</td>
+          <td class="check">オプション</td>
+        </tr>
+        <tr>
+          <td class="row-label">吸排気系</td>
+          <td>ブラスト II マフラー</td>
+          <td class="check">●</td>
+          <td class="check">－</td>
+        </tr>
+        <tr>
+          <td class="row-label" rowspan="2">足まわり</td>
+          <td>スーパーショック タイプ 1</td>
+          <td class="check">●</td>
+          <td class="check">－</td>
+        </tr>
+        <tr>
+          <td>コイルスプリング</td>
+          <td class="check">●</td>
+          <td class="check">●</td>
+        </tr>
+        <tr>
+          <td class="row-label" rowspan="2">ホイール<br>タイヤ</td>
+          <td>
+            <a href="../wheel/NS-GT_II.htm">IMPUL NS-GT II：7.0J×16(+52)</a><br>
+            <span class="sub-item">※カラー：シルバー、ホワイト</span>
+          </td>
+          <td class="check">●</td>
+          <td class="check">●</td>
+        </tr>
+        <tr>
+          <td>ブリヂストン プレイズ：195/45-16</td>
+          <td class="check">●</td>
+          <td class="check">●</td>
+        </tr>
+        <tr>
+          <td class="row-label" valign="top">オプション</td>
+          <td colspan="3">
+            <table class="options-table">
+              <tr>
+                <td>■ レーシングトリム【車検対応】</td>
+                <td class="price">￥72,000</td>
+                <td class="note">（税込￥75,600）</td>
+              </tr>
+              <tr>
+                <td>■ ホイール・センターキャップ</td>
+                <td class="price">￥7,200</td>
+                <td class="note">（税込￥7,560）／1台分</td>
+              </tr>
+              <tr>
+                <td>■ NS-GT II ハイパーブラック</td>
+                <td class="price">プラス￥8,000</td>
+                <td class="note">（税込￥8,400）／1台分</td>
+              </tr>
+              <tr>
+                <td>■ ブルーアルマイト・ホイールナット</td>
+                <td class="price">￥8,000</td>
+                <td class="note">（税込￥8,400）／1台分セット</td>
+              </tr>
+              <tr>
+                <td colspan="3">■ フォグランプ（※未装着車）</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-note">注：表の「●」印は標準装備、「－」印は未装備を表します。</p>
+
+    <hr>
+
+    <div class="section-heading">IMPUL TIIDA コンプリート　車輌価格一覧表</div>
+    <table class="price-table">
+      <thead>
+        <tr>
+          <td class="col-header" rowspan="2">ベース車輌</td>
+          <td class="col-header">コンプリートバージョン</td>
+          <td class="col-header">Ｓバージョン</td>
+        </tr>
+        <tr>
+          <td class="col-header">税別価格（税込価格）</td>
+          <td class="col-header">税別価格（税込価格）</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>■ ノート 15S</td>
+          <td class="price-val">￥1,798,000<br><small>（￥1,887,900）</small></td>
+          <td class="price-val">￥1,698,000<br><small>（￥1,782,900）</small></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="notes-cell">
+            ・東京地区店頭渡し価格です。その他の諸費用及び保険料等は含まれていません。<br>
+            ・E11型ノート（FF車）どのグレードでも対応可能ですのでお気軽にお問い合せ下さい【※4WD車不可】<br>
+            　お問い合せ：株式会社ホシノインパル　TEL 03-3439-1122
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="price-disclaimer">価格及び仕様はベース車輌の価格変更や改良のため予告なく変更する場合があります</p>
+
+  </div>
+
+  <div class="page-footer">
+    <img src="../../images_index/coppylight.gif" alt="Copyright IMPUL">
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMPUL TIIDA </title>
+  <style>
+    body {
+      background: #000;
+      color: #4c4c4c;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0;
+      padding: 24px;
+    }
+
+    .page-wrapper {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      text-align: right;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .breadcrumb a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { color: #f00; }
+
+    .breadcrumb span {
+      margin: 0 4px;
+      color: #888;
+    }
+
+    .page-header {
+      background: #333;
+      border-top: 3px solid #aaa;
+      border-bottom: 3px solid #aaa;
+      overflow: hidden;
+    }
+
+    .page-header img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .content-card {
+      background: #fff;
+      padding: 24px;
+    }
+
+    /* Car photos side by side */
+    .car-photos {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .car-photos img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 20px 0;
+    }
+
+    .section-heading {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+    /* Equipment table */
+    .equip-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin-bottom: 8px;
+    }
+
+    .equip-table td {
+      border: 1px solid #999;
+      padding: 6px 10px;
+      background: #fff;
+      vertical-align: middle;
+    }
+
+    .equip-table td.col-header {
+      text-align: center;
+      background: #f5f5f5;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .equip-table td.col-header.compressor {
+      color: #af0000;
+    }
+
+    .equip-table td.check {
+      text-align: center;
+    }
+
+    .equip-table td.check.compressor { color: #af0000; font-size: 1rem; }
+    .equip-table td.check.complete   { color: #000;    font-size: 1rem; }
+    .equip-table td.check.s-ver      { color: #4c4c4c; font-size: 1rem; }
+
+    .equip-table .compressor-item { color: #af0000; }
+
+    .sub-note {
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    /* Options nested table */
+    .options-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+    }
+
+    .options-table tr + tr td {
+      border-top: 1px solid #ccc;
+    }
+
+    .options-table td {
+      padding: 5px 8px;
+      vertical-align: middle;
+      color: #333;
+    }
+
+    .options-table td.price {
+      text-align: right;
+      white-space: nowrap;
+      font-weight: bold;
+    }
+
+    .options-table td.note {
+      white-space: nowrap;
+      color: #666;
+      font-size: 0.78rem;
+    }
+
+    .table-note {
+      font-size: 0.78rem;
+      color: #666;
+      margin: 6px 0 20px;
+    }
+
+    /* Price table */
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin-bottom: 12px;
+    }
+
+    .price-table td {
+      border: 1px solid #999;
+      padding: 6px 10px;
+      background: #fff;
+      vertical-align: middle;
+      color: #333;
+    }
+
+    .price-table td.col-header {
+      text-align: center;
+      background: #f5f5f5;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .price-table td.col-header.compressor { color: #af0000; }
+
+    .price-table td.price-val {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .price-table td.price-val small {
+      display: block;
+      color: #666;
+      font-size: 0.78rem;
+    }
+
+    .price-table td.notes-cell {
+      font-size: 0.78rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .price-disclaimer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #808080;
+      margin-top: 8px;
+    }
+
+    .page-footer {
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 12px;
+      border-top: 2px solid #aaa;
+    }
+
+    .page-footer img {
+      height: 16px;
+      width: auto;
+    }
+
+    a { color: #000066; }
+    a:hover { color: #f00; }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+
+  <!-- Header banner -->
+  <div class="page-header">
+    <img src="C11_TIIDA/mt_C11.jpg" alt="IMPUL TIIDA complete header" />
+  </div>
+
+  <!-- Main content -->
+  <div class="content-card">
+
+    <!-- Car photos -->
+    <div class="car-photos">
+      <img src="C11_TIIDA/TIIDA_f400.jpg" alt="IMPUL TIIDA front view" style="width:400px;">
+      <img src="img/tilda/TIIDA_r250.jpg" alt="IMPUL TIIDA rear view" style="width:250px;">
+    </div>
+
+    <hr>
+
+    <!-- Equipment table -->
+    <div class="section-heading">IMPUL TIIDA コンプリート　主要装備一覧表</div>
+    <table class="equip-table">
+      <thead>
+        <tr>
+          <td class="col-header" colspan="2"></td>
+          <td class="col-header compressor">コンプレッサー ver.<br><small>【35ps Up!】</small></td>
+          <td class="col-header">コンプリート ver.</td>
+          <td class="col-header" style="color:#4c4c4c;">Ｓ ver.</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ボディカラー</td>
+          <td>ティーダ純正色</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">●</td>
+        </tr>
+        <tr>
+          <td rowspan="6">エアロパーツ<br>他エクステリア</td>
+          <td>フロントバンパー<span class="sub-note">（グリル付）</span></td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">●</td>
+        </tr>
+        <tr>
+          <td>サイドステップ</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">●</td>
+        </tr>
+        <tr>
+          <td>リアハーフスポイラー</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">●</td>
+        </tr>
+        <tr>
+          <td>リアウイング</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">●</td>
+        </tr>
+        <tr>
+          <td>レーシングトリム</td>
+          <td class="check compressor">オプション</td>
+          <td class="check complete">オプション</td>
+          <td class="check s-ver">オプション</td>
+        </tr>
+        <tr>
+          <td class="compressor-item">リア・コンプレッサーデカール</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">－</td>
+          <td class="check s-ver">－</td>
+        </tr>
+        <tr>
+          <td rowspan="4">エンジン<br>吸排気系</td>
+          <td class="compressor-item">スーパーチャージャーキット</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">－</td>
+          <td class="check s-ver">－</td>
+        </tr>
+        <tr>
+          <td class="compressor-item">ハイパワーコントロールユニット</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">－</td>
+          <td class="check s-ver">－</td>
+        </tr>
+        <tr>
+          <td class="compressor-item">スパークプラグ</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">－</td>
+          <td class="check s-ver">－</td>
+        </tr>
+        <tr>
+          <td>ブラスト II マフラー</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">－</td>
+        </tr>
+        <tr>
+          <td rowspan="2">足まわり</td>
+          <td>スーパーショック タイプ 1</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">－</td>
+        </tr>
+        <tr>
+          <td>コイルスプリング</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">●</td>
+        </tr>
+        <tr>
+          <td rowspan="2">ホイール<br>タイヤ</td>
+          <td>
+            <a href="../wheel/NS-GT_II.htm">IMPUL NS-GT II：7.0J×17(+45)</a><br>
+            <span class="sub-note">※カラー：ハイパーブラックは￥2,000アップ（税込￥2,100）／1本</span>
+          </td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">●</td>
+        </tr>
+        <tr>
+          <td>ブリヂストン プレイズ：205/45-17</td>
+          <td class="check compressor">●</td>
+          <td class="check complete">●</td>
+          <td class="check s-ver">●</td>
+        </tr>
+        <tr>
+          <td valign="top">オプション</td>
+          <td colspan="4">
+            <table class="options-table">
+              <tr>
+                <td>■ レーシングトリム【車検対応】</td>
+                <td class="price">￥72,000</td>
+                <td class="note">（税込￥75,600）</td>
+              </tr>
+              <tr>
+                <td>■ ホイール・センターキャップ</td>
+                <td class="price">￥1,800</td>
+                <td class="note">（税込￥1,890）／1個</td>
+              </tr>
+              <tr>
+                <td>■ ブルーアルマイト・ホイールナット</td>
+                <td class="price">￥8,000</td>
+                <td class="note">（税込￥8,400）／1台分セット</td>
+              </tr>
+              <tr>
+                <td>■ スポーツシート（シートブラケット付き）</td>
+                <td class="price">￥100,000</td>
+                <td class="note">（税込￥105,000）／1脚</td>
+              </tr>
+              <tr>
+                <td>■ ステアリング IMPUL 913S／ボス・セット</td>
+                <td class="price">￥51,000</td>
+                <td class="note">（税込￥53,550）</td>
+              </tr>
+              <tr>
+                <td>■ ブレーキパッド／シュー</td>
+                <td class="price">￥30,000</td>
+                <td class="note">（税込￥31,500）／1台分</td>
+              </tr>
+              <tr>
+                <td>■ フォグランプ</td>
+                <td class="price">￥27,300</td>
+                <td class="note">（税込￥28,665）</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="table-note">
+      注：表の「●」印は標準装備、「－」印は未装備を表します。<br>
+      ※コンプレッサーバージョンのハイパワーコントロールユニットはコンプレッサーキット専用タイプです。
+    </p>
+
+    <hr>
+
+    <!-- Price table -->
+    <div class="section-heading">IMPUL TIIDA コンプリート　車輌価格一覧表</div>
+    <table class="price-table">
+      <thead>
+        <tr>
+          <td class="col-header" rowspan="2">ベース車輌</td>
+          <td class="col-header compressor">コンプレッサー ver.</td>
+          <td class="col-header">コンプリート ver.</td>
+          <td class="col-header" style="color:#4c4c4c;">Ｓ ver.</td>
+        </tr>
+        <tr>
+          <td class="col-header" style="color:#666;">税別価格（税込価格）</td>
+          <td class="col-header" style="color:#666;">税別価格（税込価格）</td>
+          <td class="col-header" style="color:#666;">税別価格（税込価格）</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>■ ティーダ 15S</td>
+          <td class="price-val">￥2,298,000<small>（￥2,412,900）</small></td>
+          <td class="price-val">￥1,998,000<small>（￥2,097,900）</small></td>
+          <td class="price-val">￥1,898,000<small>（￥1,992,900）</small></td>
+        </tr>
+        <tr>
+          <td colspan="4" class="notes-cell">
+            ・東京地区店頭渡し価格です。その他の諸費用及び保険料等は含まれていません。<br>
+            ・C11型ティーダ（FF車）どのグレードでも対応可能ですのでお気軽にお問い合せ下さい【※4WD車不可】<br>
+            　お問い合せ：株式会社ホシノインパル　TEL 03-3439-1122
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="price-disclaimer">価格及び仕様はベース車輌の価格変更や改良のため予告なく変更する場合があります</p>
+
+  </div><!-- /content-card -->
+
+
+
+</div>
+</body>
+</html>
