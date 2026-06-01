@@ -3,18 +3,18 @@
    ============================== */
 
 :root {
-  --gt2-bg: #0b0e14;
-  --gt2-panel: #151a22;
-  --gt2-panel-dark: #10141b;
-  --gt2-border: #1f2530;
+  --gt2-bg: #140b0b;
+  --gt2-panel: #221515;
+  --gt2-panel-dark: #1b1010;
+  --gt2-border: #301f1f;
 
-  --gt2-text: #F79400;
+  --gt2-text: #b81414;
   --gt2-muted: #B5B5B5;
 
   --gt2-red: #c4161c;
-  --gt2-blue: #0042FF;
+  --gt2-blue: #500a0a;
 
-  --gt2-glow: #7B3900;
+  --gt2-glow: #4b4b4b;
 }
 
 
@@ -58,7 +58,7 @@ body {
   white-space: pre;
   line-height: 1.4;
 
-  color: #f5a623; /* matches your orange theme */
+  color: #a31111; /* matches your orange theme */
   background: rgba(0, 0, 0, 0.35);
 
   padding: 1rem 1.25rem;
@@ -156,12 +156,12 @@ nav .btn {
   padding: 8px 16px;
   background: linear-gradient(
     180deg,
-    #2a4f7f 0%,
+    #7f2a2a 0%,
     var(--gt2-blue) 100%
   );
   color: #fff;
   text-decoration: none;
-  border: 1px solid #0042FF;
+  border: 1px solid #3a3a3a;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.15),
     0 2px 6px rgba(0,0,0,0.4);
@@ -194,7 +194,7 @@ nav .btn:hover {
 
   background: linear-gradient(
     180deg,
-    #f5a623 0%,
+    #f52323 0%,
     var(--gt2-text) 100%
   );
   color: #000;
