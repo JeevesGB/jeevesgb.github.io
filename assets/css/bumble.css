@@ -83,7 +83,7 @@ nav.field {
 }
 
 .btn:hover {
-  background: linear-gradient(180deg, var(--accent-orange), #f59a00);
+  background: linear-gradient(180deg, var(--accent-magenta), #e63b65);
   color: #000;
   border-color: var(--accent-magenta);
   transform: translateY(-4px);
