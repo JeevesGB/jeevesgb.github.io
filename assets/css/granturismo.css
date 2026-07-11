@@ -1,19 +1,20 @@
 /* ==============================
-   Gran Turismo 2 - Modern Redesign
+   Gran Turismo 2 - Modern Redesign (New Color Scheme)
    ============================== */
 
 :root {
-  --gt-bg: #0f0a0a;
-  --gt-panel: #1c1212;
-  --gt-panel-dark: #140c0c;
-  --gt-border: #3a2525;
-  --gt-accent: #e81c24;
-  --gt-text: #ffdddd;
-  --gt-muted: #a88a8a;
-  --gt-glow: #ff4d4d;
-  --gt-shadow: rgba(232, 28, 36, 0.25);
+  --gt-bg: #070707;           /* Black Metal */
+  --gt-panel: #171C19;        /* Twilight Zone */
+  --gt-panel-dark: #0f1412;
+  --gt-border: #3a4a44;
+  --gt-accent: #E43631;       /* Electric Blood */
+  --gt-text: #DDF9F3;         /* Candied Snow */
+  --gt-muted: #a8b8b0;
+  --gt-glow: #EE8660;         /* Peachy Feeling */
+  --gt-shadow: rgba(228, 54, 49, 0.35);
 }
 
+/* ====================== Base ====================== */
 *,
 *::before,
 *::after {
@@ -22,11 +23,7 @@
 
 body {
   margin: 0;
-  background: radial-gradient(
-    circle at 50% 20%,
-    #2a1a1a 0%,
-    var(--gt-bg) 70%
-  );
+  background: radial-gradient(circle at 50% 20%, #2a1f1f 0%, var(--gt-bg) 70%);
   color: var(--gt-text);
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
@@ -35,175 +32,146 @@ body {
 
 /* ====================== Main Container ====================== */
 .container {
-  max-width: 1100px;
-  align-items: centre;
+  max-width: 1180px;
   margin: 40px auto;
   padding: 32px;
   background: linear-gradient(180deg, var(--gt-panel) 0%, var(--gt-panel-dark) 100%);
   border: 1px solid var(--gt-border);
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 
-    inset 0 1px 0 rgba(255,255,255,0.06),
-    0 12px 40px rgba(0,0,0,0.6);
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    0 12px 40px rgba(0,0,0,0.7);
 }
 
 /* ====================== Typography ====================== */
 .title {
   text-align: center;
-  font-size: 2.1rem;
+  font-size: 2.2rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   text-shadow: 
-    0 0 8px var(--gt-glow),
-    0 0 20px rgba(232, 28, 36, 0.3);
+    0 0 12px var(--gt-glow),
+    0 0 28px rgba(238, 134, 96, 0.4);
   color: #fff;
 }
 
-/* ====================== File Tree ====================== */
-.file-tree {
-  font-family: 'Consolas', 'Courier New', monospace;
-  font-size: 0.95rem;
-  background: rgba(0, 0, 0, 0.45);
-  padding: 1.25rem 1.5rem;
-  border-radius: 6px;
-  border: 1px solid var(--gt-border);
-  color: #ff8a8a;
-  overflow-x: auto;
-  white-space: pre;
-  line-height: 1.45;
-}
-
-/* ====================== Archive Grid ====================== */
-.archive-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-  padding: 12px 0;
-}
-
-.archive-card {
-  background: var(--gt-panel-dark);
-  border: 1px solid var(--gt-border);
-  border-radius: 8px;
-  overflow: hidden;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
-}
-
-.archive-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--gt-accent);
-  box-shadow: 
-    0 12px 28px rgba(0,0,0,0.7),
-    0 0 15px var(--gt-shadow);
-}
-
-.archive-card img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-}
-
-.archive-card:hover img {
-  transform: scale(1.04);
-}
-
-.archive-card-label {
-  padding: 14px 16px;
-}
-
-.archive-card-label strong {
-  display: block;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.archive-card-label span {
-  display: block;
-  margin-top: 6px;
-  font-size: 0.82rem;
-  color: var(--gt-muted);
-}
-
-/* ====================== Navigation & Buttons ====================== */
+/* ====================== Navigation ====================== */
 nav.field {
   display: flex;
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin: 24px 0;
+  margin: 20px 0;
 }
 
 .btn {
-  padding: 10px 22px;
-  background: linear-gradient(180deg, #6b2a2a, #2a1212);
+  padding: 11px 24px;
+  background: linear-gradient(180deg, #2a2a2a, #121212);
   color: #fff;
   text-decoration: none;
-  border: 1px solid #5c2a2a;
-  border-radius: 4px;
+  border: 1px solid #444;
+  border-radius: 6px;
   font-weight: 500;
-  transition: all 0.2s ease;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .btn:hover {
-  background: linear-gradient(180deg, var(--gt-accent), #b0141a);
+  background: linear-gradient(180deg, var(--gt-accent), #c02a2a);
   border-color: var(--gt-accent);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px var(--gt-shadow);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px var(--gt-shadow);
 }
 
 .btn.download {
-  margin: 28px auto;
+  margin: 30px auto;
   display: block;
   width: fit-content;
-  padding: 14px 36px;
-  font-size: 1.05rem;
+  padding: 15px 40px;
+  font-size: 1.1rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  background: linear-gradient(180deg, #ff3d3d, var(--gt-accent));
+  letter-spacing: 0.1em;
+  background: linear-gradient(180deg, var(--gt-accent), #EE8660);
   color: #000;
-  border: 1px solid #ffb3b3;
+  border: 1px solid #ffccaa;
   text-transform: uppercase;
-  box-shadow: 
-    inset 0 1px 0 rgba(255,255,255,0.4),
-    0 6px 16px rgba(0,0,0,0.6);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 8px 20px rgba(0,0,0,0.6);
 }
 
 .btn.download:hover {
-  background: linear-gradient(180deg, #ff2222, #c81018);
+  background: linear-gradient(180deg, #c02a2a, #EE8660);
   color: white;
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
-/* ====================== Layout ====================== */
-.page-layout {
-  display: flex;
-  max-width: 1250px;
-  margin: 40px auto;
+/* ====================== Projects & Archive Grid ====================== */
+.projects-grid,
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   gap: 28px;
-  align-items: flex-start;
+  padding: 20px 0;
 }
 
-.sidebar {
-  width: 260px;
-  padding: 24px;
-  background: linear-gradient(180deg, var(--gt-panel), var(--gt-panel-dark));
+.archive-card,
+.projects-grid .archive-card {
+  background: var(--gt-panel-dark);
   border: 1px solid var(--gt-border);
-  border-radius: 8px;
-  position: sticky;
-  top: 24px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.main-content {
-  flex: 1;
+.archive-card:hover,
+.projects-grid .archive-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--gt-accent);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.8), 0 0 20px var(--gt-shadow);
+}
+
+.archive-card img,
+.projects-grid .archive-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+  padding: 18px;
+  background: #111;
+  transition: transform 0.4s ease;
+}
+
+.archive-card:hover img,
+.projects-grid .archive-card:hover img {
+  transform: scale(1.05);
+}
+
+.archive-card-label {
+  padding: 16px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.archive-card-label strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.archive-card-label span {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: var(--gt-muted);
+  line-height: 1.4;
 }
 
 /* ====================== Other Elements ====================== */
@@ -213,98 +181,65 @@ a {
 }
 
 a:hover {
-  color: #ff6666;
-  text-shadow: 0 0 6px var(--gt-glow);
+  color: #ff7777;
+  text-shadow: 0 0 8px var(--gt-glow);
 }
 
-a:focus-visible {
-  outline: 2px solid var(--gt-accent);
-  outline-offset: 4px;
-}
-
-iframe {
-  border: 1px solid var(--gt-border);
-  border-radius: 6px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+footer {
+  text-align: center;
+  padding: 30px 0;
+  color: var(--gt-muted);
+  font-size: 0.95rem;
 }
 
 /* ====================== Responsive ====================== */
 @media (max-width: 768px) {
-  .page-layout {
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    width: 100%;
-    position: static;
-  }
-  
   .container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 32px;
-    background: linear-gradient(180deg, var(--gt-panel) 0%, var(--gt-panel-dark) 100%);
-    border: 1px solid var(--gt-border);
-    border-radius: 8px;
-    box-shadow: 
-      inset 0 1px 0 rgba(255,255,255,0.06),
-      0 12px 40px rgba(0,0,0,0.6);
-    text-align: center;           /* ← Added */
+    margin: 20px auto;
+    padding: 24px;
+  }
+
+  .title {
+    font-size: 1.9rem;
   }
 }
 
-/* ====================== Feature Image Buttons ====================== */
+.vital-logo {
+      display: block;
+      margin: 20px auto;
+      max-width: 280px;
+      height: auto;
+      border: 2px solid var(--gt-border);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--gt-panel-dark);
+    }
 
-.gt2c-button,
-.gt4p-button,
-.option-button,
-.toten-button {
-  display: block;
-  text-align: center;
-  margin: 20px auto;
+    .vital-skin {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+      height: auto;
+      border: 2px solid var(--gt-border);
+      border-radius: 8px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    }
+
+    .skin-container {
+      text-align: center;
+    }
+
+.logo {
+      display: block;
+      margin: 20px auto;
+      max-width: 800px;
+      height: 40;
+      border: 2px solid var(--gt-border);
+      border-radius: 10px;
+      padding: 10px;
+      background: var(--gt-panel-dark);
 }
 
-.gt2c-button img,
-.gt4p-button img,
-.option-button img,
-.toten-button img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border-radius: 6px;
-  border: 2px solid var(--gt-border);
-  box-shadow: 
-    0 8px 20px rgba(0, 0, 0, 0.6),
-    0 0 12px rgba(232, 28, 36, 0.2);
-  transition: all 0.3s ease;
-}
-
-.gt2c-button:hover img,
-.gt4p-button:hover img,
-.option-button:hover img,
-.toten-button:hover img {
-  transform: scale(1.03);
-  border-color: var(--gt-accent);
-  box-shadow: 
-    0 12px 28px rgba(0, 0, 0, 0.7),
-    0 0 20px var(--gt-shadow);
-}
-
-/* Captions */
-.gt2c-caption,
-.gt4p-caption,
-.option-caption,
-.toten-caption {
-  text-align: center;
-  margin-top: 12px;
-  color: var(--gt-muted);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-/* Remove old align attribute styling */
-img[align="center"] {
-  margin: 0 auto;
-  display: block;
+.screenshot.logo {
+    margin: 15px auto;
 }

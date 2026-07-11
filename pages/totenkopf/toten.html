@@ -3,69 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <p></p>
-
+  <title>Totenkopf - Hard Mode Mod</title>
   <link rel="stylesheet" href="../../assets/css/granturismo.css">
-</head>
+  
+  <style>
+    .logo {
+      display: block;
+      margin: 20px auto;
+      max-width: 500px;
+      height: auto;
+      border: 3px solid var(--gt-border);
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    }
 
+    .file-tree {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      white-space: pre-wrap; 
+    }
+  </style>
+</head>
 <body>
 
-  <header class="page-header">
-    <h1></h1>
-    <img
-      src="img/logo.png"
-      alt="Totenkopf logo"
-      class="logo"
-      width="800"
-    />
-  </header>
-
-  <div class="container">
-    <a class="header">
-        Totenkopf is a Hard Mode Mod for Return To Castle Wolfenstein. 
-        All map .ai scripts have been edited along with some ui and load screen tweaks. 
-    </a>
-    <p></p>
-    <img src="img/scr2.png"
-    width="600">
-  </div>
-
-  <pre class="file-tree">
-    <h3><center><strong><size=80> How To Run </size></strong></center></h3>
-
-    1. Download the mod from the linked Github below.
-    2. Make a copy of RTCW. 
-    3. Place _totenkopf.pk3 in your RTCW/Main directory. 
-    4. [Optional] Download the autoexec.cfg file and place that also within the RTCW/Main directory.
-
-##############################################################################################################################################################################################
-</pre>
-
-    <div class="container">
-    <a
-        href="https://github.com/JeevesGB/Totenkopf"
-        class="btn download"
-    >
-    Github
-    </a>
-    </div>
-
+  <!-- Navigation -->
   <div class="container">
     <nav class="field">
-      <a href="../../pages/projects.html" class="btn primary">Projects</a>
-      <a href="../../pages/webtools.html" class="btn primary">Web Tools</a>
-      <a href="../../pages/far-cry-2-maps/fc2index.html" class="btn primary">Far Cry 2 Multiplayer Maps</a>
-      <a href="../../pages/music.html" class="btn primary">Music</a>
+      <a href="../../index.html" class="btn primary">Home</a>
+      <a href="https://soundcloud.com/jeevesbeats" class="btn primary">Music</a>
       <a href="../../pages/itch.html" class="btn primary">Itch.io</a>
-
     </nav>
-                                          <p></p>
-    <nav class="field" sizeandspacing="20">
-      <a href="../../pages/homoligation.html" class="btn primary">Homoligation Documents</a>
+
+    <nav class="field" style="margin-top: 1rem;">
       <a href="https://discord.gg/m5fmspHa9m" class="btn primary">Gran Turismo 2 Concept & Spec VII Discord</a>
-      <a href="../../pages/option/option.html" class="btn primary">Option Tuning Car Battle Research</a>
-      <a href="../../pages/vitalskins.html" class="btn primary">Vital Skins</a>
-      <a href="../../pages/totenkopf/toten.html" class="btn primary">Totenkopf</a>
     </nav>
   </div>
 
+  <!-- Header / Logo -->
+  <div class="container" style="text-align: center;">
+    <img src="img/logo.png" alt="Totenkopf logo" class="logo">
+  </div>
+
+  <!-- Description -->
+  <div class="container">
+    <p style="text-align: center; font-size: 1.2rem;">
+      Totenkopf is a Hard Mode Mod for Return To Castle Wolfenstein.<br>
+      All map .ai scripts have been edited along with some UI and load screen tweaks.
+    </p>
+  </div>
+
+  <!-- Instructions -->
+  <div class="container">
+    <h2 style="text-align: center;">How To Run</h2>
+    <pre class="file-tree">
+1. Download the mod from the linked GitHub below.
+
+2. Make a copy of your RTCW installation.
+
+3. Place _totenkopf.pk3 in your RTCW/Main directory.
+
+4. [Optional] Download the autoexec.cfg file and place it in the RTCW/Main directory.
+    </pre>
+  </div>
+
+  <!-- Download Button -->
+  <div class="container" style="text-align: center;">
+    <a href="https://github.com/JeevesGB/Totenkopf" 
+       class="btn download" target="_blank">
+      Github Repository
+    </a>
+  </div>
+
+</body>
+</html>
