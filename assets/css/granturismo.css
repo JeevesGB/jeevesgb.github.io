@@ -243,3 +243,14 @@ footer {
 .screenshot.logo {
     margin: 15px auto;
 }
+/* Fix for centered screenshots/logos */
+.screenshot {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid var(--gt-border);
+  border-radius: 8px;
+  background: var(--gt-panel-dark);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
