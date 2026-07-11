@@ -1,6 +1,3 @@
-/* ==============================
-   Gran Turismo 2 - Modern Redesign (New Color Scheme)
-   ============================== */
 
 :root {
   --gt-bg: #070707;           /* Black Metal */
@@ -243,7 +240,6 @@ footer {
 .screenshot.logo {
     margin: 15px auto;
 }
-/* Fix for centered screenshots/logos */
 .screenshot {
   display: block;
   margin: 20px auto;
@@ -257,8 +253,8 @@ footer {
 /* ====================== Improved Screenshots Grid ====================== */
 .projects-grid .screenshot {
   width: 100%;
-  height: 260px;           /* Bigger screenshots */
-  object-fit: cover;       /* Better cropping */
+  height: 260px;           
+  object-fit: cover;       
   border-radius: 8px;
   margin: 0;
   padding: 0;
@@ -272,7 +268,6 @@ footer {
   box-shadow: 0 12px 30px var(--gt-shadow);
 }
 
-/* Make screenshot containers look better */
 .container:has(.projects-grid) {
   padding-bottom: 40px;
 }
@@ -304,7 +299,6 @@ footer {
   transform: translateY(-4px);
 }
 
-/* Center download buttons better */
 .container > .btn.download {
   margin: 30px auto;
 }
@@ -320,7 +314,6 @@ footer {
   margin-bottom: 20px;
 }
 
-/* Slightly larger titles on subpages */
 .title {
   font-size: 2.4rem;
 }
