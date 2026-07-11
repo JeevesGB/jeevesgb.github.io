@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OTC BDMO - Option Tuning Car Battle Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../assets/css/granturismo.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="field">
+        <p><a href="option.html" class="btn primary">← Back to Main Option Tuning Car Battle Page</a></p>
+    </nav>
+    <nav class="field">
+        <a href="otcb1.html" class="btn primary">OTC B1</a>
+        <a href="otcb2.html" class="btn primary">OTC B2</a>
+        <a href="otcbdmo.html" class="btn primary">OTC BDMO</a>
+        <a href="specr.html" class="btn primary">Spec-R</a>
+    </nav>
+  </div>
+
+  <div class="page-layout">
+    <div class="main-content">
+      <div class="container">
+        <article class="field">
+          <img src="img/1/logo.png" alt="OTC BDMO Logo" class="screenshot" style="max-width:300px;">
+          <h1>Option Tuning Car Battle Demo</h1>
+<hr>
+          <h2>Filetypes</h2>
+          <table class="field">
+            <thead><tr><th>Extension</th><th>Found In</th><th>Likely Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>.DA</td><td>ROOT</td><td>Audio/data archive files</td></tr>
+              <tr><td>.BIN</td><td>BIN, OPT/C0, OPT/TIM</td><td>Generic binary data (course chunks, car models, menu/UI graphics)</td></tr>
+              <tr><td>.STR</td><td>OPT, STRDAT, STRDAT/OP, STRDAT/SP</td><td>Streamed video/FMV files (opening, shop, cutscenes)</td></tr>
+              <tr><td>.MDT</td><td>OPT/C0</td><td>Track/course model data</td></tr>
+              <tr><td>.TDT</td><td>OPT/C0</td><td>Track texture data (paired with `.MDT` files)</td></tr>
+              <tr><td>.VB</td><td>OPT/C0, SND</td><td>Sound bank data (engine audio, system sound)</td></tr>
+              <tr><td>.VHX</td><td>OPT/C0</td><td>Sound header data (paired with `.VB` files)</td></tr>
+              <tr><td>.TMD</td><td>OPT/C0, OPT/TIM</td><td>PlayStation 3D model files</td></tr>
+              <tr><td>.MSG</td><td>OPT/MSG2</td><td>Message/dialogue text data</td></tr>
+              <tr><td>.SEP</td><td>SND</td><td>System sound effect/sequence data</td></tr>
+              <tr><td>.VH</td><td>SND</td><td>Sound header bank (paired with `.VB` files)</td></tr>
+              <tr><td>(none)</td><td>ROOT</td><td>`MAINMENU` and `SLPM_802.03` files with no extension</td></tr>
+            </tbody>
+          </table>
+<hr>
+          <h2>Game File Structure</h2>
+          <pre class="file-tree">
+ROOT
+├── MAINMENU
+├── SLPM_802.03
+├── SYSTEM.CNF
+├── T02.DA
+├── T03.DA
+├── T04.DA
+├── T05DMY0.DA
+├── T05DMY1.DA
+├── BIN
+├── OPT
+│   ├── C0
+│   ├── MSG2
+│   └── TIM
+├── SND
+└── STRDAT
+    ├── OP
+    └── SP
+          </pre>
+
+<hr>
+          <h2>Game File Structure (Extended)</h2>
+          <pre class="file-tree">
+ROOT
+├── MAINMENU
+├── SLPM_802.03
+├── SYSTEM.CNF
+├── T02.DA
+├── T03.DA
+├── T04.DA
+├── T05DMY0.DA
+├── T05DMY1.DA
+├── BIN
+│   ├── BIN00.BIN
+│   ├── BIN01.BIN
+│   ├── BIN02.BIN
+│   ├── BIN03.BIN
+│   ├── BIN04.BIN
+│   ├── BIN05.BIN
+│   ├── BIN06.BIN
+│   ├── BIN07.BIN
+│   ├── BIN08.BIN
+│   ├── BIN09.BIN
+│   ├── BIN10.BIN
+│   ├── BIN11.BIN
+│   └── BIN12.BIN
+├── OPT
+│   ├── MTO.STR
+│   ├── OPTION
+│   ├── C0
+│   │   ├── COURSE1.MDT
+│   │   ├── COURSE1.TDT
+│   │   ├── ENGINE02.VB
+│   │   ├── ENGINE02.VHX
+│   │   ├── ENGINE19.VB
+│   │   ├── ENGINE19.VHX
+│   │   ├── FD7.BIN
+│   │   ├── FD7.MDT
+│   │   ├── FD7_AMA.BIN
+│   │   ├── FD7_AMA.MDT
+│   │   ├── GTR33.BIN
+│   │   ├── GTR33.MDT
+│   │   ├── MINES33.BIN
+│   │   ├── MINES33.MDT
+│   │   ├── MYAT.TMD
+│   │   ├── SYS_GM1.VB
+│   │   ├── SYS_GM1.VHX
+│   │   ├── SYS_SUB.VB
+│   │   └── SYS_SUB.VHX
+│   ├── MSG2
+│   │   ├── KAN33.MSG
+│   │   ├── MIN33.MSG
+│   │   ├── REAFD.MSG
+│   │   ├── SHOP.MSG
+│   │   └── VEL33.MSG
+│   └── TIM
+│       ├── AMAMIYA.BIN
+│       ├── GAME.BIN
+│       ├── LOAD.BIN
+│       ├── MENU.BIN
+│       ├── MINES.BIN
+│       ├── REMIX.BIN
+│       ├── SHOPSKY.BIN
+│       ├── SHOP_G.BIN
+│       ├── SHOP_G.TMD
+│       ├── SORA.BIN
+│       ├── SYS.BIN
+│       ├── S_WANGAN.BIN
+│       ├── TG.BIN
+│       ├── TITLE.BIN
+│       └── TUNESEL.BIN
+├── SND
+│   ├── SYSTEM.SEP
+│   ├── SYSTEM.VB
+│   └── SYSTEM.VH
+└── STRDAT
+    ├── MTO.STR
+    ├── OP
+    │   ├── CRASH1.STR
+    │   ├── CRASH2.STR
+    │   ├── DIGEST1.STR
+    │   ├── DIGEST2.STR
+    │   ├── INADA1.STR
+    │   ├── INADA2.STR
+    │   ├── YAMADA1.STR
+    │   ├── YAMADA2.STR
+    │   ├── YATABE1.STR
+    │   └── YATABE2.STR
+    └── SP
+        ├── SHOP01.STR
+        ├── SHOP01R.STR
+        ├── SHOP02.STR
+        ├── SHOP02R.STR
+        ├── SHOP03.STR
+        ├── SHOP03R.STR
+        ├── SHOP04.STR
+        ├── SHOP04R.STR
+        ├── SHOP05.STR
+        ├── SHOP05R.STR
+        ├── SHOP06.STR
+        ├── SHOP06R.STR
+        ├── SHOP07.STR
+        ├── SHOP07R.STR
+        ├── SHOP08.STR
+        ├── SHOP08R.STR
+        ├── SHOP09.STR
+        ├── SHOP09R.STR
+        ├── SHOP10.STR
+        ├── SHOP10R.STR
+        ├── SHOP11.STR
+        └── SHOP11R.STR</pre>
+
+          <p><a href="option.html" class="btn primary">← Back to Main Option Tuning Car Battle Page</a></p>
+        </article>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
