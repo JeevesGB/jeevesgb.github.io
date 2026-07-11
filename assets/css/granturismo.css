@@ -254,3 +254,84 @@ footer {
   background: var(--gt-panel-dark);
   box-shadow: 0 8px 20px rgba(0,0,0,0.6);
 }
+/* ====================== Improved Screenshots Grid ====================== */
+.projects-grid .screenshot {
+  width: 100%;
+  height: 260px;           /* Bigger screenshots */
+  object-fit: cover;       /* Better cropping */
+  border-radius: 8px;
+  margin: 0;
+  padding: 0;
+  background: #0a0a0a;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projects-grid .screenshot:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px var(--gt-shadow);
+}
+
+/* Make screenshot containers look better */
+.container:has(.projects-grid) {
+  padding-bottom: 40px;
+}
+
+/* ====================== Better Buttons ====================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, #2a2a2a, #1a1a1a);
+  border-color: var(--gt-border);
+}
+
+.btn.download {
+  margin: 20px auto;
+  display: block;
+  font-size: 1.15rem;
+  padding: 16px 48px;
+  letter-spacing: 0.12em;
+  box-shadow: 0 8px 25px rgba(228, 54, 49, 0.4);
+}
+
+.btn.download:hover {
+  box-shadow: 0 12px 30px var(--gt-shadow);
+  transform: translateY(-4px);
+}
+
+/* Center download buttons better */
+.container > .btn.download {
+  margin: 30px auto;
+}
+
+/* ====================== Map Info Styling ====================== */
+.container p strong {
+  color: var(--gt-accent);
+}
+
+/* ====================== General Polish ====================== */
+.container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Slightly larger titles on subpages */
+.title {
+  font-size: 2.4rem;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  
+  .projects-grid .screenshot {
+    height: 220px;
+  }
+}

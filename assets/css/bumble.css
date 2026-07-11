@@ -1,0 +1,183 @@
+/* ==============================
+   Jeeves - New Vibrant Theme
+   Palette: Dark Cyan + Orange + Soft Linen + Magenta
+   ============================== */
+
+:root {
+  --bg: #0a0f0f;
+  --panel: #0f1c1c;
+  --panel-dark: #0a1414;
+  --accent-cyan: #018d8c;
+  --accent-orange: #ffac2a;
+  --accent-magenta: #e63b65;
+  --text: #efece5;
+  --text-light: #ffffff;
+  --muted: #b8b3a8;
+  --border: #1e2e2e;
+  --glow: #018d8c;
+  --shadow: rgba(1, 141, 140, 0.4);
+}
+
+/* ====================== Base ====================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 50% 20%, #112525 0%, var(--bg) 70%);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ====================== Container ====================== */
+.container {
+  max-width: 1180px;
+  margin: 40px auto;
+  padding: 32px;
+  background: linear-gradient(180deg, var(--panel) 0%, var(--panel-dark) 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 12px 40px rgba(0,0,0,0.75);
+}
+
+/* ====================== Typography ====================== */
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  color: var(--text-light);
+  text-shadow: 
+    0 0 12px var(--glow),
+    0 0 30px rgba(1, 141, 140, 0.35);
+}
+
+/* ====================== Navigation ====================== */
+nav.field {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.btn {
+  padding: 12px 26px;
+  background: linear-gradient(180deg, #1a2a2a, var(--panel));
+  color: var(--text-light);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: linear-gradient(180deg, var(--accent-orange), #f59a00);
+  color: #000;
+  border-color: var(--accent-orange);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px var(--shadow);
+}
+
+.btn.download {
+  margin: 30px auto;
+  display: block;
+  width: fit-content;
+  padding: 16px 52px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  background: linear-gradient(180deg, var(--accent-cyan), #00b3b1);
+  color: #000;
+  border: 1px solid #7ff6f4;
+  box-shadow: 0 8px 25px var(--shadow);
+}
+
+.btn.download:hover {
+  background: linear-gradient(180deg, var(--accent-magenta), #e63b65);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(230, 59, 101, 0.4);
+}
+
+/* ====================== Grids ====================== */
+.projects-grid,
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 28px;
+  padding: 20px 0;
+}
+
+.archive-card,
+.projects-grid .archive-card {
+  background: var(--panel-dark);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.archive-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.85);
+}
+
+/* Screenshots */
+.projects-grid .screenshot {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  transition: transform 0.4s ease;
+}
+
+.projects-grid .screenshot:hover {
+  transform: scale(1.05);
+}
+
+/* ====================== Other ====================== */
+a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-orange);
+}
+
+footer {
+  text-align: center;
+  padding: 40px 0 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ====================== Responsive ====================== */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px auto;
+    padding: 24px;
+  }
+  .title {
+    font-size: 2.1rem;
+  }
+  .projects-grid .screenshot {
+    height: 220px;
+  }
+}
