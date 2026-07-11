@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spec-R - Option Tuning Car Battle</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../assets/css/granturismo.css">
+</head>
+  <div class="container">
+    <nav class="field">
+  <p><a href="option.html" class="btn primary">← Back to Main Option Tuning Car Battle Page</a></p>
+    </nav>
+    <nav class="field">
+      <a href="otcb1.html" class="btn primary">OTC B1</a>
+      <a href="otcb2.html" class="btn primary">OTC B2</a>
+      <a href="otcbdmo.html" class="btn primary">OTC BDMO</a>
+      <a href="specr.html" class="btn primary">Spec-R</a>
+    </nav>
+  </div>
+
+        <img
+        src="img/sr/logo.png"
+        alt="Option Tuning Car Battle Logo"
+        align="center"
+        height="150"
+        class="screenshot">
+      </img>
+
+<body>
+
+
+
+  <div class="page-layout">
+    <div class="main-content">
+      <div class="container">
+        <article class="field">
+                <h1>Option Tuning Car Battle: Spec-R</h1>
+
+          <h2>Duckstation Cheats</h2>
+          <table class="field">
+            <thead><tr><th>Cheat</th><th>Code</th></tr></thead>
+            <tbody>
+              <tr><td>Infinite Coupons</td><td><code>800BA764 03E7</code></td></tr>
+              <tr><td>Unlock All Arcade Cars/Tracks</td><td><code>50001C02 0000 800BA77E FFFF</code></td></tr>
+            </tbody>
+          </table>
+
+          <p class="warning"><strong>WARNING THE FOLLOWING CHEATS MAY CRASH THE GAME!</strong></p>
+          <table class="field">
+            <thead><tr><th>Cheat</th><th>Code</th></tr></thead>
+            <tbody>
+              <tr><td>some kind of speed control</td><td><code>901FF070 00000000</code></td></tr>
+              <tr><td>glitch tf out</td><td><code>901FF090 0001D4E9</code></td></tr>
+              <tr><td>locks steering</td><td><code>901FF1B0 00000001</code></td></tr>
+            </tbody>
+          </table>
+          <video ><source src="https://youtu.be/OMa3FAN1qpk?si=eKYgMMzi9iK4NBEN" type"</video>
+<hr>
+          <section id="car-models">
+            <h2>Car Models</h2>
+
+            <p>
+              The car models are stored in the C0-C5 folders as .car files. These files
+              contain 3D model data, textures, and other information related to the cars.
+            </p>
+
+            <p>
+              Research into the .car file format is ongoing, and tools for editing these
+              files have been attempted with some success at extracting textures, as seen below.
+            </p>
+            <img
+              src="img/texture.png"
+              alt="Car Texture"
+              align="center"
+              height="500"
+              class="screenshot"
+            </img>
+            </section>
+<hr>
+          <section id="sound-files">
+            <h2>Sound Files</h2>
+
+            <p>
+              The sound files are located in the SE folder and use .SHB and .VHB formats.
+              .SHB contains audio data, while .VHB contains metadata such as loop points.
+            </p>
+
+            <p>
+              Extracted audio archive:
+            </p>
+
+            <a
+              href="https://archive.org/download/option-tuning-car-battle-exported-sounds/Option_Tuning_Car_Battle_exported_sounds.rar"
+              class="btn download"
+              download
+            >
+              Option Tuning Car Battle Sound Files
+            </a>
+          </section>
+<hr>
+          <h2>Filetypes</h2>
+          <table class="field">
+            <thead><tr><th>Extension</th><th>Found In</th><th>Likely Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>.CAR</td><td>C0–C5</td><td>Car data files (each car has a `_D` and `_N` variant)</td></tr>
+              <tr><td>.BIN</td><td>CS, OTHER, RACE, SUB0–SUB3</td><td>Generic binary data (models, menus, backgrounds, race logic, etc.)</td></tr>
+              <tr><td>.TIX</td><td>CS</td><td>Texture files paired with `.BIN` circuit files</td></tr>
+              <tr><td>.VOI</td><td>EV1–EV3</td><td>Voice/audio clips (driver dialogue, per car)</td></tr>
+              <tr><td>.VHB</td><td>SE</td><td>Sound/voice header bank</td></tr>
+              <tr><td>.SHB</td><td>SE</td><td>Sound header bank (sequence files)</td></tr>
+              <tr><td>.TIM</td><td>WHEEL1–WHEEL3</td><td>PlayStation TIM image files (wheel/tire textures)</td></tr>
+              <tr><td>.STR</td><td>X_STR</td><td>Streamed video/FMV files (opening, ending, movie)</td></tr>
+              <tr><td>.DA</td><td>Z_DA</td><td>Data archive files</td></tr>
+            </tbody>
+          </table>
+<hr>
+          <h2>Game File Structure</h2>
+          <pre class="file-tree">ROOT
+├── C0 - .car files
+├── C1 - .car files
+├── C2 - .car files
+├── C3 - .car files
+├── C4 - .car files
+├── C5 - .car files
+├── C6 - empty
+├── CS - track files
+├── EV1 - .VOI files
+├── EV2 - .VOI files
+├── EV3 - .VOI files
+├── OTHER - OTHER1.BIN
+├── RACE - CAMERA.BIN & RACE.BIN
+├── SE - .SHB & .VHB audio
+├── SUB - menu images stored in .BIN files
+├── WHEEL - .TIM images
+├── X_STR - video files
+├── Z_DA - data archives
+├── SLPS_025.87
+└── SYSTEM.CNF</pre>
+<hr>
+          <h2>Game File Structure (Extended)</h2>
+          <pre class="file-tree">C0: 
+        E_101_D.CAR
+        E_101_N.CAR
+        E_34N1_D.CAR
+        E_34N1_N.CAR
+        E_753_D.CAR
+        E_753_N.CAR
+        E_A86L_D.CAR
+        E_A86L_N.CAR
+        E_DAI2_D.CAR
+        E_DAI2_N.CAR
+        E_DAI_D.CAR
+        E_DAI_N.CAR
+        E_DRAG_D.CAR
+        E_DRAG_N.CAR
+        E_DS15_D.CAR
+        E_DS15_N.CAR
+        E_FFDR_D.CAR
+        E_FFDR_N.CAR
+        E_GALT_D.CAR
+        E_GALT_N.CAR
+        E_GR8_D.CAR
+        E_GR8_N.CAR
+        E_KOMA_D.CAR
+        E_KOMA_N.CAR
+        E_MINI_D.CAR
+        E_MINI_N.CAR
+        E_NM15_D.CAR
+        E_NM15_N.CAR
+        E_NOM2_D.CAR
+        E_NOM2_N.CAR
+
+C1:
+        E_NOMU_D.CAR
+        E_NOMU_N.CAR
+        E_O86T_D.CAR
+        E_O86T_N.CAR
+        E_OTBR_D.CAR
+        E_OTBR_N.CAR
+        E_R348_D.CAR
+        E_R348_N.CAR
+        E_RS15_D.CAR
+        E_RS15_N.CAR
+        E_RWGN_D.CAR
+        E_RWGN_N.CAR
+        E_SEVE_D.CAR
+        E_SEVE_N.CAR
+        E_SIL8_D.CAR
+        E_SIL8_N.CAR
+        E_SROC_D.CAR
+        E_SROC_N.CAR
+        E_TRZN_D.CAR
+        E_TRZN_N.CAR
+        E_VLS7_D.CAR
+        E_VLS7_N.CAR
+        E_VLSR_D.CAR
+        E_VLSR_N.CAR
+        E_VMAP_D.CAR
+        E_VMAP_N.CAR
+        E_VMAX_D.CAR
+        E_VMAX_N.CAR
+        E_VOPT_D.CAR
+        E_VOPT_N.CAR
+
+C2:
+        N_AE86_D.CAR
+        N_AE86_N.CAR
+        N_AP1_D.CAR
+        N_AP1_N.CAR
+        N_DC2_D.CAR
+        N_DC2_N.CAR
+        N_EK9_D.CAR
+        N_EK9_N.CAR
+        N_EP91_D.CAR
+        N_EP91_N.CAR
+        N_EVO4_D.CAR
+        N_EVO4_N.CAR
+        N_EVO5_D.CAR
+        N_EVO5_N.CAR
+        N_EVO6_D.CAR
+        N_EVO6_N.CAR
+        N_FD3S_D.CAR
+        N_FD3S_N.CAR
+        N_GC8_D.CAR
+        N_GC8_N.CAR
+        N_J100_D.CAR
+        N_J100_N.CAR
+        N_JZ80_D.CAR
+        N_JZ80_N.CAR
+        N_NB8C_D.CAR
+        N_NB8C_N.CAR
+        N_R32_D.CAR
+        N_R32_N.CAR
+        N_R33_D.CAR
+        N_R33_N.CAR
+
+C3: 
+        N_R34_D.CAR
+        N_R34_N.CAR
+        N_RS13_D.CAR
+        N_RS13_N.CAR
+        N_S13_D.CAR
+        N_S13_N.CAR
+        N_S14_D.CAR
+        N_S14_N.CAR
+        N_S15_D.CAR
+        N_S15_N.CAR
+        N_SW20_D.CAR
+        N_SW20_N.CAR
+        N_SXE1_D.CAR
+        N_SXE1_N.CAR
+        N_Z32_D.CAR
+        N_Z32_N.CAR
+        N_ZZ30_D.CAR
+        N_ZZ30_N.CAR
+        T_AE86_D.CAR
+        T_AE86_N.CAR
+        T_AP1_D.CAR
+        T_AP1_N.CAR
+        T_DC2_D.CAR
+        T_DC2_N.CAR
+        T_EK9_D.CAR
+        T_EK9_N.CAR
+        T_EP91_D.CAR
+        T_EP91_N.CAR
+        T_EVO4_D.CAR
+        T_EVO4_N.CAR
+
+C4: 
+        T_EVO5_D.CAR
+        T_EVO5_N.CAR
+        T_EVO6_D.CAR
+        T_EVO6_N.CAR
+        T_FD3S_D.CAR
+        T_FD3S_N.CAR
+        T_GC8_D.CAR
+        T_GC8_N.CAR
+        T_J100_D.CAR
+        T_J100_N.CAR
+        T_JZ80_D.CAR
+        T_JZ80_N.CAR
+        T_NB8C_D.CAR
+        T_NB8C_N.CAR
+        T_R32_D.CAR
+        T_R32_N.CAR
+        T_R33_D.CAR
+        T_R33_N.CAR
+        T_R34_D.CAR
+        T_R34_N.CAR
+        T_RS13_D.CAR
+        T_RS13_N.CAR
+        T_S13_D.CAR
+        T_S13_N.CAR
+        T_S14_D.CAR
+        T_S14_N.CAR
+        T_S15_D.CAR
+        T_S15_N.CAR
+        T_SW20_D.CAR
+        T_SW20_N.CAR
+
+C5: 
+        T_SXE1_D.CAR
+        T_SXE1_N.CAR
+        T_Z32_D.CAR
+        T_Z32_N.CAR
+        T_ZZ30_D.CAR
+        T_ZZ30_N.CAR
+
+C6: Empty folder
+
+CS: 
+        CIRCU_A1.BIN
+        CIRCU_A1.TIX (TEXTURES)
+        CIRCU_A2.BIN
+        CIRCU_A2.TIX
+        EBISU_A3.BIN
+        EBISU_A3.TIX
+        EBISU_A4.BIN
+        EBISU_A4.TIX
+        SHUTO_H1.BIN
+        SHUTO_H1.TIX
+        SHUTO_H2.BIN
+        SHUTO_H2.TIX
+        TOUGE_C1.BIN
+        TOUGE_C1.TIX
+        TOUGE_C2.BIN
+        TOUGE_C2.TIX
+        TOUGE_C3.BIN
+        TOUGE_C3.TIX
+        TOUGE_C4.BIN
+        TOUGE_C4.TIX
+        WANGA_H3.BIN
+        WANGA_H3.TIX
+        WANGA_H4.BIN
+        WANGA_H4.TIX
+
+EV1:
+        AE86MF0.VOI
+        AE86MF1.VOI
+        AE86MF2.VOI
+        AE86MF3.VOI
+        BJZ80MF0.VOI
+        BJZ80MF1.VOI
+        BJZ80MF2.VOI
+        BJZ80MF3.VOI
+        EK9MF0.VOI
+        EK9MF1.VOI
+        EK9MF2.VOI
+        EK9MF3.VOI
+        EP91MF0.VOI
+        EP91MF1.VOI
+        EP91MF2.VOI
+        EP91MF3.VOI
+        ER33MF0.VOI
+        ER33MF1.VOI
+        ER33MF2.VOI
+        ER33MF3.VOI
+        EVOMF0.VOI
+        EVOMF1.VOI
+        EVOMF2.VOI
+        EVOMF3.VOI
+        GC8MF0.VOI
+        GC8MF1.VOI
+        GC8MF2.VOI
+        GC8MF3.VOI
+        JZ100MF0.VOI
+        JZ100MF1.VOI
+
+EV2:
+        JZ100MF2.VOI
+        JZ100MF3.VOI
+        JZ80MF0.VOI
+        JZ80MF1.VOI
+        JZ80MF2.VOI
+        JZ80MF3.VOI
+        MR2MF0.VOI
+        MR2MF1.VOI
+        MR2MF2.VOI
+        MR2MF3.VOI
+        R33MF0.VOI
+        R33MF1.VOI
+        R33MF2.VOI
+        R33MF3.VOI
+        RV1.VOI
+        RV2.VOI
+        RV3.VOI
+        RV4.VOI
+        RX7MF0.VOI
+        RX7MF1.VOI
+        RX7MF2.VOI
+        RX7MF3.VOI
+        S13MF0.VOI
+        S13MF1.VOI
+        S13MF2.VOI
+        S13MF3.VOI
+        S14MF0.VOI
+        S14MF1.VOI
+        S14MF2.VOI
+        S14MF3.VOI
+
+EV3:
+        ZZ30MF0.VOI
+        ZZ30MF1.VOI
+        ZZ30MF2.VOI
+        ZZ30MF3.VOI
+
+OTHER: OTHER1.BIN - unknown purpose
+
+RACE: 
+        CAMERA.BIN
+        RACE.BIN
+
+SE: 
+        GAME0.VHB
+        RACE0.VHB
+        SEQ00.VHB
+        SEQ01.SHB
+        SEQ02.SHB
+        SEQ03.SHB
+        SEQ04.SHB
+        SEQ05.SHB
+        SEQ06.SHB
+        SEQ07.SHB
+        SEQ08.SHB
+        SEQ09.SHB
+        SEQ10.SHB
+        SEQ11.SHB
+        SEQ12.SHB
+        SEQ13.SHB
+        SEQ14.SHB
+        SEQ15.SHB
+        SEQ16.SHB
+        SEQ17.SHB
+        SEQ18.SHB
+
+SUB0: 
+        ARCMENU.BIN
+        CAR.BIN
+        CARLG.BIN
+        CARSELE.BIN
+        CHAMENU.BIN
+        COMPLET.BIN
+        COUSELE.BIN
+        COUVIEW.BIN
+        CTITLE.BIN
+        GETEXTR.BIN
+        PARSELE.BIN
+        PARVIEW.BIN
+        REPAIR.BIN
+        RESULTN.BIN
+        RIVAL.BIN
+        RIVSELE.BIN
+        SBRSIDNT.BIN
+        SETING.BIN
+        SHOPLG.BIN
+        SHPSELE.BIN
+        SHPVIEW.BIN
+        TITLE.BIN
+        TMAINMENU.BIN
+        TUNMENU.BIN
+        WHEEL.BIN
+        WHLSELE.BIN
+
+SUB1:
+        MC_CAR.BIN
+        MC_SYS.BIN
+        
+SUB2:
+        CONFIG.BIN
+        RECODES.BIN
+        STAFF.BIN
+        VICTORY.BIN
+
+SUB3:
+        AMBG.BIN
+        CHMBG.BIN
+        CTTLBG0.BIN
+        CTTLBG1.BIN
+        CTTLBG2.BIN
+        CTTLBG3.BIN
+        RIVBG.BIN
+        TMABG.BIN
+        TTLBG.BIN
+        TUNBG.BIN
+
+WHEEL1:
+        AE86W.TIM
+        AM_FD3SW.TIM
+        AM_NB8CW.TIM
+        AS_32RW.TIM
+        AS_S13W.TIM
+        CEL_TIRE.TIM
+        CN9AW.TIM
+        CP9AW.TIM
+        CZ32W.TIM
+        DAIS14.TIM
+        DC2W.TIM
+        EK9W.TIM
+        EP91W.TIM
+        FD3SW.TIM
+        GA_SW20W.TIM
+        GA_ZZ30W.TIM
+        GC8W.TIM
+        HK_CN9AW.TIM
+        HK_CP9AW.TIM
+        J100W.TIM
+        JA_AE86W.TIM
+        JA_EP91W.TIM
+        JZ80W.TIM
+        J_GC8W.TIM
+        MI_34RW.TIM
+        NB8CW.TIM
+        R32W.TIM
+        R34W.TIM
+        RS13W.TIM
+        S13W.TIM
+
+WHEEL2:
+        S14W.TIM
+        S15_TIRE.TIM
+        SIL8_TIR.TIM
+        SW20W.TIM
+        TAZ_TIRE.TIM
+        TF_DC2W.TIM
+        TF_EK9W.TIM
+        TS_JZ80W.TIM
+        TS_S14W.TIM
+        TYRE_AN7.TIM
+        TYRE_BLT.TIM
+        TYRE_DGR.TIM
+        TYRE_MIN.TIM
+        TYRE_NMK.TIM
+        TYRE_SRC.TIM
+        TYRE_VMP.TIM
+        TYRE_VMX.TIM
+        TYRE_VXH.TIM
+        VE_CZ32W.TIM
+        VE_RS13W.TIM
+        W_AKIRA.TIM
+        W_ALTEZ.TIM
+        W_DAIS15.TIM
+        W_E101.TIM
+        W_EVO6.TIM
+        W_EXR34.TIM
+        W_GALT.TIM
+        W_KOMA.TIM
+        W_NMKN2.TIM
+        W_ORIDO.TIM
+
+WHEEL3:
+        W_R384.TIM
+        W_RS15.TIM
+        W_RWGN.TIM
+        W_RX7.TIM
+        W_S15.TIM
+        W_S15TU.TIM
+        W_S2000.TIM
+        W_S2T.TIM
+        W_TALTEZ.TIM
+        W_TEVO6.TIM
+        W_VEil.TIM
+        ZZ30W.TIM
+
+X_STR:
+        END.STR
+        MTO.STR
+        OPEN.STR
+
+Z_DA:
+        DA00.DA
+        DA01.DA
+        DA02.DA
+        DA03.DA
+        DA04.DA
+        DA05.DA
+        DA06.DA
+        DA07.DA
+        DA08.DA
+        ZZZZ.DA</pre>
+
+          <p><a href="option.html" class="btn primary">← Back to Main Option Tuning Car Battle Page</a></p>
+        </article>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
