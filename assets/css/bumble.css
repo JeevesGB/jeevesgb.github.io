@@ -241,3 +241,43 @@ strong {
   border-radius: 2px;
   box-shadow: 0 0 10px var(--glow);
 }
+/* ====================== Video Styling ====================== */
+video {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  background: #000;
+}
+
+/* For embedded YouTube / Vimeo etc. */
+iframe {
+  display: block;
+  margin: 25px auto;
+  max-width: 100%;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Optional: Responsive container for videos */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 25px auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
