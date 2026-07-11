@@ -2,76 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Vital Skins</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vital Skins</title>
   <link rel="stylesheet" href="../assets/css/bumble.css">
 </head>
-
 <body>
 
-  <!-- Navigation (shared across site, add ../ if the path is relative) -->
-    <div class="container">
-        <nav class="field">
-          <a href="../index.html" class="btn primary">Home</a>
-          <a href="https://soundcloud.com/jeevesbeats" class="btn primary">Music</a>
-          <a href="itch.html" class="btn primary">Itch.io</a>
-
-        </nav>
-                <p></p>
-        <nav class="field">
-          <a href="https://discord.gg/m5fmspHa9m" class="btn primary">Gran Turismo 2 Concept & Spec VII Discord</a>
-        </nav>
-    </div>
-
-            <img src="../assets/image/vital/logo.png" html="https://vital.audio/" class="screenshot" link="https://vital.audio/">
-
-<div class="container">
-<pre class="file-tree">
-How to add skins to Vital:
-  1. Download the .vitaltheme / .vitalskin file from the link provided.
-  2. Open Vital and click the "Advanced" tab.
-  3. At the bottom of the "Advanced" tab, you will see a section called "Skin".
-  4. Select "Load Custom Theme..." and then select the .vitaltheme / .vitalskin file you downloaded.
-</pre>
-</div>
-
+  <!-- Navigation -->
   <div class="container">
-    <h1>Magma</h1>
-        <img src="../assets/image/vital/skins/magma.png" alt="Vital Skin 1" class="vital-skin" align="center" height="400">
+    <nav class="field">
+      <a href="../index.html" class="btn primary">Home</a>
+      <a href="https://soundcloud.com/jeevesbeats" class="btn primary">Music</a>
+      <a href="itch.html" class="btn primary">Itch.io</a>
+    </nav>
 
-        <a
-            href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/mag/Magma.vitaltheme"
-            download
-            class="btn download">
-            Download
-        </a>
-    </div>
-
-  <div class="container">
-    <h1>Glacier</h1>
-        <img src="../assets/image/vital/skins/glacier.png" alt="Vital Skin 2" class="vital-skin" align="center" height="400">
-
-        <a
-            href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/glac/Glacier.vitaltheme"
-            download
-            class="btn download">
-            Download
-        </a>
+    <nav class="field" style="margin-top: 1rem;">
+      <a href="https://discord.gg/m5fmspHa9m" class="btn primary">Gran Turismo 2 Concept & Spec VII Discord</a>
+    </nav>
   </div>
 
-  <div class="container">
-    <h1>Mint</h1>
-        <img src="../assets/image/vital/skins/mint.png" alt="Vital Skin 2" class="vital-skin" align="center" height="400">
-
-        <a
-            href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/mint/Mint.vitaltheme"
-            download
-            class="btn download">
-            Download
-        </a>
+  <!-- Logo -->
+  <div class="container" style="text-align: center;">
+    <a href="https://vital.audio/" target="_blank">
+      <img src="../assets/image/vital/logo.png" alt="Vital Audio" class="screenshot">
+    </a>
   </div>
-<footer>  
-    © 2026 JejCo 
-</footer>
+
+  <!-- How To Install -->
+  <div class="container">
+    <p class="title"><strong>How to Install Vital Skins</strong></p>
+    <pre style="background: var(--panel-dark); padding: 20px; border-radius: 8px; color: var(--muted);">
+1. Download the .vitaltheme file
+2. Open Vital and go to the "Advanced" tab
+3. Scroll to the "Skin" section at the bottom
+4. Click "Load Custom Theme..." and select the downloaded file
+    </pre>
+  </div>
+
+  <!-- Skins Grid -->
+  <div class="container">
+
+    <div class="projects-grid">
+
+      <!-- Magma -->
+      <div class="archive-card">
+        <img src="../assets/image/vital/skins/magma.png" alt="Magma Skin" class="screenshot">
+        <div class="archive-card-label">
+          <strong>Magma</strong>
+          <span>Fiery dark theme</span>
+        </div>
+        <a href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/mag/Magma.vitaltheme" 
+           class="btn download" download style="margin: 15px auto;">
+          Download
+        </a>
+      </div>
+
+      <!-- Glacier -->
+      <div class="archive-card">
+        <img src="../assets/image/vital/skins/glacier.png" alt="Glacier Skin" class="screenshot">
+        <div class="archive-card-label">
+          <strong>Glacier</strong>
+          <span>Cool icy theme</span>
+        </div>
+        <a href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/glac/Glacier.vitaltheme" 
+           class="btn download" download style="margin: 15px auto;">
+          Download
+        </a>
+      </div>
+
+      <!-- Mint -->
+      <div class="archive-card">
+        <img src="../assets/image/vital/skins/mint.png" alt="Mint Skin" class="screenshot">
+        <div class="archive-card-label">
+          <strong>Mint</strong>
+          <span>Fresh green theme</span>
+        </div>
+        <a href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/mint/Mint.vitaltheme" 
+           class="btn download" download style="margin: 15px auto;">
+          Download
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer style="text-align:center; padding: 40px 20px; color: var(--muted);">
+    © 2026 JeevesGB
+  </footer>
+
 </body>
 </html>
