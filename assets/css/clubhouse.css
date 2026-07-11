@@ -1,21 +1,20 @@
 /* ==============================
-Bumble - JeevesGB
-   Palette: Dark Cyan + Orange + Soft Linen + Magenta
+   Jeeves - Deep Earth Theme
+   Palette: Ink Black + Burnt Orange + Wheat
    ============================== */
 
 :root {
-  --bg: #0a0f0f;
-  --panel: #0f1c1c;
-  --panel-dark: #0a1414;
-  --accent-cyan: #018d8c;
-  --accent-orange: #ffac2a;
-  --accent-magenta: #e63b65;
-  --text: #efece5;
+  --bg: #04151f;
+  --panel: #183a37;
+  --panel-dark: #122b29;
+  --accent: #c44900;
+  --accent2: #efd6ac;
+  --text: #b6a78d;
   --text-light: #ffffff;
-  --muted: #b8b3a8;
-  --border: #1e2e2e;
-  --glow: #018d8c;
-  --shadow: rgba(1, 141, 140, 0.4);
+  --muted: #a89e85;
+  --border: #2a4a46;
+  --glow: #c44900;
+  --shadow: rgba(196, 73, 0, 0.4);
 }
 
 /* ====================== Base ====================== */
@@ -27,7 +26,7 @@ Bumble - JeevesGB
 
 body {
   margin: 0;
-  background: radial-gradient(circle at 50% 20%, #112525 0%, var(--bg) 70%);
+  background: radial-gradient(circle at 50% 20%, #1e3a36 0%, var(--bg) 70%);
   color: var(--text);
   font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
   line-height: 1.6;
@@ -44,22 +43,22 @@ body {
   border-radius: 12px;
   box-shadow: 
     inset 0 1px 0 rgba(255,255,255,0.06),
-    0 12px 40px rgba(0,0,0,0.75);
+    0 12px 40px rgba(0,0,0,0.8);
 }
 
 /* ====================== Typography ====================== */
 .title {
   font-family: 'Segoe UI', 'Arial Black', 'Helvetica Neue', sans-serif;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-align: center;
   font-size: 2.5rem;
   text-transform: uppercase;
   margin-bottom: 28px;
-  color: var(--text-light);
+  color: var(--text) #a89e85;
   text-shadow: 
-    0 0 12px var(--glow),
-    0 0 30px rgba(1, 141, 140, 0.35);
+    0 0 15px var(--glow),
+    0 0 35px rgba(0, 0, 0, 0.274);
 }
 
 /* ====================== Navigation ====================== */
@@ -73,7 +72,7 @@ nav.field {
 
 .btn {
   padding: 12px 26px;
-  background: linear-gradient(180deg, #1a2a2a, var(--panel));
+  background: linear-gradient(180deg, #1f3a37, var(--panel));
   color: var(--text-light);
   text-decoration: none;
   border: 1px solid var(--border);
@@ -83,9 +82,9 @@ nav.field {
 }
 
 .btn:hover {
-  background: linear-gradient(180deg, var(--accent-magenta), #e63b65);
+  background: linear-gradient(180deg, var(--accent), #a63c00);
   color: #000;
-  border-color: var(--accent-magenta);
+  border-color: var(--accent);
   transform: translateY(-4px);
   box-shadow: 0 10px 25px var(--shadow);
 }
@@ -98,16 +97,15 @@ nav.field {
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  background: linear-gradient(180deg, var(--accent-cyan), #00b3b1);
+  background: linear-gradient(180deg, var(--accent), #a63c00);
   color: #000;
-  border: 1px solid #7ff6f4;
+  border: 1px solid #efd6ac;
   box-shadow: 0 8px 25px var(--shadow);
 }
 
 .btn.download:hover {
-  background: linear-gradient(180deg, var(--accent-orange), #f59a00);
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 15px 35px var(--shadow);
 }
 
 /* ====================== Grids ====================== */
@@ -134,17 +132,15 @@ nav.field {
 
 .archive-card:hover {
   transform: translateY(-10px);
-  border-color: var(--accent-cyan);
+  border-color: var(--accent);
   box-shadow: 0 20px 40px rgba(0,0,0,0.85);
 }
-
 
 /* ====================== Screenshot Class ====================== */
 .screenshot {
   display: block;
-  margin: 0 auto 20px auto;     
+  margin: 0 auto 20px auto;
   max-width: 100%;
-  max-height: 100%;
   height: auto;
   border: 2px solid var(--border);
   border-radius: 10px;
@@ -166,19 +162,14 @@ nav.field {
   border-radius: 8px;
 }
 
-.container .screenshot {
-  max-height: 420px;
-  object-fit: contain;
-}
-
-/* ====================== Other ====================== */
+/* ====================== Other Elements ====================== */
 a {
-  color: var(--accent-cyan);
+  color: var(--accent);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--accent-orange);
+  color: var(--accent2);
 }
 
 footer {
@@ -188,6 +179,19 @@ footer {
   font-size: 0.95rem;
 }
 
+/* ====================== Strong Text Styling ====================== */
+strong {
+  color: #ffcc77;           /* Bright warm gold - stands out well */
+  font-weight: 700;
+}
+
+.title strong,
+.archive-card-label strong {
+  color: var(--text-light);
+  text-shadow: 0 0 10px var(--glow);
+}
+
+/* ====================== Responsive ====================== */
 @media (max-width: 768px) {
   .container {
     margin: 20px auto;
@@ -200,60 +204,9 @@ footer {
     height: 220px;
   }
 }
-.archive-card-label {
-  text-align: center;
-  padding: 16px;
-}
 
-/* ====================== Strong Text Styling ====================== */
-strong {
-  color: var(--accent-orange);
-  font-weight: 700;
-}
-
-.title strong,
-.archive-card-label strong {
-  color: var(--text-light);
-  text-shadow: 0 0 8px var(--glow);
-}
-/* ====================== Title Styling ====================== */
-.title {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 28px;
-  color: var(--text-light);
-  text-shadow: 
-    0 0 12px var(--glow),
-    0 0 30px rgba(1, 141, 140, 0.4);
-  position: relative;
-}
-
-.title::after {
-  content: '';
-  display: block;
-  width: 800px;
-  height: 3px;
-  background: linear-gradient(to right, var(--accent-magenta), var(--accent-orange), var(--accent-cyan));
-  margin: 12px auto 0;
-  border-radius: 2px;
-  box-shadow: 0 0 10px var(--glow);
-}
 /* ====================== Video Styling ====================== */
-video {
-  display: block;
-  margin: 20px auto;
-  max-width: 100%;
-  border: 2px solid var(--border);
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-  background: #000;
-}
-
-/* For embedded YouTube / Vimeo etc. */
-iframe {
+video, iframe {
   display: block;
   margin: 25px auto;
   max-width: 100%;
@@ -262,15 +215,13 @@ iframe {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
-/* Optional: Responsive container for videos */
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
   border-radius: 10px;
   margin: 25px auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
 .video-container iframe {
@@ -280,15 +231,4 @@ iframe {
   width: 100%;
   height: 100%;
   border: none;
-}
-
-.hr {
-  content: '';
-  display: block;
-  width: 800px;
-  height: 3px;
-  background: linear-gradient(to right, var(--accent-magenta), var(--accent-orange), var(--accent-cyan));
-  margin: 12px auto 0;
-  border-radius: 2px;
-  box-shadow: 0 0 10px var(--glow);
 }
