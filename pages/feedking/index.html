@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feed The King</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: radial-gradient(ellipse at top, #2b1a12 0%, #140b08 60%, #0a0504 100%);
+    color: #f3e6c8;
+    font-family: 'Trebuchet MS', 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px 12px 40px;
+  }
+
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(28px, 6vw, 44px);
+    letter-spacing: 2px;
+    margin: 6px 0 2px;
+    color: #f6d675;
+    text-shadow: 0 2px 0 #5c3a12, 0 0 24px rgba(246, 214, 117, 0.35);
+    text-align: center;
+  }
+
+  .crown {
+    font-size: 22px;
+    display: block;
+    margin-bottom: -4px;
+  }
+
+  .subtitle {
+    color: #c9a97a;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+
+  #game-frame {
+    position: relative;
+    border-radius: 14px;
+    padding: 10px;
+    background: linear-gradient(180deg, #3a2313, #1c1108);
+    box-shadow:
+      0 0 0 2px #7a4e1e,
+      0 0 0 6px #1c1108,
+      0 20px 50px rgba(0,0,0,0.6);
+  }
+
+  canvas {
+    display: block;
+    border-radius: 6px;
+    background: #111;
+    max-width: 90vw;
+    height: auto;
+  }
+
+  #overlay {
+    position: absolute;
+    inset: 10px;
+    border-radius: 6px;
+    background: rgba(10, 6, 4, 0.88);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    gap: 14px;
+  }
+
+  #overlay h2 {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    color: #f6d675;
+    margin: 0;
+  }
+
+  #overlay p {
+    max-width: 420px;
+    line-height: 1.5;
+    color: #e6d3ac;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .key {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #3a2313;
+    border: 1px solid #7a4e1e;
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+  button {
+    font-family: inherit;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #start-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+    background: linear-gradient(180deg, #f6d675, #c9932a);
+    color: #2b1a12;
+    box-shadow: 0 3px 0 #7a4e1e;
+  }
+
+  #start-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #7a4e1e; }
+
+  #controls-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  #mute-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    background: #3a2313;
+    color: #f3e6c8;
+    border: 1px solid #7a4e1e;
+  }
+  #mute-btn:hover { background: #4a2c17; }
+
+  #restart-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    background: #3a2313;
+    color: #f3e6c8;
+    border: 1px solid #7a4e1e;
+    display: none;
+  }
+  #restart-btn:hover { background: #4a2c17; }
+
+  #go-back-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    background: #3a2313;
+    color: #f3e6c8;
+    border: 1px solid #7a4e1e;
+  }
+  #go-back-btn:hover { background: #4a2c17; }
+
+  footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #7a6248;
+    text-align: center;
+  }
+
+  .legend {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    justify-content: center;
+    max-width: 640px;
+    font-size: 12px;
+    color: #c9a97a;
+  }
+  .legend span.good { color: #7cd88c; }
+  .legend span.bad { color: #e37a7a; }
+</style>
+</head>
+<body>
+
+  <span class="crown">&#128081;</span>
+  <h1>Feed The King</h1>
+  <div class="subtitle">Catch the good stuff. Dodge the diet.</div>
+
+  <div id="game-frame">
+    <canvas id="game" width="800" height="600"></canvas>
+    <div id="overlay">
+      <h2>Ready to feed His Majesty?</h2>
+      <p>
+        Move with <span class="key">&larr;</span> <span class="key">&rarr;</span>
+        or <span class="key">A</span> <span class="key">D</span>.
+        Catch good food for points, dodge the bad stuff &mdash; it costs you.
+      </p>
+      <button id="start-btn">Start Feasting</button>
+    </div>
+  </div>
+
+  <div id="controls-bar">
+    <button id="mute-btn">Mute Music</button>
+    <button id="restart-btn">Restart</button>
+    <button id="go-back-btn" onclick="window.location.href='../../index.html'">Go Back</button>
+  </div>
+
+  <div class="legend">
+    <span class="good">&#9679; Beans +10 &nbsp; Mayo +5 &nbsp; Pizza +20 &nbsp; Sausage +25</span>
+    <span class="bad">&#9679; Salad &minus;5 &nbsp; Water &minus;10 &nbsp; Dr. Now &minus;50 &nbsp; Liposuction &minus;100</span>
+  </div>
+
+  <footer>Feed The King &middot; a JejCo production, rebuilt for the web</footer>
+
+<script src="game.js"></script>
+</body>
+</html>
