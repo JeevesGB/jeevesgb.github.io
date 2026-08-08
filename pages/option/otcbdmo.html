@@ -2,52 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>OTC BDMO - Option Tuning Car Battle Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTC BDMO — Option Tuning Car Battle — JeevesGB</title>
   <link rel="stylesheet" href="../../assets/css/bumble.css">
 </head>
-<body>
-  <div class="container">
-    <nav class="field">
-        <p><a href="option.html" class="btn primary">← Back to Main Option Tuning Car Battle Page</a></p>
-    </nav>
-    <nav class="field">
-      <a href="otcbdmo.html" class="btn primary">OTC BDMO</a>
-      <a href="otcb1.html" class="btn primary">OTC B1</a>
-      <a href="otcb2.html" class="btn primary">OTC B2</a>
-      <a href="specr.html" class="btn primary">Spec-R</a>
-    </nav>
-  </div>
+<body class="site-wrapper">
 
-  <div class="page-layout">
-    <div class="main-content">
-      <div class="container">
-        <article class="field">
-          <img src="img/1/logo.png" alt="OTC BDMO Logo" class="screenshot" style="max-width:300px;">
-          <h1>Option Tuning Car Battle Demo - SLPM_802.03</h1>
-<hr>
-          <h2>Filetypes</h2>
-          <table class="field">
-            <thead><tr><th>Extension</th><th>Found In</th><th>Likely Purpose</th></tr></thead>
-            <tbody>
-              <tr><td>.DA</td><td>ROOT</td><td>Audio/data archive files</td></tr>
-              <tr><td>.BIN</td><td>BIN, OPT/C0, OPT/TIM</td><td>Generic binary data (course chunks, car models, menu/UI graphics)</td></tr>
-              <tr><td>.STR</td><td>OPT, STRDAT, STRDAT/OP, STRDAT/SP</td><td>Streamed video/FMV files (opening, shop, cutscenes)</td></tr>
-              <tr><td>.MDT</td><td>OPT/C0</td><td>Track/course model data</td></tr>
-              <tr><td>.TDT</td><td>OPT/C0</td><td>Track texture data (paired with `.MDT` files)</td></tr>
-              <tr><td>.VB</td><td>OPT/C0, SND</td><td>Sound bank data (engine audio, system sound)</td></tr>
-              <tr><td>.VHX</td><td>OPT/C0</td><td>Sound header data (paired with `.VB` files)</td></tr>
-              <tr><td>.TMD</td><td>OPT/C0, OPT/TIM</td><td>PlayStation 3D model files</td></tr>
-              <tr><td>.MSG</td><td>OPT/MSG2</td><td>Message/dialogue text data</td></tr>
-              <tr><td>.SEP</td><td>SND</td><td>System sound effect/sequence data</td></tr>
-              <tr><td>.VH</td><td>SND</td><td>Sound header bank (paired with `.VB` files)</td></tr>
-              <tr><td>(none)</td><td>ROOT</td><td>`MAINMENU` and `SLPM_802.03` files with no extension</td></tr>
-            </tbody>
-          </table>
-<hr>
-          <h2>Game File Structure</h2>
-          <pre class="file-tree">
-ROOT
+  <!-- Floating Sidebar Navigation -->
+  <aside class="doc-nav">
+    <a href="../../index.html">Home</a>
+    <a href="option.html">Option Tuning</a>
+    <a href="otcbdmo.html">Demo</a>
+    <a href="otcb1.html">OTC B1</a>
+    <a href="otcb2.html">OTC B2</a>
+    <a href="specr.html">Spec-R</a>
+  </aside>
+
+  <!-- Main Content Container -->
+  <main class="container">
+
+    <!-- Header Section -->
+    <header class="header-section">
+      <nav class="field">
+        <a href="option.html" class="btn">← Back to Option Tuning Overview</a>
+      </nav>
+
+      <nav class="field flex-center" style="margin-top: 0.5rem;">
+        <a href="otcbdmo.html" class="btn primary">Demo</a>
+        <a href="otcb1.html" class="btn">OTC B1</a>
+        <a href="otcb2.html" class="btn">OTC B2</a>
+        <a href="specr.html" class="btn">Spec-R</a>
+      </nav>
+
+      <!-- Project Logo -->
+      <div class="flex-center">
+        <img src="img/1/logo.png" alt="OTC BDMO Logo" class="screenshot">
+      </div>
+
+      <h1 class="title">Option Tuning Car Battle Demo — SLPM_802.03</h1>
+    </header>
+
+    <hr class="hr" />
+
+    <!-- File Extension Reference -->
+    <section class="info-box">
+      <h2>File Extension Reference</h2>
+      <table class="field">
+        <thead>
+          <tr>
+            <th>Extension</th>
+            <th>Found In Directory</th>
+            <th>Likely Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>.DA</code></td><td>ROOT</td><td>Audio/data archive files</td></tr>
+          <tr><td><code>.BIN</code></td><td>BIN, OPT/C0, OPT/TIM</td><td>Generic binary data (course chunks, car models, menu/UI graphics)</td></tr>
+          <tr><td><code>.STR</code></td><td>OPT, STRDAT, STRDAT/OP, STRDAT/SP</td><td>Streamed video/FMV files (opening, shop, cutscenes)</td></tr>
+          <tr><td><code>.MDT</code></td><td>OPT/C0</td><td>Track/course model data</td></tr>
+          <tr><td><code>.TDT</code></td><td>OPT/C0</td><td>Track texture data (paired with <code>.MDT</code> files)</td></tr>
+          <tr><td><code>.VB</code></td><td>OPT/C0, SND</td><td>Sound bank data (engine audio, system sound)</td></tr>
+          <tr><td><code>.VHX</code></td><td>OPT/C0</td><td>Sound header data (paired with <code>.VB</code> files)</td></tr>
+          <tr><td><code>.TMD</code></td><td>OPT/C0, OPT/TIM</td><td>PlayStation 3D model files</td></tr>
+          <tr><td><code>.MSG</code></td><td>OPT/MSG2</td><td>Message/dialogue text data</td></tr>
+          <tr><td><code>.SEP</code></td><td>SND</td><td>System sound effect/sequence data</td></tr>
+          <tr><td><code>.VH</code></td><td>SND</td><td>Sound header bank (paired with <code>.VB</code> files)</td></tr>
+          <tr><td><code>(none)</code></td><td>ROOT</td><td><code>MAINMENU</code> and <code>SLPM_802.03</code> files with no extension</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Directory Summary -->
+    <section class="info-box">
+      <h2>Root Directory Map</h2>
+      <pre class="file-tree">ROOT
 ├── MAINMENU
 ├── SLPM_802.03
 ├── SYSTEM.CNF
@@ -64,13 +92,13 @@ ROOT
 ├── SND
 └── STRDAT
     ├── OP
-    └── SP
-          </pre>
+    └── SP</pre>
+    </section>
 
-<hr>
-          <h2>Game File Structure (Extended)</h2>
-          <pre class="file-tree">
-ROOT
+    <!-- Full File Tree -->
+    <section class="info-box">
+      <h2>Game File Structure (Extended)</h2>
+      <pre class="file-tree">ROOT
 ├── MAINMENU
 ├── SLPM_802.03
 ├── SYSTEM.CNF
@@ -178,14 +206,19 @@ ROOT
         ├── SHOP10R.STR
         ├── SHOP11.STR
         └── SHOP11R.STR</pre>
+    </section>
 
-          <p><a href="option.html" class="btn primary">← Back to Main Option Tuning Car Battle Page</a></p>
-        </article>
-      </div>
+    <!-- Navigation Footer Link -->
+    <div class="flex-center" style="margin-bottom: 2rem;">
+      <a href="option.html" class="btn">← Back to Option Tuning Overview</a>
     </div>
-  </div>
-<footer>  
-  © 2026 JejCo 
-</footer>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 JeevesGB</p>
+  </footer>
+
 </body>
 </html>
