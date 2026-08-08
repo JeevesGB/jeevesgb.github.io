@@ -43,8 +43,8 @@
 
   /* Transitions */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: 0.2s var(--ease-out);
-  --transition-normal: 0.35s var(--ease-out);
+  --transition-fast: 1.5s var(--ease-out);
+  --transition-normal: 4.6s var(--ease-out);
 }
 
 /* =========================================================
@@ -612,4 +612,99 @@ code {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* =========================================================
+   13. Doc Navigation (Fixed Sidebar)
+   ========================================================= */
+
+/* 1. Desktop Sidebar Layout */
+@media (min-width: 993px) {
+  /* Offset main body to prevent content from overlapping the fixed sidebar */
+  body.site-wrapper {
+    padding-left: 260px;
+  }
+
+  .doc-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 8px;
+
+    padding: 24px 16px;
+    background: var(--panel-dark);
+    border-right: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    overflow-y: auto;
+  }
+
+  .doc-nav a {
+    display: block;
+    width: 100%;
+    padding: 10px 14px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* 2. Mobile/Tablet Responsive Adaptation */
+@media (max-width: 992px) {
+  .doc-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px 12px;
+    width: 100%;
+    padding: 12px;
+    background: var(--panel-dark);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .doc-nav a {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+
+/* Badge Container Alignment */
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center align (or use flex-start for left-aligned) */
+  align-items: center;
+  gap: 8px 10px;          /* Vertical and horizontal spacing */
+  margin: 16px 0 24px;
+}
+
+.badge-container a {
+  display: inline-flex;
+  text-decoration: none;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.badge-container a:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.badge-container img {
+  display: block;
+  height: 20px;          /* Keep all badges at identical heights */
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
 }
