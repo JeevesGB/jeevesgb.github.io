@@ -504,7 +504,7 @@ video {
 }
 
 /* =========================================================
-   9. Links, Lists, Blockquotes & Code
+   9. Links, Lists, Blockquotes & Code Blocks
    ========================================================= */
 
 a {
@@ -527,14 +527,59 @@ blockquote {
   font-size: 0.95rem;
 }
 
+/* Inline Code */
 code {
   padding: 0.2em 0.4em;
   border-radius: 4px;
   background: #050a0a;
   color: var(--accent-orange);
   border: 1px solid var(--border);
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 0.875em;
+}
+
+/* Preformatted Block Code Container (<pre><code>) */
+pre {
+  margin: 16px 0;
+  padding: 16px;
+  background: #040808;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-cyan);
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+  overflow-x: auto;
+  max-height: 400px;
+}
+
+pre code {
+  display: block;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre;
+}
+
+/* Custom Scrollbars for Code Containers */
+pre::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: var(--panel-dark);
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
 }
 
 /* =========================================================
@@ -685,9 +730,9 @@ code {
 .badge-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center align (or use flex-start for left-aligned) */
+  justify-content: center;
   align-items: center;
-  gap: 8px 10px;          /* Vertical and horizontal spacing */
+  gap: 8px 10px;
   margin: 16px 0 24px;
 }
 
@@ -704,7 +749,7 @@ code {
 
 .badge-container img {
   display: block;
-  height: 20px;          /* Keep all badges at identical heights */
+  height: 20px;
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
 }
