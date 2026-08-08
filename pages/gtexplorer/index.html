@@ -38,226 +38,249 @@
 
 
 <main>
-<h1>GTExplorer </h1>
 
-<img src="img/gtexplorericon.png" alt="GTExplorer Icon" style="display: block; margin: 0 auto;" />
+  <img src="img/gtexplorericon.png" alt="GTExplorer Icon" style="display: block; margin: 0 auto;" />
 
-<div class="badge-container">
-  <a href="source/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT" /></a>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.8%2B-blue.svg?style=flat-square" alt="Python 3.8+" /></a>
-  <a href="https://www.riverbankcomputing.com/software/pyqt/"><img src="https://img.shields.io/badge/UI-PyQt6-41CD52.svg?style=flat-square" alt="PyQt6" /></a>
-  <img src="https://img.shields.io/badge/Platform-Windows-lightgrey.svg?style=flat-square" alt="Platform: Windows" />
-  <a href="source"><img src="https://img.shields.io/badge/Gran%20Turismo-1-white?style=flat-square&logo=playstation&logoColor=white" alt="Gran Turismo 1" /></a>
-  <a href="https://github.com/JeevesGB/GTExplorer/commits/main"><img src="https://img.shields.io/github/last-commit/JeevesGB/GTExplorer?style=flat-square" alt="Last Commit" /></a>
-  <a href="https://github.com/JeevesGB/GTExplorer/releases"><img src="https://img.shields.io/github/v/release/JeevesGB/GTExplorer?style=flat-square" alt="GitHub Release" /></a>
-</div>
+    <div class="badge-container">
+      <a href="source/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square" alt="License: MIT" /></a>
+      <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.8%2B-blue.svg?style=flat-square" alt="Python 3.8+" /></a>
+      <a href="https://www.riverbankcomputing.com/software/pyqt/"><img src="https://img.shields.io/badge/UI-PyQt6-41CD52.svg?style=flat-square" alt="PyQt6" /></a>
+      <img src="https://img.shields.io/badge/Platform-Windows-lightgrey.svg?style=flat-square" alt="Platform: Windows" />
+      <a href="source"><img src="https://img.shields.io/badge/Gran%20Turismo-1-white?style=flat-square&logo=playstation&logoColor=white" alt="Gran Turismo 1" /></a>
+      <a href="https://github.com/JeevesGB/GTExplorer/commits/main"><img src="https://img.shields.io/github/last-commit/JeevesGB/GTExplorer?style=flat-square" alt="Last Commit" /></a>
+      <a href="https://github.com/JeevesGB/GTExplorer/releases"><img src="https://img.shields.io/github/v/release/JeevesGB/GTExplorer?style=flat-square" alt="GitHub Release" /></a>
+    </div>
 
-<p>Extractor and viewer for <strong>Gran Turismo 1</strong> (PlayStation) archive files.</p>
+      <p>Extractor and viewer for <strong>Gran Turismo 1</strong> (PlayStation) archive files.</p>
 
-<div style="text-align: center; margin: 30px 0;">
-        <a href="https://github.com/JeevesGB/GTExplorer/releases"
-           class="btn download"
-           download>
-          Download Here
-        </a>
-      </div>
+        <div style="text-align: center; margin: 30px 0;">
+                <a href="https://github.com/JeevesGB/GTExplorer/releases"
+                  class="btn download"
+                  download>
+                  Download Here
+                </a>
+              </div>
 
-<p style="text-align: center;">
-    <img src="img/1.png" alt="1" />
-    <img src="img/2.png" alt="2" />
-    <img src="img/3.png" alt="3" />
-    <img src="img/4.png" alt="4" />
-    <img src="img/gif.gif" alt="5" />
-</p>
+          <p style="text-align: center;">
+              <img src="img/1.png" alt="1" />
+              <img src="img/2.png" alt="2" />
+              <img src="img/3.png" alt="3" />
+              <img src="img/4.png" alt="4" />
+              <img src="img/gif.gif" alt="5" />
+          </p>
 
-<hr />
-<h2>Features</h2>
-<ul>
-<li>Extract <strong>GT-ARC</strong> / <strong>GT-ZIP</strong> archives</li>
-<li>Optional <strong>TIM pack</strong> expansion and rebuild</li>
-<li>Optional <strong>INST / ENGN</strong> sample expansion</li>
-<li>Region <strong>file lists</strong> for real asset names on extract</li>
-<li>Built-in <strong>Asset Viewer</strong> (TIM, TIM packs, GT-CTEX, GT-PS)</li>
-<li><strong>Preview</strong> for sequences, filename lists, GTHTML, and car part tables (SPEC, COLOR, etc)</li>
-</ul>
-<blockquote>
-<p><strong>Note:</strong> Repacking is currently unfinished.</p>
-</blockquote>
-<hr />
-<h2>Requirements</h2>
-<ul>
-<li>Python 3.8+</li>
-<li><a href="https://python-pillow.org/">Pillow</a> (for the Asset Viewer)</li>
-<li>PyQt6 ≥ 6.4</li>
-</ul>
-<pre><code class="language-bash">pip install -r requirements.txt
-</code></pre>
-<hr />
-<h2>Quick start</h2>
-<p>From the repo root:</p>
-<pre><code class="language-bash">python src/main.py
-</code></pre>
-<p>Windows:</p>
-<pre><code class="language-bash">runtool.bat
-</code></pre>
-<ol>
-<li><strong>Open…</strong> — pick a <code>.DAT</code> / <code>.ARC</code></li>
-<li>(Optional) choose a <strong>file list</strong> so names are real instead of <code>000</code>, <code>001</code>, …</li>
-<li><strong>Extract All</strong> or <strong>Extract Selected</strong></li>
-</ol>
-<p>Full guide → <a href="docs/usage.html">Usage</a></p>
-<hr />
-<h2>Archive kinds</h2>
-<table>
-<thead>
-<tr>
-  <th>Kind</th>
-  <th>Detection</th>
-  <th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>Standard GT-ARC</td>
-  <td><code>@(#)GT-ARC</code></td>
-  <td><code>COURSE.DAT</code>, <code>CAR.DAT</code>, <code>SOUND.DAT</code>, <code>MENU_RAW.ARC</code></td>
-</tr>
-<tr>
-  <td>Compressed GT-ARC</td>
-  <td>Mangled <code>@(#)GT-A</code> / <code>RC</code></td>
-  <td><code>CARINF.DAT</code></td>
-</tr>
-<tr>
-  <td>Raw GT-ZIP</td>
-  <td>No ARC wrapper</td>
-  <td><code>GAMEFONT.DAT</code></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2>Detected types (summary)</h2>
-<table>
-<thead>
-<tr>
-  <th>Content</th>
-  <th>Ext</th>
-  <th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td>TIM texture</td>
-  <td><code>.tim</code></td>
-  <td><code>10 00 00 00</code> magic</td>
-</tr>
-<tr>
-  <td>TIM pack</td>
-  <td><code>.tpk</code></td>
-  <td>Named TIM container</td>
-</tr>
-<tr>
-  <td>GT-PS / GT-CAR / GT-CTEX / GT-SKY</td>
-  <td><code>.ps</code> / <code>.car</code> / <code>.tex</code> / <code>.sky</code></td>
-  <td>Models &amp; textures</td>
-</tr>
-<tr>
-  <td>Nested GT-ARC</td>
-  <td><code>.arc</code></td>
-  <td>Open with <strong>Open Nested ARC</strong></td>
-</tr>
-<tr>
-  <td>GTHTML</td>
-  <td><code>.gthtml</code></td>
-  <td>GT menu/script data</td>
-</tr>
-<tr>
-  <td>INST / ENGN / SEQG</td>
-  <td><code>.ins</code> / <code>.es</code> / <code>.seq</code></td>
-  <td>Sound &amp; sequences</td>
-</tr>
-<tr>
-  <td>SPEC, COLOR, TIRE, …</td>
-  <td>matching</td>
-  <td>Car part tables</td>
-</tr>
-<tr>
-  <td>Filename lists / text</td>
-  <td><code>.idx</code> / <code>.txt</code></td>
-  <td>Name tables &amp; messages</td>
-</tr>
-</tbody>
-</table>
-<p>Full table + TIM pack layout → <a href="docs/formats.html">Formats</a></p>
-<hr />
-<h2>File lists</h2>
-<p>Bundled region lists: <code>src/gtarcexplorer/filelists/</code></p>
-<p>Per-archive notes:</p>
-<ul>
-<li><a href="doc/filelists/ARCADE.html">ARCADE.DAT</a></li>
-<li><a href="doc/filelists/BG.html">BG.DAT</a></li>
-<li><a href="doc/filelists/CAR.html">CAR.DAT</a></li>
-<li><a href="doc/filelists/CARCADE.html">CARCADE.DAT</a></li>
-<li><a href="doc/filelists/COURSE.html">COURSE.DAT</a></li>
-<li><a href="doc/filelists/GAMEMENU.html">GAMEMENU</a></li>
-<li><a href="doc/filelists/MENU_IMG.html">MENU_IMG</a></li>
-<li><a href="doc/filelists/MENU_RAW.html">MENU_RAW</a></li>
-<li><a href="doc/filelists/PITMENU.html">PITMENU.DAT</a></li>
-<li><a href="doc/filelists/REPLAY.html">REPLAY.DAT</a></li>
-<li><a href="doc/filelists/SOUND.html">SOUND.DAT</a></li>
-</ul>
-<hr />
-<h2>Known GT1 archives</h2>
-<p>See <a href="docs/archives.html">Known archives</a>.</p>
-<hr />
-<h2>Project layout</h2>
-<pre><code>src/
-├── main.py
-└── gtarcexplorer/
-    ├── __init__.py
-    ├── gui_qt.py
-    ├── archive.py
-    ├── detect.py
-    ├── gtzip.py
-    ├── filelist.py
-    ├── filelists/
-    │   ├── filelist_pal_retail.txt
-    │   ├── filelist_usa_retail.txt
-    │   ├── filelist_usa_demo.txt
-    │   ├── filelist_jp_retail.txt
-    │   ├── filelist_jp_demo.txt
-    │   └── filelist_jp_testdrive.txt
-    ├── tim_pack.py
-    ├── tim_image.py
-    ├── ctex.py
-    ├── gtps.py
-    ├── audio.py
-    ├── spec.py
-    ├── namelist.py
-    ├── gthtml.py
-    └── replay.py
+          <hr />
 
-thm/
-├── icon.ico
-└── dark.qss
+          <h2>Features</h2>
 
-runtool.bat
-requirements.txt
-docs/
-</code></pre>
-<hr />
-<h2>Notes</h2>
-<ul>
-<li>Extract keeps <strong>original bytes</strong> (only GT-ZIP decompression when needed).</li>
-<li>Real names come from region file lists and, when present, embedded name lists.</li>
-<li>Asset Viewer needs Pillow; everything else works without it.</li>
-</ul>
-<h2>Credits</h2>
-<ul>
-<li><a href="https://github.com/pez2k/gt2tools">pez2k / gt2tools</a> — prior research into GT1 files</li>
-</ul>
-<h2>License</h2>
-<p>MIT — see <a href="source/LICENSE">LICENSE</a>.</p>
-<h6>JeevesGB</h6>
+          <ul>
+
+          <li>Extract <strong>GT-ARC</strong> / <strong>GT-ZIP</strong> archives</li>
+
+          <li>Optional <strong>TIM pack</strong> expansion and rebuild</li>
+
+          <li>Optional <strong>INST / ENGN</strong> sample expansion</li>
+
+          <li>Region <strong>file lists</strong> for real asset names on extract</li>
+
+          <li>Built-in <strong>Asset Viewer</strong> (TIM, TIM packs, GT-CTEX, GT-PS)</li>
+
+          <li><strong>Preview</strong> for sequences, filename lists, GTHTML, and car part tables (SPEC, COLOR, etc)</li>
+          
+          </ul>
+
+          <blockquote>
+          <p><strong>Note:</strong> Repacking is currently unfinished.</p>
+          </blockquote>
+          <hr />
+          <h2>Requirements</h2>
+          <ul>
+          <li>Python 3.8+</li>
+          <li><a href="https://python-pillow.org/">Pillow</a> (for the Asset Viewer)</li>
+          <li>PyQt6 ≥ 6.4</li>
+          </ul>
+          <pre><code class="language-bash">pip install -r requirements.txt
+          </code></pre>
+          <hr />
+          <h2>Quick start</h2>
+          <p>From the repo root:</p>
+          <pre><code class="language-bash">python src/main.py
+          </code></pre>
+          <p>Windows:</p>
+          <pre><code class="language-bash">runtool.bat
+          </code></pre>
+          <ol>
+          <li><strong>Open…</strong> — pick a <code>.DAT</code> / <code>.ARC</code></li>
+          <li>(Optional) choose a <strong>file list</strong> so names are real instead of <code>000</code>, <code>001</code>, …</li>
+          <li><strong>Extract All</strong> or <strong>Extract Selected</strong></li>
+          </ol>
+          <p>Full guide → <a href="docs/usage.html">Usage</a></p>
+          <hr />
+          <h2>Archive kinds</h2>
+          <table>
+          <thead>
+          <tr>
+            <th>Kind</th>
+            <th>Detection</th>
+            <th>Examples</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Standard GT-ARC</td>
+            <td><code>@(#)GT-ARC</code></td>
+            <td><code>COURSE.DAT</code>, <code>CAR.DAT</code>, <code>SOUND.DAT</code>, <code>MENU_RAW.ARC</code></td>
+          </tr>
+          <tr>
+            <td>Compressed GT-ARC</td>
+            <td>Mangled <code>@(#)GT-A</code> / <code>RC</code></td>
+            <td><code>CARINF.DAT</code></td>
+          </tr>
+          <tr>
+            <td>Raw GT-ZIP</td>
+            <td>No ARC wrapper</td>
+            <td><code>GAMEFONT.DAT</code></td>
+          </tr>
+          </tbody>
+          </table>
+          <hr />
+          <h2>Detected types (summary)</h2>
+          <table>
+          <thead>
+          <tr>
+            <th>Content</th>
+            <th>Ext</th>
+            <th>Notes</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>TIM texture</td>
+            <td><code>.tim</code></td>
+            <td><code>10 00 00 00</code> magic</td>
+          </tr>
+          <tr>
+            <td>TIM pack</td>
+            <td><code>.tpk</code></td>
+            <td>Named TIM container</td>
+          </tr>
+          <tr>
+            <td>GT-PS / GT-CAR / GT-CTEX / GT-SKY</td>
+            <td><code>.ps</code> / <code>.car</code> / <code>.tex</code> / <code>.sky</code></td>
+            <td>Models &amp; textures</td>
+          </tr>
+          <tr>
+            <td>Nested GT-ARC</td>
+            <td><code>.arc</code></td>
+            <td>Open with <strong>Open Nested ARC</strong></td>
+          </tr>
+          <tr>
+            <td>GTHTML</td>
+            <td><code>.gthtml</code></td>
+            <td>GT menu/script data</td>
+          </tr>
+          <tr>
+            <td>INST / ENGN / SEQG</td>
+            <td><code>.ins</code> / <code>.es</code> / <code>.seq</code></td>
+            <td>Sound &amp; sequences</td>
+          </tr>
+          <tr>
+            <td>SPEC, COLOR, TIRE, …</td>
+            <td>matching</td>
+            <td>Car part tables</td>
+          </tr>
+          <tr>
+            <td>Filename lists / text</td>
+            <td><code>.idx</code> / <code>.txt</code></td>
+            <td>Name tables &amp; messages</td>
+          </tr>
+          </tbody>
+          </table>
+          <p>Full table + TIM pack layout → <a href="docs/formats.html">Formats</a></p>
+          <hr />
+          <h2>File lists</h2>
+          <p>Bundled region lists: <code>src/gtarcexplorer/filelists/</code></p>
+          <p>Per-archive notes:</p>
+          <ul>
+          <li><a href="doc/filelists/ARCADE.html">ARCADE.DAT</a></li>
+          <li><a href="doc/filelists/BG.html">BG.DAT</a></li>
+          <li><a href="doc/filelists/CAR.html">CAR.DAT</a></li>
+          <li><a href="doc/filelists/CARCADE.html">CARCADE.DAT</a></li>
+          <li><a href="doc/filelists/COURSE.html">COURSE.DAT</a></li>
+          <li><a href="doc/filelists/GAMEMENU.html">GAMEMENU</a></li>
+          <li><a href="doc/filelists/MENU_IMG.html">MENU_IMG</a></li>
+          <li><a href="doc/filelists/MENU_RAW.html">MENU_RAW</a></li>
+          <li><a href="doc/filelists/PITMENU.html">PITMENU.DAT</a></li>
+          <li><a href="doc/filelists/REPLAY.html">REPLAY.DAT</a></li>
+          <li><a href="doc/filelists/SOUND.html">SOUND.DAT</a></li>
+          </ul>
+          <hr />
+          <h2>Known GT1 archives</h2>
+          <p>See <a href="docs/archives.html">Known archives</a>.</p>
+          <hr />
+          <h2>Project layout</h2>
+          <pre><code>src/
+          ├── main.py
+          └── gtarcexplorer/
+              ├── __init__.py
+              ├── gui_qt.py
+              ├── archive.py
+              ├── detect.py
+              ├── gtzip.py
+              ├── filelist.py
+              ├── filelists/
+              │   ├── filelist_pal_retail.txt
+              │   ├── filelist_usa_retail.txt
+              │   ├── filelist_usa_demo.txt
+              │   ├── filelist_jp_retail.txt
+              │   ├── filelist_jp_demo.txt
+              │   └── filelist_jp_testdrive.txt
+              ├── tim_pack.py
+              ├── tim_image.py
+              ├── ctex.py
+              ├── gtps.py
+              ├── audio.py
+              ├── spec.py
+              ├── namelist.py
+              ├── gthtml.py
+              └── replay.py
+
+          thm/
+          ├── icon.ico
+          └── dark.qss
+
+          runtool.bat
+          requirements.txt
+          docs/
+          </code></pre>
+          
+          <hr />
+
+          <h2>Notes</h2>
+
+          <ul>
+
+          <li>Extract keeps <strong>original bytes</strong> (only GT-ZIP decompression when needed).</li>
+
+          <li>Real names come from region file lists and, when present, embedded name lists.</li>
+
+          <li>Asset Viewer needs Pillow; everything else works without it.</li>
+
+          </ul>
+
+          <h2>Credits</h2>
+
+          <ul>
+
+          <li><a href="https://github.com/pez2k/gt2tools">pez2k / gt2tools</a> — prior research into GT1 files</li>
+
+          </ul>
+
+          <h2>License</h2>
+
+        <p>MIT — see <a href="source/LICENSE">LICENSE</a>.</p>
+
+      <h6>JeevesGB</h6>
 
 </main>
 
