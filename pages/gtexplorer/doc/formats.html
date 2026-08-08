@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detected file types — GTExplorer Documentation</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #111;
+  --panel: #191919;
+  --panel2: #202020;
+  --text: #e7e7e7;
+  --muted: #aaa;
+  --border: #333;
+  --link: #6ea8fe;
+  --code: #0d0d0d;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+}
+header {
+  border-bottom: 1px solid var(--border);
+  background: #151515;
+}
+header .wrap, main, footer {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+header .wrap {
+  padding: 18px 24px;
+}
+header a {
+  color: var(--link);
+  text-decoration: none;
+}
+nav {
+  margin-top: 8px;
+  font-size: .95rem;
+}
+nav a {
+  display: inline-block;
+  margin: 3px 10px 3px 0;
+}
+main {
+  padding: 35px 24px 60px;
+}
+h1, h2, h3, h4 {
+  line-height: 1.25;
+  color: #fff;
+}
+h1 { font-size: 2.2rem; }
+h2 { margin-top: 2.2rem; border-bottom: 1px solid var(--border); padding-bottom: .35rem; }
+h3 { margin-top: 1.6rem; }
+a { color: var(--link); }
+img {
+  max-width: 100%;
+  height: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  overflow: hidden;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+th { background: var(--panel2); }
+tr:nth-child(even) td { background: #151515; }
+pre {
+  overflow-x: auto;
+  padding: 16px;
+  background: var(--code);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+code {
+  font-family: Consolas, "Courier New", monospace;
+  background: #242424;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+pre code {
+  background: transparent;
+  padding: 0;
+}
+blockquote {
+  margin: 20px 0;
+  padding: 10px 18px;
+  border-left: 4px solid #555;
+  background: var(--panel);
+  color: #ccc;
+}
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 30px 0;
+}
+footer {
+  border-top: 1px solid var(--border);
+  padding: 20px 24px 35px;
+  color: var(--muted);
+  font-size: .9rem;
+}
+.doc-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.doc-nav a.current { color: #fff; font-weight: bold; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <strong><a href="../index.html">GTExplorer Documentation</a></strong>
+    <nav class="doc-nav">
+      <a class="" href="../README.html">GTExplorer</a>
+<a class="current" href="formats.html">Detected file types</a>
+<a class="" href="archives.html">Known GT1 archives</a>
+<a class="" href="usage.html">Usage</a>
+<a class="" href="filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a class="" href="filelists/CAR.DAT.html">CAR.DAT</a>
+<a class="" href="filelists/SOUND.DAT.html">SOUNDS.DAT</a>
+<a class="" href="filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a class="" href="filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a class="" href="filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a class="" href="filelists/MENU_IMG.ARC.html">MENUIMG.ARC</a>
+<a class="" href="filelists/MENU_RAW.ARC.html">MENURAW.ARC</a>
+<a class="" href="filelists/BG.DAT.html">BG.DAT</a>
+<a class="" href="filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a class="" href="filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a class="" href="filelists/COURSE.DAT.html">COURSE.DAT</a>
+    </nav>
+  </div>
+</header>
+<main>
+<h1>Detected file types</h1>
+<h2>Core / graphics / sound</h2>
+<table>
+<thead>
+<tr>
+  <th>Magic / content</th>
+  <th>Ext</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>@(#)GT-PS</code></td>
+  <td><code>.ps</code></td>
+  <td>Course / track model</td>
+</tr>
+<tr>
+  <td><code>@(#)GT-CAR</code></td>
+  <td><code>.car</code></td>
+  <td>Car model</td>
+</tr>
+<tr>
+  <td><code>@(#)GT-CTEX</code></td>
+  <td><code>.tex</code></td>
+  <td>Car texture set</td>
+</tr>
+<tr>
+  <td><code>@(#)GT-SKY</code></td>
+  <td><code>.sky</code></td>
+  <td>Skybox</td>
+</tr>
+<tr>
+  <td><code>@(#)GT-ARC</code></td>
+  <td><code>.arc</code></td>
+  <td>Nested GT-ARC</td>
+</tr>
+<tr>
+  <td><code>@(#)USEDCAR</code></td>
+  <td><code>.usedcar</code></td>
+  <td>Used-car data</td>
+</tr>
+<tr>
+  <td><code>@(#)GTHTML</code></td>
+  <td><code>.gthtml</code></td>
+  <td>GT HTML / menu script</td>
+</tr>
+<tr>
+  <td><code>INST</code></td>
+  <td><code>.ins</code></td>
+  <td>Sound instrument bank</td>
+</tr>
+<tr>
+  <td><code>ENGN</code></td>
+  <td><code>.es</code></td>
+  <td>Engine sound bank</td>
+</tr>
+<tr>
+  <td><code>SEQG</code></td>
+  <td><code>.seq</code></td>
+  <td>Sequence (music / timing)</td>
+</tr>
+<tr>
+  <td><code>10 00 00 00</code></td>
+  <td><code>.tim</code></td>
+  <td>PlayStation TIM texture</td>
+</tr>
+<tr>
+  <td>TIM pack (count + <code>.tim</code> names)</td>
+  <td><code>.tpk</code></td>
+  <td>Named TIM container</td>
+</tr>
+<tr>
+  <td>Mostly printable text</td>
+  <td><code>.txt</code></td>
+  <td>Message / string table</td>
+</tr>
+<tr>
+  <td>Filename lists</td>
+  <td><code>.idx</code> / <code>.lst</code></td>
+  <td>Asset name lists</td>
+</tr>
+<tr>
+  <td>Other</td>
+  <td><code>.bin</code></td>
+  <td>Unknown binary</td>
+</tr>
+</tbody>
+</table>
+<h2>Car / tuning part tables (mainly CARINF)</h2>
+<table>
+<thead>
+<tr>
+  <th>Magic</th>
+  <th>Ext</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>@(#)SPEC</code></td>
+  <td><code>.spec</code></td>
+</tr>
+<tr>
+  <td><code>@(#)COLOR</code></td>
+  <td><code>.color</code></td>
+</tr>
+<tr>
+  <td><code>@(#)EQUIP</code></td>
+  <td><code>.equip</code></td>
+</tr>
+<tr>
+  <td><code>@(#)TIRE</code> / <code>TIRECMP</code> / <code>TIRESIZ</code></td>
+  <td><code>.tire</code> / <code>.tirecmp</code> / <code>.tiresiz</code></td>
+</tr>
+<tr>
+  <td><code>@(#)BRAKE</code> / <code>BRKCTRL</code></td>
+  <td><code>.brake</code> / <code>.brkctrl</code></td>
+</tr>
+<tr>
+  <td><code>@(#)GEAR</code> / <code>CLUTCH</code> / <code>FLYWHEL</code></td>
+  <td><code>.gear</code> / <code>.clutch</code> / <code>.flywhel</code></td>
+</tr>
+<tr>
+  <td><code>@(#)SUSPENS</code> / <code>STABILZ</code></td>
+  <td><code>.suspens</code> / <code>.stabilz</code></td>
+</tr>
+<tr>
+  <td><code>@(#)TURBINE</code> / <code>NATUNE</code> / <code>MUFFLER</code> / …</td>
+  <td>matching</td>
+</tr>
+</tbody>
+</table>
+<p>When a <strong>file list</strong> is loaded, list names override these fallback extensions.</p>
+<h2>TIM Pack format (COURSE / BG)</h2>
+<pre><code>Offset  Size   Description
+0x00    4      Number of TIMs (uint32 LE)
+0x04    20×N   Directory:
+                 16 bytes  Name (null-padded ASCII)
+                  4 bytes  Offset of TIM data (uint32 LE)
+…       …      TIM blobs at listed offsets
+</code></pre>
+<h2>Archive kinds</h2>
+<table>
+<thead>
+<tr>
+  <th>Kind</th>
+  <th>Detection</th>
+  <th>Behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>gtarc</code></td>
+  <td><code>@(#)GT-ARC</code></td>
+  <td>Multi-file; GT-ZIP when <code>content_type = 0x8001</code></td>
+</tr>
+<tr>
+  <td><code>gtarc_compressed</code></td>
+  <td>Mangled <code>@(#)GT-A</code> / <code>RC</code></td>
+  <td>Whole-archive compression</td>
+</tr>
+<tr>
+  <td><code>gtzip_raw</code></td>
+  <td>No ARC header</td>
+  <td>Single GT-ZIP stream</td>
+</tr>
+</tbody>
+</table>
+
+</main>
+<footer>
+  Generated from the GTExplorer Markdown documentation.
+</footer>
+</body>
+</html>
