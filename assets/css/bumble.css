@@ -708,3 +708,9 @@ code {
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
