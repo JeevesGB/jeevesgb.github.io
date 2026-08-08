@@ -3,73 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Option Tuning Car Battle Research</title>
+  <title>Option Tuning Car Battle Research — JeevesGB</title>
   <link rel="stylesheet" href="../../assets/css/bumble.css">
 </head>
-<body>
+<body class="site-wrapper">
 
-  <!-- Navigation -->
-  <div class="container">
-    <nav class="field">
-      <a href="../../index.html" class="btn primary">Home</a>
-    </nav>
-  </div>
+  <!-- Main Container -->
+  <main class="container">
 
-  <!-- Logo -->
-  <div class="container" style="text-align: center;">
-    <img src="img/1/logo.png" 
-         alt="Option Tuning Car Battle Logo" 
-         class="screenshot">
-  </div>
+    <!-- Header & Navigation -->
+    <header class="header-section">
+      <nav class="field">
+        <a href="../../index.html" class="btn">← Home</a>
+      </nav>
 
-  <!-- Main Content -->
-  <div class="container">
-    <p class="title"><strong>Option Tuning Car Battle Research</strong></p>
+      <!-- Project Logo -->
+      <div class="flex-center">
+        <img src="img/1/logo.png" alt="Option Tuning Car Battle Logo" class="screenshot">
+      </div>
 
-    <p>This page documents research into the game from the perspective of someone new to game modification.</p>
+      <h1 class="title">Option Tuning Car Battle</h1>
+    </header>
 
-    <section id="game-background">
-      <h2>Game Background</h2>
+    <!-- Overview Section -->
+    <section class="content-box">
+      <h2>Research Overview</h2>
+      <p>
+        This page documents ongoing research into the <em>Option Tuning Car Battle</em> series from the perspective of someone new to game modification and reverse engineering.
+      </p>
+
+      <h3>Game Background</h3>
       <p>
         <strong>Option Tuning Car Battle</strong> is a series of street-racing games released exclusively in Japan for the PlayStation 1, 
         developed and published by <strong>MTO</strong>.
       </p>
       <p>
         The games were created in official collaboration with <strong>Option</strong>, the legendary Japanese tuning magazine. 
-        Featuring real tuning shops such as <strong>Veilside</strong>, <strong>Mines</strong>, <strong>Re-Amemiya</strong>, 
-        <strong>HKS</strong>, <strong>Top Secret</strong>, and many others.
+        They feature real tuner cars and iconic Japanese tuning shops such as <strong>VeilSide</strong>, <strong>Mine's</strong>, 
+        <strong>RE-Amemiya</strong>, <strong>HKS</strong>, <strong>Top Secret</strong>, and many others.
       </p>
     </section>
 
-    <hr>
+    <!-- Game Versions Section -->
+    <section class="info-box">
+      <h2>Game Versions &amp; Documentation</h2>
+      <p>Select a version below to view specific research, file structures, and modification notes:</p>
+      
+      <div class="flex-column gap-sm" style="max-width: 520px; margin: 16px auto 0;">
+        <a href="otcbdmo.html" class="btn">
+          Option Tuning Car Battle (Demo) — <code>SLPM_802.03</code>
+        </a>
+        <a href="otcb1.html" class="btn">
+          Option Tuning Car Battle — <code>SLPS_012.07</code>
+        </a>
+        <a href="otcb2.html" class="btn">
+          Option Tuning Car Battle 2 — <code>SLPS_018.57</code>
+        </a>
+        <a href="specr.html" class="btn">
+          Option Tuning Car Battle: Spec-R — <code>SLPS_025.87</code>
+        </a>
+      </div>
+    </section>
 
-<h2>Game Versions</h2>
-<div style="display: flex; flex-direction: column; gap: 12px; max-width: 420px;">
-  <a href="otcbdmo.html" class="btn primary">Option Tuning Car Battle (Demo) - <strong>SLPM_802.03</strong></a>
-  <a href="otcb1.html" class="btn primary">Option Tuning Car Battle - <strong>SLPS_012.07</strong></a>
-  <a href="otcb2.html" class="btn primary">Option Tuning Car Battle 2 - <strong>SLPS_018.57</strong></a>
-  <a href="specr.html" class="btn primary">Option Tuning Car Battle: Spec-R - <strong>SPLS_025.87</strong></a>
-</div>
+    <!-- Box Art Gallery -->
+    <section class="content-box">
+      <h2>Box Art Archives</h2>
 
-    <hr>
+      <!-- OTCB 1 -->
+      <div class="info-box">
+        <h3>Option Tuning Car Battle 1</h3>
+        <div class="screenshot-grid">
+          <img src="img/1/box1.jpg" alt="Option Tuning Car Battle 1 Front Box Art" class="screenshot">
+          <img src="img/1/box2.jpg" alt="Option Tuning Car Battle 1 Back Box Art" class="screenshot">
+        </div>
+      </div>
 
-    <h2>Box Art</h2>
+      <!-- OTCB 2 -->
+      <div class="info-box">
+        <h3>Option Tuning Car Battle 2</h3>
+        <div class="screenshot-grid">
+          <img src="img/2/box1.jpg" alt="Option Tuning Car Battle 2 Front Box Art" class="screenshot">
+          <img src="img/2/box2.jpg" alt="Option Tuning Car Battle 2 Back Box Art" class="screenshot">
+        </div>
+      </div>
 
-    <h3>OTCB 1</h3>
-    <img src="img/1/box1.jpg" alt="OTCB 1 Box Art" class="screenshot">
-    <img src="img/1/box2.jpg" alt="OTCB 1 Box Art" class="screenshot">
+      <!-- OTCB Spec R -->
+      <div class="info-box">
+        <h3>Option Tuning Car Battle: Spec-R</h3>
+        <div class="screenshot-grid">
+          <img src="img/sr/box1.jpg" alt="Option Tuning Car Battle Spec-R Front Box Art" class="screenshot">
+          <img src="img/sr/box2.jpg" alt="Option Tuning Car Battle Spec-R Back Box Art" class="screenshot">
+        </div>
+      </div>
+    </section>
 
-    <h3>OTCB 2</h3>
-    <img src="img/2/box1.jpg" alt="OTCB 2 Box Art" class="screenshot">
-    <img src="img/2/box2.jpg" alt="OTCB 2 Box Art" class="screenshot">
+  </main>
 
-    <h3>OTCB Spec R</h3>
-    <img src="img/sr/box1.jpg" alt="OTCB Spec R Box Art" class="screenshot">
-    <img src="img/sr/box2.jpg" alt="OTCB Spec R Box Art" class="screenshot">
-  </div>
-
-  <footer style="text-align:center; padding: 40px 20px; color: var(--muted);">
-    © 2026 JeevesGB
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 JeevesGB</p>
   </footer>
 
 </body>

@@ -3,63 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>pPainter</title>
+  <title>pPainter — JeevesGB</title>
   <link rel="stylesheet" href="../assets/css/bumble.css">
 </head>
-<body>
+<body class="site-wrapper">
 
-  <!-- Navigation -->
-  <div class="container">
-    <nav class="field">
-      <a href="../index.html" class="btn primary">Home</a>
-    </nav>
-  </div>
+  <!-- Main Container -->
+  <main class="container">
 
-  <!-- Logo -->
-  <div class="container" style="text-align: center;">
-    <img src="../assets/image/ppaint/ico.png" 
-         alt="Option Tuning Car Battle Logo" 
-         class="screenshot">
-  </div>
+    <!-- Header & Navigation -->
+    <header class="header-section">
+      <nav class="field">
+        <a href="../index.html" class="btn">← Home</a>
+      </nav>
+      
+      <!-- App Icon / Logo -->
+      <div class="flex-center">
+        <img src="../assets/image/ppaint/ico.png" alt="pPainter Logo" class="screenshot">
+      </div>
 
-  <!-- Main Content -->
-  <div class="container">
-    <p class="title"><strong>pPainter</strong></p>
+      <h1 class="title">pPainter</h1>
+    </header>
 
-
-    <section id="what-is-it">
-      <h2>What is pPainter</h2>
+    <!-- Main Overview -->
+    <section class="content-box">
+      <h2>What is pPainter?</h2>
       <p>
-        pPainter is a simple to use tool that allows you to edit the pallettes of .tim images. 
+        pPainter is a simple-to-use tool that allows you to edit the palettes of PlayStation <code>.TIM</code> image files with ease.
       </p>
-
-      <h3>
-        You can download the latest release here: <a href="url">https://github.com/JeevesGB/pPainter</a>
-      </h3>
-
-
-        <img src="../assets/image/ppaint/wheelshow.gif" 
-            alt="CarSpin" 
-            class="screenshot">
-        <img src="../assets/image/ppaint/img-1.png" 
-            alt="Img1" 
-            class="screenshot">
-        <img src="../assets/image/ppaint/img-2.png" 
-            alt="CarSpin" 
-            class="screenshot">
-        <img src="../assets/image/ppaint/img-3.png" 
-            alt="Img1" 
-            class="screenshot">
-
-      <h2>Tutorial</h2>
-        <video controls width=600><source src="../assets/video/Gran Turismo 2 Wheel Edit Tutorial..mp4" type="video/mp4"></video>
-
-
-
     </section>
 
-  <footer style="text-align:center; padding: 40px 20px; color: var(--muted);">
-    © 2026 JeevesGB
+    <!-- Download Section -->
+    <section class="info-box">
+      <h2>Download & Source</h2>
+      <p>
+        Get the latest release, view source code, or report issues on GitHub:
+      </p>
+      <div class="flex-center">
+        <a href="https://github.com/JeevesGB/pPainter" class="btn download" target="_blank" rel="noopener">
+          View pPainter on GitHub
+        </a>
+      </div>
+    </section>
+
+    <!-- Previews & Screenshots -->
+    <section class="content-box">
+      <h2>Previews &amp; Screenshots</h2>
+      <div class="screenshot-grid">
+        <img src="../assets/image/ppaint/wheelshow.gif" alt="Wheel Color Edit Preview GIF" class="screenshot">
+        <img src="../assets/image/ppaint/img-1.png" alt="pPainter Interface Preview 1" class="screenshot">
+        <img src="../assets/image/ppaint/img-2.png" alt="pPainter Interface Preview 2" class="screenshot">
+        <img src="../assets/image/ppaint/img-3.png" alt="pPainter Interface Preview 3" class="screenshot">
+      </div>
+    </section>
+
+    <!-- Tutorial Video -->
+    <section class="content-box">
+      <h2>Video Tutorial</h2>
+      <p>Watch step-by-step how to edit Gran Turismo 2 wheel palettes using pPainter:</p>
+      
+      <div class="video-container">
+        <video controls preload="metadata">
+          <source src="../assets/video/Gran Turismo 2 Wheel Edit Tutorial..mp4" type="video/mp4">
+          Your browser does not support HTML5 video playback.
+        </video>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 JeevesGB</p>
   </footer>
 
 </body>

@@ -3,78 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Totenkopf - Hard Mode Mod</title>
+  <title>Totenkopf — Hard Mode Mod — JeevesGB</title>
   <link rel="stylesheet" href="../../assets/css/bumble.css">
-  
-  <style>
-    .logo {
-      display: block;
-      margin: 20px auto;
-      max-width: 500px;
-      height: auto;
-      border: 3px solid var(--gt-border);
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-    }
-
-    .file-tree {
-      font-size: 1.05rem;
-      line-height: 1.65;
-      white-space: pre-wrap; 
-    }
-  </style>
 </head>
-<body>
+<body class="site-wrapper">
 
-  <!-- Navigation -->
-  <div class="container">
-    <nav class="field">
-      <a href="../../index.html" class="btn primary">Home</a>
-      <a href="https://soundcloud.com/jeevesbeats" class="btn primary">Music</a>
-      <a href="../../pages/itch.html" class="btn primary">Itch.io</a>
-    </nav>
+  <!-- Main Container -->
+  <main class="container">
 
-    <nav class="field" style="margin-top: 1rem;">
-      <a href="https://discord.gg/m5fmspHa9m" class="btn primary">Gran Turismo 2 Concept & Spec VII Discord</a>
-    </nav>
-  </div>
+    <!-- Header & Navigation -->
+    <header class="header-section">
+      <nav class="field">
+        <a href="../../index.html" class="btn">← Home</a>
+        <a href="https://soundcloud.com/jeevesbeats" class="btn" target="_blank" rel="noopener">Music</a>
+        <a href="../../pages/itch.html" class="btn">Itch.io</a>
+        <a href="https://discord.gg/m5fmspHa9m" class="btn" target="_blank" rel="noopener">GT2 Concept &amp; Spec VII Discord</a>
+      </nav>
 
-  <!-- Header / Logo -->
-  <div class="container" style="text-align: center;">
-    <img src="img/logo.png" alt="Totenkopf logo" class="logo">
-  </div>
+      <!-- Project Logo -->
+      <div class="flex-center">
+        <img src="img/logo.png" alt="Totenkopf Logo" class="screenshot">
+      </div>
 
-  <!-- Description -->
-  <div class="container">
-    <p style="text-align: center; font-size: 1.2rem;">
-      Totenkopf is a Hard Mode Mod for Return To Castle Wolfenstein.<br>
-      All map .ai scripts have been edited along with some UI and load screen tweaks.
-    </p>
-  </div>
+      <h1 class="title">Totenkopf</h1>
+    </header>
 
-  <!-- Instructions -->
-  <div class="container">
-    <h2 style="text-align: center;">How To Run</h2>
-    <pre class="file-tree">
-1. Download the mod from the linked GitHub below.
+    <!-- Description -->
+    <section class="content-box">
+      <h2>About the Mod</h2>
+      <p>
+        Totenkopf is a Hard Mode Mod for <strong>Return to Castle Wolfenstein</strong>. 
+        All map <code>.ai</code> scripts have been edited along with various UI and loading screen enhancements to elevate the challenge.
+      </p>
+    </section>
 
-2. Make a copy of your RTCW installation.
+    <!-- Instructions -->
+    <section class="content-box">
+      <h2>How To Run</h2>
+      <ol style="margin-left: 1.25rem; color: var(--muted);">
+        <li>Download the mod from the official GitHub repository below.</li>
+        <li>Make a backup copy of your Return to Castle Wolfenstein installation.</li>
+        <li>Place <code>_totenkopf.pk3</code> directly into your <code>RTCW/Main</code> directory.</li>
+        <li><em>[Optional]</em> Download the <code>autoexec.cfg</code> file and place it in the same <code>RTCW/Main</code> directory.</li>
+      </ol>
+    </section>
 
-3. Place _totenkopf.pk3 in your RTCW/Main directory.
+    <!-- Download Section -->
+    <section class="info-box">
+      <h2>Download &amp; Repository</h2>
+      <p>Get the latest build or contribute to development on GitHub:</p>
+      <div class="flex-center">
+        <a href="https://github.com/JeevesGB/Totenkopf" class="btn download" target="_blank" rel="noopener">
+          View GitHub Repository
+        </a>
+      </div>
+    </section>
 
-4. [Optional] Download the autoexec.cfg file and place it in the RTCW/Main directory.
-    </pre>
-  </div>
+  </main>
 
-  <!-- Download Button -->
-  <div class="container" style="text-align: center;">
-    <a href="https://github.com/JeevesGB/Totenkopf" 
-       class="btn download" target="_blank">
-      Github Repository
-    </a>
-  </div>
-<footer>  
-    © 2026 JejCo 
-</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 JeevesGB</p>
+  </footer>
+
 </body>
 </html>

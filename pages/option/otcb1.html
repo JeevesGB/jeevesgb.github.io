@@ -2,64 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>OTC B1 - Option Tuning Car Battle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTC B1 (SLPS_012.07) — Option Tuning Car Battle — JeevesGB</title>
   <link rel="stylesheet" href="../../assets/css/bumble.css">
 </head>
-<body>
-  <div class="container">
-    <nav class="field">
-  <p><a href="option.html" class="btn primary">← Back to Main Option Tuning Car Battle Page</a></p>
-    </nav>
-    <nav class="field">
-      <a href="otcbdmo.html" class="btn primary">OTC BDMO</a>
-      <a href="otcb1.html" class="btn primary">OTC B1</a>
-      <a href="otcb2.html" class="btn primary">OTC B2</a>
-      <a href="specr.html" class="btn primary">Spec-R</a>
-    </nav>
-  </div>
-  <div class="page-layout">
-    <div class="main-content">
-      <div class="container">
-        <article class="field">
-          <img
-            src="img/1/logo.png"
-            alt="Option Tuning Car Battle Logo"
-            height="150"
-            class="logo">
-          </img>
-          <h1>Option Tuning Car Battle - SLPS_012.07</h1>
-<hr>
-          <h2>Duckstation Cheats</h2>
-          <table class="field">
-            <thead><tr><th>Cheat</th><th>Code</th></tr></thead>
-            <tbody>
-              <tr><td>Infinite Money</td><td><code>900A5318 3B9AC0FF</code></td></tr>
-            </tbody>
-          </table>
-<hr>
+<body class="site-wrapper">
 
-          <h2>Filetypes</h2>
-          <table class="field">
-            <thead><tr><th>Extension</th><th>Found In</th><th>Likely Purpose</th></tr></thead>
-            <tbody>
-              <tr><td>(none)</td><td>Root</td><td>Main PS1 executable (`SLPS_012.07`) and system files</td></tr>
-              <tr><td>.BIN</td><td>Root, C0–C3, OTHER, RIVAL, R_LOST, R_WIN, SE, SUB, TIM, TUNE</td><td>Generic binary data (car models, menus, textures, shop data, rivals, tuning)</td></tr>
-              <tr><td>.MDT</td><td>C0–C3, CS</td><td>Car model/geometry data and track model data</td></tr>
-              <tr><td>.TDT</td><td>CS</td><td>Track texture data (paired with `.MDT` track files)</td></tr>
-              <tr><td>.DA</td><td>DA</td><td>Audio files (race music, jingles, voice lines, sound effects)</td></tr>
-              <tr><td>.TMD</td><td>MOJI, RIVAL, SUB, TUNE</td><td>3D model/texture data (UI elements, rival models, garage/shop models, tuning shop)</td></tr>
-              <tr><td>.MSG</td><td>MSG, MSG2</td><td>Text/message/script files (menus, scenarios, dialogues, car-specific messages)</td></tr>
-              <tr><td>.PAK</td><td>OTHER</td><td>Packed/Archived data files</td></tr>
-              <tr><td>.MPD</td><td>CS</td><td>Track/course definition or map data</td></tr>
-              <tr><td>.VB</td><td>S0–S3, SE</td><td>Sound/voice sample banks (engine sounds, system sounds)</td></tr>
-              <tr><td>.VHX</td><td>S0–S3, SE</td><td>Sound header/index files (paired with `.VB` sound banks)</td></tr>
-              <tr><td>.STR</td><td>STR</td><td>Streamed video/FMV files (opening, ending, demo, shop cutscenes)</td></tr>
-            </tbody>
-          </table>
-<hr>
-          <h2>Game File Structure</h2>
-          <pre class="file-tree">ROOT
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Header & Navigation -->
+    <header class="header-section">
+      <nav class="field">
+        <a href="option.html" class="btn">← Back to Option Tuning Overview</a>
+      </nav>
+
+      <nav class="field flex-center" style="margin-top: 0.5rem;">
+        <a href="otcbdmo.html" class="btn">Demo</a>
+        <a href="otcb1.html" class="btn primary">OTC B1</a>
+        <a href="otcb2.html" class="btn">OTC B2</a>
+        <a href="specr.html" class="btn">Spec-R</a>
+      </nav>
+
+      <!-- Project Logo -->
+      <div class="flex-center">
+        <img src="img/1/logo.png" alt="Option Tuning Car Battle Logo" class="screenshot">
+      </div>
+
+      <h1 class="title">Option Tuning Car Battle — SLPS_012.07</h1>
+    </header>
+
+    <!-- Cheats Section -->
+    <section class="info-box">
+      <h2>DuckStation Cheats</h2>
+      <table class="field">
+        <thead>
+          <tr>
+            <th>Cheat Description</th>
+            <th>Code</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Infinite Money</td>
+            <td><code>900A5318 3B9AC0FF</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Filetypes Overview -->
+    <section class="content-box">
+      <h2>File Extension Reference</h2>
+      <table class="field">
+        <thead>
+          <tr>
+            <th>Extension</th>
+            <th>Found In Directory</th>
+            <th>Likely Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>(none)</code></td>
+            <td>Root</td>
+            <td>Main PS1 executable (<code>SLPS_012.07</code>) and system files</td>
+          </tr>
+          <tr>
+            <td><code>.BIN</code></td>
+            <td>Root, C0–C3, OTHER, RIVAL, R_LOST, R_WIN, SE, SUB, TIM, TUNE</td>
+            <td>Generic binary data (car models, menus, textures, shop data, rivals, tuning)</td>
+          </tr>
+          <tr>
+            <td><code>.MDT</code></td>
+            <td>C0–C3, CS</td>
+            <td>Car model/geometry data and track model data</td>
+          </tr>
+          <tr>
+            <td><code>.TDT</code></td>
+            <td>CS</td>
+            <td>Track texture data (paired with <code>.MDT</code> track files)</td>
+          </tr>
+          <tr>
+            <td><code>.DA</code></td>
+            <td>DA</td>
+            <td>Audio tracks (race music, jingles, voice lines, sound effects)</td>
+          </tr>
+          <tr>
+            <td><code>.TMD</code></td>
+            <td>MOJI, RIVAL, SUB, TUNE</td>
+            <td>3D model/texture data (UI elements, rival models, garage/shop models, tuning shop)</td>
+          </tr>
+          <tr>
+            <td><code>.MSG</code></td>
+            <td>MSG, MSG2</td>
+            <td>Text/message/script files (menus, scenarios, dialogues, car-specific messages)</td>
+          </tr>
+          <tr>
+            <td><code>.PAK</code></td>
+            <td>OTHER</td>
+            <td>Packed/Archived data containers</td>
+          </tr>
+          <tr>
+            <td><code>.MPD</code></td>
+            <td>CS</td>
+            <td>Track/course definition or map layout data</td>
+          </tr>
+          <tr>
+            <td><code>.VB</code></td>
+            <td>S0–S3, SE</td>
+            <td>Sound/voice sample banks (engine sounds, system sounds)</td>
+          </tr>
+          <tr>
+            <td><code>.VHX</code></td>
+            <td>S0–S3, SE</td>
+            <td>Sound header/index files (paired with <code>.VB</code> sound banks)</td>
+          </tr>
+          <tr>
+            <td><code>.STR</code></td>
+            <td>STR</td>
+            <td>Streamed video/FMV files (opening, ending, demo, shop cutscenes)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Directory Summary -->
+    <section class="content-box">
+      <h2>Root Directory Map</h2>
+      <pre class="file-tree">ROOT
 │  ├── C0
 │  ├── C1
 │  ├── C2
@@ -87,10 +158,12 @@
 ├── SLPS_012.07
 ├── SYS.BIN
 └── SYSTEM.CNF</pre>
+    </section>
 
-<hr>
-          <h2>Game File Structure (Extended)</h2>
-          <pre class="file-tree">ROOT
+    <!-- Full File Tree -->
+    <section class="content-box">
+      <h2>Game File Structure (Extended)</h2>
+      <pre class="file-tree">ROOT
 ├── C0
 │   ├── 180SX.BIN
 │   ├── 180SX.MDT
@@ -477,34 +550,39 @@
 │   ├── TITLE2.BIN
 │   └── TUNESEL.BIN
 └── TUNE
-     ├── ACTIVE.BIN
-     ├── AMAMIYA.BIN
-     ├── CENTRAL.BIN
-     ├── ESPRIT.BIN
-     ├── FUKUI.BIN
-     ├── HKS.BIN
-     ├── JAM.BIN
-     ├── MINES.BIN
-     ├── NAME.BIN
-     ├── SHOP_G.BIN
-     ├── SHOP_G.TMD
-     ├── SPOON.BIN
-     ├── TOP.BIN
-     ├── TUNESEL.BIN
-     └── VSIDE.BIN
+    ├── ACTIVE.BIN
+    ├── AMAMIYA.BIN
+    ├── CENTRAL.BIN
+    ├── ESPRIT.BIN
+    ├── FUKUI.BIN
+    ├── HKS.BIN
+    ├── JAM.BIN
+    ├── MINES.BIN
+    ├── NAME.BIN
+    ├── SHOP_G.BIN
+    ├── SHOP_G.TMD
+    ├── SPOON.BIN
+    ├── TOP.BIN
+    ├── TUNESEL.BIN
+    └── VSIDE.BIN
 
 ├── NOTICE.BIN
 ├── SLPS_012.07
 ├── SYS.BIN
 └── SYSTEM.CNF</pre>
+    </section>
 
-          <p><a href="option.html" class="btn primary">← Back to Main Option Tuning Car Battle Page</a></p>
-        </article>
-      </div>
+    <!-- Navigation Footer Link -->
+    <div class="flex-center" style="margin-bottom: 2rem;">
+      <a href="option.html" class="btn">← Back to Option Tuning Overview</a>
     </div>
-  </div>
-<footer>  
-  © 2026 JejCo 
-</footer>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 JeevesGB</p>
+  </footer>
+
 </body>
 </html>

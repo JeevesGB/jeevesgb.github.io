@@ -3,50 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>xPatch</title>
+  <title>xPatch — JeevesGB</title>
   <link rel="stylesheet" href="../assets/css/bumble.css">
 </head>
-<body>
+<body class="site-wrapper">
 
-  <!-- Navigation -->
-  <div class="container">
-    <nav class="field">
-      <a href="../index.html" class="btn primary">Home</a>
-    </nav>
-  </div>
+  <!-- Main Container -->
+  <main class="container">
 
-  <!-- Logo -->
-  <div class="container" style="text-align: center;">
-    <img src="../assets/image/xpatch.png" 
-         alt="Option Tuning Car Battle Logo" 
-         class="screenshot">
-  </div>
+    <!-- Header & Navigation -->
+    <header class="header-section">
+      <nav class="field">
+        <a href="../index.html" class="btn">← Home</a>
+      </nav>
+      
+      <!-- Project Logo -->
+      <div class="flex-center">
+        <img src="../assets/image/xpatch.png" alt="xPatch Logo" class="screenshot">
+      </div>
 
-  <!-- Main Content -->
-  <div class="container">
-    <p class="title"><strong>xPatch</strong></p>
+      <h1 class="title">xPatch</h1>
+    </header>
 
-
-    <section id="what-is-it">
+    <!-- Main Content Section -->
+    <section class="content-box">
       <h2>What is xPatch?</h2>
       <p>
-        xPatch is a simple to use tool for creating xDelta patches. 
+        xPatch is a simple-to-use tool designed for easily creating xDelta patches.
       </p>
 
-      <h2>What is a xDelta patch?</h2>
+      <h2>What is an xDelta Patch?</h2>
       <p>
-        An xdelta patch is a file that stores the differences between two binary files, rather than the full file itself. 
-        It's built using the xdelta algorithm (a binary diff/patch tool), and is commonly used in retro gaming and ROM hacking communities.
+        An xDelta patch is a file that stores only the differences between two binary files, rather than containing the entire file itself. 
+        Built using the xDelta algorithm (a binary diff/patch tool), it is widely used throughout the retro gaming and ROM hacking communities for distributing modifications safely and efficiently.
       </p>
-
-      <h3>
-        You can download the latest release here: <a href="url">https://github.com/JeevesGB/xPatch</a>
-      </h3>
-
     </section>
 
-  <footer style="text-align:center; padding: 40px 20px; color: var(--muted);">
-    © 2026 JeevesGB
+    <!-- Download Section -->
+    <section class="info-box">
+      <h2>Download & Source</h2>
+      <p>
+        Get the latest release, view source code, or contribute directly on GitHub:
+      </p>
+      <div class="flex-center">
+        <a href="https://github.com/JeevesGB/xPatch" class="btn download" target="_blank" rel="noopener">
+          View xPatch on GitHub
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 JeevesGB</p>
   </footer>
 
 </body>
