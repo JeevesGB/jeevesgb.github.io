@@ -1,3 +1,8 @@
+/**
+ * 
+ *      Renders a Gran Turismo 1 .car file. TODO: map textures and apply palettes correctly
+ * 
+ */
 // Global State & Variables
 let currentScene, currentCamera, currentRenderer, currentControls;
 let activeModelMesh = null;
