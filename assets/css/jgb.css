@@ -54,7 +54,7 @@ body {
   background-color: var(--bg);
   background-image:
     radial-gradient(circle at 50% 20%, rgba(15, 30, 55, 0.75) 0%, rgba(8, 12, 18, 0.05) 70%),
-    url('../image/bg.png');
+    url('../image/');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
