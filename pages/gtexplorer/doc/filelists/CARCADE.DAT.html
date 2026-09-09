@@ -3,125 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CARCADE.DAT — GTExplorer Documentation</title>
-
-  <link rel="stylesheet" href="../../../../assets/css/bumble.css">
+<title>CARCADE.DAT — GTExplorer</title>
+<link rel="stylesheet" href="../../../../assets/css/jgb.css">
+<link rel="stylesheet" href="../../css/docs-extra.css">
 </head>
 <body>
-<header>
+
+<div class="parallax-bg"></div>
+
+<a class="back-btn-text" href="../../../../index.html" title="Back to site">← Site</a>
+
+<div class="doc-nav-bar">
   <div class="wrap">
-    <strong><a href="../../index.html">GTExplorer Documentation</a></strong>
+    <a class="doc-brand" href="../../index.html">GTExplorer Docs</a>
     <nav class="doc-nav">
-      <strong><a href="../../index.html">GTExplorer Documentation</a></strong>
-      <a class="" href="https://github.com/JeevesGB/GTExplorer">GTExplorer Github</a>
-      <a class="" href="../formats.html">Detected file types</a>
-      <a class="" href="../archives.html">Known GT1 archives</a>
-      <a class="" href="../usage.html">Usage</a>
-      <a class="current" href="CARCADE.DAT.html">CARCADE.DAT</a>
-      <a class="" href="CAR.DAT.html">CAR.DAT</a>
-      <a class="" href="SOUND.DAT.html">SOUNDS.DAT</a>
-      <a class="" href="REPLAY.DAT.html">REPLAY.DAT</a>
-      <a class="" href="GAMEMENU.DAT.html">GAMEMENU.DAT</a>
-      <a class="" href="PITMENU.DAT.html">PITMENU.DAT</a>
-      <a class="" href="MENU_IMG.ARC.html">MENUIMG.ARC</a>
-      <a class="" href="MENU_RAW.ARC.html">MENURAW.ARC</a>
-      <a class="" href="BG.DAT.html">BG.DAT</a>
-      <a class="" href="ARCADE2.DAT.html">ARCADE2.DAT</a>
-      <a class="" href="ARCADE.DAT.html">ARCADE.DAT</a>
-      <a class="" href="COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../index.html">Overview</a>
+<a href="../../doc/usage.html">Usage</a>
+<a href="../../doc/formats.html">Formats</a>
+<a href="../../doc/archives.html">Archives</a>
+<a href="../../doc/filelists/index.html">File lists</a>
+<a href="../../doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a href="../../doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a href="../../doc/filelists/BG.DAT.html">BG.DAT</a>
+<a href="../../doc/filelists/CAR.DAT.html">CAR.DAT</a>
+<a class="current" href="../../doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a href="../../doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+<a href="../../doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a href="../../doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+<a href="../../doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+<a href="../../doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+<a href="../../doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a href="../../doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a href="../../doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+<a href="../../doc/filelists/GTHTML.html">GTHTML</a>
+<a href="../../CONTRIBUTING.html">Contributing</a>
     </nav>
   </div>
-</header>
-<main>
+</div>
 
+<main class="page doc-page">
+  <section class="bento">
+    <div class="panel doc-panel" style="grid-column: span 12;">
+<h1 class="title title-left" id="carcade-dat">CARCADE.DAT</h1>
+<p><a href="index.html">← Back to index</a></p>
+<p>Cars available in Arcade mode, stored the same way as CAR.DAT (<code>.car</code> model + <code>.tex</code> texture) but addressed by numeric index rather than name, since Arcade mode only needs a fixed, small roster.</p>
+<p><strong>80</strong> files · <strong>2</strong> file types</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Extension</th>
+<th>Count</th>
+<th>What it is</th>
+</tr></thead><tbody>
+<tr>
+<td><code>.tex</code></td>
+<td>40</td>
+<td>Texture map for a <code>.car</code> model.</td>
+</tr>
+<tr>
+<td><code>.car</code></td>
+<td>40</td>
+<td>3D car model/mesh.</td>
+</tr>
+</tbody></table></div>
+<h2 id="structure">Structure</h2>
+<details><summary><b>Files here (80)</b> — click to expand</summary>
 
-<h1>CARCADE.DAT</h1>
-<pre><code>    
-    000.tex
-    001.car
-    002.tex
-    003.car
-    004.tex
-    005.car
-    006.tex
-    007.car
-    008.tex
-    009.car
-    010.tex
-    011.car
-    012.tex
-    013.car
-    014.tex
-    015.car
-    016.tex
-    017.car
-    018.tex
-    019.car
-    020.tex
-    021.car
-    022.tex
-    023.car
-    024.tex
-    025.car
-    026.tex
-    027.car
-    028.tex
-    029.car
-    030.tex
-    031.car
-    032.tex
-    033.car
-    034.tex
-    035.car
-    036.tex
-    037.car
-    038.tex
-    039.car
-    040.tex
-    041.car
-    042.tex
-    043.car
-    044.tex
-    045.car
-    046.tex
-    047.car
-    048.tex
-    049.car
-    050.tex
-    051.car
-    052.tex
-    053.car
-    054.tex
-    055.car
-    056.tex
-    057.car
-    058.tex
-    059.car
-    060.tex
-    061.car
-    062.tex
-    063.car
-    064.tex
-    065.car
-    066.tex
-    067.car
-    068.tex
-    069.car
-    070.tex
-    071.car
-    072.tex
-    073.car
-    074.tex
-    075.car
-    076.tex
-    077.car
-    078.tex
-    079.car
-</code></pre>
+- `001.car` → `079.car` (40 files, every 2)
+- `000.tex` → `078.tex` (40 files, every 2)
 
+</details>
+<hr>
+<p><a href="index.html">← Back to index</a></p>
+    </div>
+  </section>
 </main>
+
 <footer>
-  Generated from the GTExplorer Markdown documentation.
+  GTExplorer documentation · <a href="https://github.com/JeevesGB/GTExplorer">GitHub</a><br>
+  © 2026 JeevesGB
 </footer>
+
+<script src="../../js/docs.js"></script>
 </body>
 </html>

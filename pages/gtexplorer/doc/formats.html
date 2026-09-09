@@ -3,209 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Detected file types — GTExplorer Documentation</title>
-
-  <link rel="stylesheet" href="../../../assets/css/bumble.css">
+<title>Detected file types — GTExplorer</title>
+<link rel="stylesheet" href="../../../assets/css/jgb.css">
+<link rel="stylesheet" href="../css/docs-extra.css">
 </head>
 <body>
-<header>
+
+<div class="parallax-bg"></div>
+
+<a class="back-btn-text" href="../../../index.html" title="Back to site">← Site</a>
+
+<div class="doc-nav-bar">
   <div class="wrap">
-    <strong><a href="../index.html">GTExplorer Documentation</a></strong>
+    <a class="doc-brand" href="../index.html">GTExplorer Docs</a>
     <nav class="doc-nav">
-      <a class="" href="../../../index.html">Home</a>
-      <a class="" href="https://github.com/JeevesGB/GTExplorer">GTExplorer</a>
-      <a class="current" href="formats.html">Detected file types</a>
-      <a class="" href="archives.html">Known GT1 archives</a>
-      <a class="" href="usage.html">Usage</a>
-      <a class="" href="filelists/CARCADE.DAT.html">CARCADE.DAT</a>
-      <a class="" href="filelists/CAR.DAT.html">CAR.DAT</a>
-      <a class="" href="filelists/SOUND.DAT.html">SOUNDS.DAT</a>
-      <a class="" href="filelists/REPLAY.DAT.html">REPLAY.DAT</a>
-      <a class="" href="filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
-      <a class="" href="filelists/PITMENU.DAT.html">PITMENU.DAT</a>
-      <a class="" href="filelists/MENU_IMG.ARC.html">MENUIMG.ARC</a>
-      <a class="" href="filelists/MENU_RAW.ARC.html">MENURAW.ARC</a>
-      <a class="" href="filelists/BG.DAT.html">BG.DAT</a>
-      <a class="" href="filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
-      <a class="" href="filelists/ARCADE.DAT.html">ARCADE.DAT</a>
-      <a class="" href="filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="../index.html">Overview</a>
+<a href="../doc/usage.html">Usage</a>
+<a class="current" href="../doc/formats.html">Formats</a>
+<a href="../doc/archives.html">Archives</a>
+<a href="../doc/filelists/index.html">File lists</a>
+<a href="../doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a href="../doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a href="../doc/filelists/BG.DAT.html">BG.DAT</a>
+<a href="../doc/filelists/CAR.DAT.html">CAR.DAT</a>
+<a href="../doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a href="../doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+<a href="../doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="../doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a href="../doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+<a href="../doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+<a href="../doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+<a href="../doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+<a href="../doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+<a href="../doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a href="../doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a href="../doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+<a href="../doc/filelists/GTHTML.html">GTHTML</a>
+<a href="../CONTRIBUTING.html">Contributing</a>
     </nav>
   </div>
-</header>
-<main>
+</div>
 
-
-<h1>Detected file types</h1>
-<h2>Core / graphics / sound</h2>
-<table>
-<thead>
+<main class="page doc-page">
+  <section class="bento">
+    <div class="panel doc-panel" style="grid-column: span 12;">
+<h1 class="title title-left" id="detected-file-types">Detected file types</h1>
+<h2 id="core-graphics-sound">Core / graphics / sound</h2>
+<div class="table-wrap"><table><thead><tr>
+<th>Magic / content</th>
+<th>Ext</th>
+<th>Description</th>
+</tr></thead><tbody>
 <tr>
-  <th>Magic / content</th>
-  <th>Ext</th>
-  <th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>@(#)GT-PS</code></td>
-  <td><code>.ps</code></td>
-  <td>Course / track model</td>
+<td><code>@(#)GT-PS</code></td>
+<td><code>.ps</code></td>
+<td>Course / track model</td>
 </tr>
 <tr>
-  <td><code>@(#)GT-CAR</code></td>
-  <td><code>.car</code></td>
-  <td>Car model</td>
+<td><code>@(#)GT-CAR</code></td>
+<td><code>.car</code></td>
+<td>Car model</td>
 </tr>
 <tr>
-  <td><code>@(#)GT-CTEX</code></td>
-  <td><code>.tex</code></td>
-  <td>Car texture set</td>
+<td><code>@(#)GT-CTEX</code></td>
+<td><code>.tex</code></td>
+<td>Car texture set</td>
 </tr>
 <tr>
-  <td><code>@(#)GT-SKY</code></td>
-  <td><code>.sky</code></td>
-  <td>Skybox</td>
+<td><code>@(#)GT-SKY</code></td>
+<td><code>.sky</code></td>
+<td>Skybox</td>
 </tr>
 <tr>
-  <td><code>@(#)GT-ARC</code></td>
-  <td><code>.arc</code></td>
-  <td>Nested GT-ARC</td>
+<td><code>@(#)GT-ARC</code></td>
+<td><code>.arc</code></td>
+<td>Nested GT-ARC</td>
 </tr>
 <tr>
-  <td><code>@(#)USEDCAR</code></td>
-  <td><code>.usedcar</code></td>
-  <td>Used-car data</td>
+<td><code>@(#)USEDCAR</code></td>
+<td><code>.usedcar</code></td>
+<td>Used-car data</td>
 </tr>
 <tr>
-  <td><code>@(#)GTHTML</code></td>
-  <td><code>.gthtml</code></td>
-  <td>GT HTML / menu script</td>
+<td><code>@(#)GTHTML</code></td>
+<td><code>.gthtml</code></td>
+<td>GT HTML / menu script</td>
 </tr>
 <tr>
-  <td><code>INST</code></td>
-  <td><code>.ins</code></td>
-  <td>Sound instrument bank</td>
+<td><code>INST</code></td>
+<td><code>.ins</code></td>
+<td>Sound instrument bank</td>
 </tr>
 <tr>
-  <td><code>ENGN</code></td>
-  <td><code>.es</code></td>
-  <td>Engine sound bank</td>
+<td><code>ENGN</code></td>
+<td><code>.es</code></td>
+<td>Engine sound bank</td>
 </tr>
 <tr>
-  <td><code>SEQG</code></td>
-  <td><code>.seq</code></td>
-  <td>Sequence (music / timing)</td>
+<td><code>SEQG</code></td>
+<td><code>.seq</code></td>
+<td>Sequence (music / timing)</td>
 </tr>
 <tr>
-  <td><code>10 00 00 00</code></td>
-  <td><code>.tim</code></td>
-  <td>PlayStation TIM texture</td>
+<td><code>10 00 00 00</code></td>
+<td><code>.tim</code></td>
+<td>PlayStation TIM texture</td>
 </tr>
 <tr>
-  <td>TIM pack (count + <code>.tim</code> names)</td>
-  <td><code>.tpk</code></td>
-  <td>Named TIM container</td>
+<td>TIM pack (count + <code>.tim</code> names)</td>
+<td><code>.tpk</code></td>
+<td>Named TIM container</td>
 </tr>
 <tr>
-  <td>Mostly printable text</td>
-  <td><code>.txt</code></td>
-  <td>Message / string table</td>
+<td>Mostly printable text</td>
+<td><code>.txt</code></td>
+<td>Message / string table</td>
 </tr>
 <tr>
-  <td>Filename lists</td>
-  <td><code>.idx</code> / <code>.lst</code></td>
-  <td>Asset name lists</td>
+<td>Filename lists</td>
+<td><code>.idx</code> / <code>.lst</code></td>
+<td>Asset name lists</td>
 </tr>
 <tr>
-  <td>Other</td>
-  <td><code>.bin</code></td>
-  <td>Unknown binary</td>
+<td>Other</td>
+<td><code>.bin</code></td>
+<td>Unknown binary</td>
 </tr>
-</tbody>
-</table>
-<h2>Car / tuning part tables (mainly CARINF)</h2>
-<table>
-<thead>
+</tbody></table></div>
+<h2 id="car-tuning-part-tables-mainly-carinf">Car / tuning part tables (mainly CARINF)</h2>
+<div class="table-wrap"><table><thead><tr>
+<th>Magic</th>
+<th>Ext</th>
+</tr></thead><tbody>
 <tr>
-  <th>Magic</th>
-  <th>Ext</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>@(#)SPEC</code></td>
-  <td><code>.spec</code></td>
+<td><code>@(#)SPEC</code></td>
+<td><code>.spec</code></td>
 </tr>
 <tr>
-  <td><code>@(#)COLOR</code></td>
-  <td><code>.color</code></td>
+<td><code>@(#)COLOR</code></td>
+<td><code>.color</code></td>
 </tr>
 <tr>
-  <td><code>@(#)EQUIP</code></td>
-  <td><code>.equip</code></td>
+<td><code>@(#)EQUIP</code></td>
+<td><code>.equip</code></td>
 </tr>
 <tr>
-  <td><code>@(#)TIRE</code> / <code>TIRECMP</code> / <code>TIRESIZ</code></td>
-  <td><code>.tire</code> / <code>.tirecmp</code> / <code>.tiresiz</code></td>
+<td><code>@(#)TIRE</code> / <code>TIRECMP</code> / <code>TIRESIZ</code></td>
+<td><code>.tire</code> / <code>.tirecmp</code> / <code>.tiresiz</code></td>
 </tr>
 <tr>
-  <td><code>@(#)BRAKE</code> / <code>BRKCTRL</code></td>
-  <td><code>.brake</code> / <code>.brkctrl</code></td>
+<td><code>@(#)BRAKE</code> / <code>BRKCTRL</code></td>
+<td><code>.brake</code> / <code>.brkctrl</code></td>
 </tr>
 <tr>
-  <td><code>@(#)GEAR</code> / <code>CLUTCH</code> / <code>FLYWHEL</code></td>
-  <td><code>.gear</code> / <code>.clutch</code> / <code>.flywhel</code></td>
+<td><code>@(#)GEAR</code> / <code>CLUTCH</code> / <code>FLYWHEL</code></td>
+<td><code>.gear</code> / <code>.clutch</code> / <code>.flywhel</code></td>
 </tr>
 <tr>
-  <td><code>@(#)SUSPENS</code> / <code>STABILZ</code></td>
-  <td><code>.suspens</code> / <code>.stabilz</code></td>
+<td><code>@(#)SUSPENS</code> / <code>STABILZ</code></td>
+<td><code>.suspens</code> / <code>.stabilz</code></td>
 </tr>
 <tr>
-  <td><code>@(#)TURBINE</code> / <code>NATUNE</code> / <code>MUFFLER</code> / …</td>
-  <td>matching</td>
+<td><code>@(#)TURBINE</code> / <code>NATUNE</code> / <code>MUFFLER</code> / …</td>
+<td>matching</td>
 </tr>
-</tbody>
-</table>
+</tbody></table></div>
 <p>When a <strong>file list</strong> is loaded, list names override these fallback extensions.</p>
-<h2>TIM Pack format (COURSE / BG)</h2>
-<pre><code>Offset  Size   Description
+<h2 id="tim-pack-format-course-bg">TIM Pack format (COURSE / BG)</h2>
+<pre><code class="language-">Offset  Size   Description
 0x00    4      Number of TIMs (uint32 LE)
 0x04    20×N   Directory:
                  16 bytes  Name (null-padded ASCII)
                   4 bytes  Offset of TIM data (uint32 LE)
-…       …      TIM blobs at listed offsets
-</code></pre>
-<h2>Archive kinds</h2>
-<table>
-<thead>
+…       …      TIM blobs at listed offsets</code></pre>
+<h2 id="archive-kinds">Archive kinds</h2>
+<div class="table-wrap"><table><thead><tr>
+<th>Kind</th>
+<th>Detection</th>
+<th>Behaviour</th>
+</tr></thead><tbody>
 <tr>
-  <th>Kind</th>
-  <th>Detection</th>
-  <th>Behaviour</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td><code>gtarc</code></td>
-  <td><code>@(#)GT-ARC</code></td>
-  <td>Multi-file; GT-ZIP when <code>content_type = 0x8001</code></td>
+<td><code>gtarc</code></td>
+<td><code>@(#)GT-ARC</code></td>
+<td>Multi-file; GT-ZIP when <code>content_type = 0x8001</code></td>
 </tr>
 <tr>
-  <td><code>gtarc_compressed</code></td>
-  <td>Mangled <code>@(#)GT-A</code> / <code>RC</code></td>
-  <td>Whole-archive compression</td>
+<td><code>gtarc_compressed</code></td>
+<td>Mangled <code>@(#)GT-A</code> / <code>RC</code></td>
+<td>Whole-archive compression</td>
 </tr>
 <tr>
-  <td><code>gtzip_raw</code></td>
-  <td>No ARC header</td>
-  <td>Single GT-ZIP stream</td>
+<td><code>gtzip_raw</code></td>
+<td>No ARC header</td>
+<td>Single GT-ZIP stream</td>
 </tr>
-</tbody>
-</table>
-
+</tbody></table></div>
+<hr>
+<p class="back-link"><a href="../index.html">← Back to overview</a></p>
+    </div>
+  </section>
 </main>
+
 <footer>
-  Generated from the GTExplorer Markdown documentation.
+  GTExplorer documentation · <a href="https://github.com/JeevesGB/GTExplorer">GitHub</a><br>
+  © 2026 JeevesGB
 </footer>
+
+<script src="../js/docs.js"></script>
 </body>
 </html>

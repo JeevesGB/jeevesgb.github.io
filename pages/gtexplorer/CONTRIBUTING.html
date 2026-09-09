@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contributing — GTExplorer</title>
+<link rel="stylesheet" href="../../assets/css/jgb.css">
+<link rel="stylesheet" href="css/docs-extra.css">
+</head>
+<body>
+
+<div class="parallax-bg"></div>
+
+<a class="back-btn-text" href="../../index.html" title="Back to site">← Site</a>
+
+<div class="doc-nav-bar">
+  <div class="wrap">
+    <a class="doc-brand" href="index.html">GTExplorer Docs</a>
+    <nav class="doc-nav">
+<a href="index.html">Overview</a>
+<a href="doc/usage.html">Usage</a>
+<a href="doc/formats.html">Formats</a>
+<a href="doc/archives.html">Archives</a>
+<a href="doc/filelists/index.html">File lists</a>
+<a href="doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a href="doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a href="doc/filelists/BG.DAT.html">BG.DAT</a>
+<a href="doc/filelists/CAR.DAT.html">CAR.DAT</a>
+<a href="doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a href="doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+<a href="doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a href="doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+<a href="doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+<a href="doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+<a href="doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+<a href="doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+<a href="doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a href="doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a href="doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+<a href="doc/filelists/GTHTML.html">GTHTML</a>
+<a class="current" href="CONTRIBUTING.html">Contributing</a>
+    </nav>
+  </div>
+</div>
+
+<main class="page doc-page">
+  <section class="bento">
+    <div class="panel doc-panel" style="grid-column: span 12;">
+<h1 class="title title-left" id="contributing-to-gtexplorer">Contributing to GTExplorer</h1>
+<p>Thanks for your interest in contributing! GTExplorer is a community tool for extracting, viewing, editing, and repacking Gran Turismo 1 (PS1) archive files, and there&#x27;s plenty of room to help — from fixing bugs to tackling the bigger known limitations below.</p>
+<h2 id="getting-started">Getting Started</h2>
+<ol>
+<li>Fork the repo and clone your fork:</li>
+</ol>
+<pre><code class="language-">   git clone https://github.com/&lt;your-username&gt;/GTExplorer.git
+   cd GTExplorer</code></pre>
+<ol>
+<li>Install dependencies:</li>
+</ol>
+<pre><code class="language-">   pip install -r requirements.txt</code></pre>
+<ol>
+<li>Run the app to confirm your environment works:</li>
+</ol>
+<pre><code class="language-">   python src/main.py</code></pre>
+<ol>
+<li>Complete first-launch <strong>Setup</strong> (input/output folders) as described in the <a href="README.md#requirements--quick-start">README</a>. If you&#x27;re testing archive extraction/repacking, you&#x27;ll need your own GT1 disc image or archive files — none are distributed with this project.</li>
+</ol>
+<h2 id="making-changes">Making Changes</h2>
+<ol>
+<li>Create a branch off <code>main</code>:</li>
+</ol>
+<pre><code class="language-">   git checkout -b fix/short-description</code></pre>
+<p>or <code>feature/short-description</code> for new functionality.</p>
+<ol>
+<li>Keep PRs focused — one bug fix or feature per PR makes review much easier.</li>
+<li>For anything non-trivial (new features, UI changes, format-parsing changes), please open an issue first to discuss the approach before investing a lot of time.</li>
+<li>Test your changes against real GT1 archive files where possible, especially for extraction/repacking logic — corrupted output is easy to miss without a real round-trip test.</li>
+<li>Commit with clear, descriptive messages explaining <em>why</em>, not just <em>what</em>.</li>
+<li>Push your branch and open a Pull Request against <code>main</code>, describing what changed and how you tested it.</li>
+</ol>
+<h2 id="code-style">Code Style</h2>
+<ul>
+<li>Follow <a href="https://peps.python.org/pep-0008/">PEP 8</a> conventions.</li>
+<li>Match the existing structure of the codebase (PyQt6 widgets, editors, and format parsers are organized by feature — keep new code in the appropriate module rather than adding one-off scripts).</li>
+<li>Prefer clear, commented code over cleverness, especially in format-parsing code. Many of GT1&#x27;s file formats aren&#x27;t fully understood yet and are still under active research, so document your assumptions, note any unknowns or guesses inline, and explain how you verified a given interpretation (e.g. by testing against real archive files). This makes it far easier for others to pick up where you left off.</li>
+<li>Use type hints where practical.</li>
+</ul>
+<h2 id="areas-that-need-help">Areas That Need Help</h2>
+<p>These are pulled from the README&#x27;s <a href="#known-limitations">Known Limitations</a> section and are great places to start:</p>
+<ul>
+<li><strong>TIM Pack Repacking</strong> — <code>.tpk</code> repacking isn&#x27;t implemented yet; only loose <code>.TIM</code> files can currently be edited and repacked.</li>
+<li><strong>Model Renderer</strong> — the 3D model viewer is experimental. Models are missing wheels (placeholders are used) and there are known performance/crash issues.</li>
+<li><strong>Repack Workflow UX</strong> — currently requires manually opening the target folder via <strong>File → Open Folder</strong> before repacking; a smoother workflow would help.</li>
+<li><strong>Disc Rebuilding Reliability</strong> — automatic rebuilding via <code>mkpsxiso</code> can fail after repacking; improving reliability or error handling here would be valuable.</li>
+</ul>
+<p>If you&#x27;re not sure where to start, check the <a href="https://github.com/JeevesGB/GTExplorer/issues">Issues</a> tab for open items, or open a new issue describing what you&#x27;d like to work on.</p>
+<h2 id="reporting-bugs">Reporting Bugs</h2>
+<p>When filing a bug report, please include:</p>
+<ul>
+<li>Your OS and Python version</li>
+<li>The archive/file you were working with (or its type, e.g. <code>COURSE.DAT</code>)</li>
+<li>Steps to reproduce</li>
+<li>Any error output or screenshots</li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<p>Improvements to the <a href="doc/usage.html">User Guide</a>, <a href="doc/formats.html">format documentation</a>, or this file are welcome too — documentation PRs don&#x27;t need a prior issue.</p>
+<h2 id="credits">Credits</h2>
+<p>If your contribution builds on prior research (e.g. from <a href="https://github.com/pez2k/gt2tools">pez2k/gt2tools</a>), please note that in your PR description so it can be credited appropriately.</p>
+<h2 id="license">License</h2>
+<p>By contributing, you agree that your contributions will be licensed under the project&#x27;s <a href="https://github.com/JeevesGB/GTExplorer/blob/main/LICENSE">MIT License</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  GTExplorer documentation · <a href="https://github.com/JeevesGB/GTExplorer">GitHub</a><br>
+  © 2026 JeevesGB
+</footer>
+
+<script src="js/docs.js"></script>
+</body>
+</html>

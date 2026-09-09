@@ -4,67 +4,81 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Totenkopf — Hard Mode Mod — JeevesGB</title>
-  <link rel="stylesheet" href="../../assets/css/bumble.css">
+  <link rel="stylesheet" href="../../assets/css/jgb.css">
 </head>
-<body class="site-wrapper">
+<body>
+  <div class="parallax-bg"></div>
 
-  <!-- Main Container -->
-  <main class="container">
+  <a href="../../index.html" class="back-btn" title="Back to Home">
+    <img src="../../assets/image/back.png" alt="Back">
+  </a>
 
-    <!-- Header & Navigation -->
-    <header class="header-section">
-      <nav class="field">
-        <a href="../../index.html" class="btn">← Home</a>
-        <a href="https://soundcloud.com/jeevesbeats" class="btn" target="_blank" rel="noopener">Music</a>
-        <a href="../../pages/itch.html" class="btn">Itch.io</a>
-        <a href="https://discord.gg/m5fmspHa9m" class="btn" target="_blank" rel="noopener">GT2 Concept &amp; Spec VII Discord</a>
-      </nav>
+  <div class="side-socials">
+    <a href="https://discord.gg/m5fmspHa9m" target="_blank" rel="noopener noreferrer" class="side-social">
+      <img src="../../assets/image/discord.png" alt="Discord">
+      <span class="side-social-label">Discord</span>
+    </a>
+    <a href="https://soundcloud.com/jeevesbeats" target="_blank" rel="noopener noreferrer" class="side-social">
+      <img src="../../assets/image/soundcloud.png" alt="SoundCloud">
+      <span class="side-social-label">SoundCloud</span>
+    </a>
+  </div>
 
-      <!-- Project Logo -->
-      <div class="flex-center">
-        <img src="img/logo.png" alt="Totenkopf Logo" class="screenshot">
-      </div>
+  <main class="page detail-page">
 
+    <header style="text-align: center; margin-bottom: 1.5rem;">
+      <img src="img/logo.png" alt="Totenkopf Logo" class="logo" style="max-width: 280px; margin-bottom: 1rem;">
       <h1 class="title">Totenkopf</h1>
     </header>
 
-    <!-- Description -->
-    <section class="content-box">
-      <h2>About the Mod</h2>
-      <p>
-        Totenkopf is a Hard Mode Mod for <strong>Return to Castle Wolfenstein</strong>. 
-        All map <code>.ai</code> scripts have been edited along with various UI and loading screen enhancements to elevate the challenge.
-      </p>
+    <section class="bento">
+      <div class="panel" style="grid-column: span 12;">
+        <p class="title title-left"><strong>About the Mod</strong></p>
+        <p>
+          Totenkopf is a Hard Mode Mod for <strong>Return to Castle Wolfenstein</strong>.
+          All map <code>.ai</code> scripts have been edited along with various UI and loading screen enhancements to elevate the challenge.
+        </p>
+      </div>
     </section>
 
-    <!-- Instructions -->
-    <section class="content-box">
-      <h2>How To Run</h2>
-      <ol style="margin-left: 1.25rem; color: var(--muted);">
-        <li>Download the mod from the official GitHub repository below.</li>
-        <li>Make a backup copy of your Return to Castle Wolfenstein installation.</li>
-        <li>Place <code>_totenkopf.pk3</code> directly into your <code>RTCW/Main</code> directory.</li>
-        <li><em>[Optional]</em> Download the <code>autoexec.cfg</code> file and place it in the same <code>RTCW/Main</code> directory.</li>
-      </ol>
+    <section class="bento">
+      <div class="panel" style="grid-column: span 12;">
+        <p class="title title-left"><strong>How To Run</strong></p>
+        <ol style="margin: 0 0 0 1.25rem; color: var(--text); line-height: 1.8;">
+          <li>Download the mod from the official GitHub repository below.</li>
+          <li>Make a backup copy of your Return to Castle Wolfenstein installation.</li>
+          <li>Place <code>_totenkopf.pk3</code> directly into your <code>RTCW/Main</code> directory.</li>
+          <li><em>[Optional]</em> Download the <code>autoexec.cfg</code> file and place it in the same <code>RTCW/Main</code> directory.</li>
+        </ol>
+      </div>
     </section>
 
-    <!-- Download Section -->
-    <section class="info-box">
-      <h2>Download &amp; Repository</h2>
-      <p>Get the latest build or contribute to development on GitHub:</p>
-      <div class="flex-center">
-        <a href="https://github.com/JeevesGB/Totenkopf" class="btn download" target="_blank" rel="noopener">
-          View GitHub Repository
-        </a>
+    <section class="bento">
+      <div class="panel" style="grid-column: span 12;">
+        <p class="title title-left"><strong>Download &amp; Repository</strong></p>
+        <p>Get the latest build or contribute to development on GitHub:</p>
+        <div style="text-align: center; margin-top: 1.25rem;">
+          <a href="https://github.com/JeevesGB/Totenkopf" class="patreon-btn" target="_blank" rel="noopener">
+            View GitHub Repository
+          </a>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2026 JeevesGB</p>
+  <footer>
+    © 2026 JeevesGB<br>
+    All rights reserved.
   </footer>
 
+  <script>
+    const bg = document.querySelector('.parallax-bg');
+    if (bg) {
+      window.addEventListener('scroll', function () {
+        bg.style.backgroundPosition = 'center ' + (window.pageYOffset * -0.15) + 'px';
+      }, { passive: true });
+    }
+  </script>
 </body>
 </html>

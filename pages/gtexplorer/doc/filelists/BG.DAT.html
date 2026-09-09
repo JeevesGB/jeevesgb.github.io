@@ -3,64 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BG.DAT — GTExplorer Documentation</title>
-
-  <link rel="stylesheet" href="../../../../assets/css/bumble.css">
+<title>BG.DAT — GTExplorer</title>
+<link rel="stylesheet" href="../../../../assets/css/jgb.css">
+<link rel="stylesheet" href="../../css/docs-extra.css">
 </head>
 <body>
-<header>
+
+<div class="parallax-bg"></div>
+
+<a class="back-btn-text" href="../../../../index.html" title="Back to site">← Site</a>
+
+<div class="doc-nav-bar">
   <div class="wrap">
-    <strong><a href="../../index.html">GTExplorer Documentation</a></strong>
+    <a class="doc-brand" href="../../index.html">GTExplorer Docs</a>
     <nav class="doc-nav">
-      <strong><a href="../../index.html">GTExplorer Documentation</a></strong>
-      <a class="" href="https://github.com/JeevesGB/GTExplorer">GTExplorer Github</a>
-      <a class="" href="../formats.html">Detected file types</a>
-      <a class="" href="../archives.html">Known GT1 archives</a>
-      <a class="" href="../usage.html">Usage</a>
-      <a class="current" href="CARCADE.DAT.html">CARCADE.DAT</a>
-      <a class="" href="CAR.DAT.html">CAR.DAT</a>
-      <a class="" href="SOUND.DAT.html">SOUNDS.DAT</a>
-      <a class="" href="REPLAY.DAT.html">REPLAY.DAT</a>
-      <a class="" href="GAMEMENU.DAT.html">GAMEMENU.DAT</a>
-      <a class="" href="PITMENU.DAT.html">PITMENU.DAT</a>
-      <a class="" href="MENU_IMG.ARC.html">MENUIMG.ARC</a>
-      <a class="" href="MENU_RAW.ARC.html">MENURAW.ARC</a>
-      <a class="" href="BG.DAT.html">BG.DAT</a>
-      <a class="" href="ARCADE2.DAT.html">ARCADE2.DAT</a>
-      <a class="" href="ARCADE.DAT.html">ARCADE.DAT</a>
-      <a class="" href="COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../index.html">Overview</a>
+<a href="../../doc/usage.html">Usage</a>
+<a href="../../doc/formats.html">Formats</a>
+<a href="../../doc/archives.html">Archives</a>
+<a href="../../doc/filelists/index.html">File lists</a>
+<a href="../../doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a href="../../doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a class="current" href="../../doc/filelists/BG.DAT.html">BG.DAT</a>
+<a href="../../doc/filelists/CAR.DAT.html">CAR.DAT</a>
+<a href="../../doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a href="../../doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+<a href="../../doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a href="../../doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+<a href="../../doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+<a href="../../doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+<a href="../../doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a href="../../doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a href="../../doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+<a href="../../doc/filelists/GTHTML.html">GTHTML</a>
+<a href="../../CONTRIBUTING.html">Contributing</a>
     </nav>
   </div>
-</header>
-<main>
+</div>
 
-
-<h1>BG.DAT</h1>
-<pre><code>    000.tpk
-    001.sky
-    002.tpk
-    003.sky
-    004.tpk
-    005.sky
-    006.tpk
-    007.sky
-    008.tpk
-    009.sky
-    010.tpk
-    011.sky
-    012.tpk
-    013.sky
-    014.tpk
-    015.sky
-    016.tpk
-    017.sky
-    018.bin
-    019.sky
-</code></pre>
-
+<main class="page doc-page">
+  <section class="bento">
+    <div class="panel doc-panel" style="grid-column: span 12;">
+<h1 class="title title-left" id="bg-dat">BG.DAT</h1>
+<p><a href="index.html">← Back to index</a></p>
+<p>Track background environments (skyboxes). <code>.tpk</code> files are texture packs that skin the sky dome/backdrop, and <code>.sky</code> files describe how those textures are placed and animated. <code>018.bin</code> is an unclassified raw entry.</p>
+<p><strong>20</strong> files · <strong>3</strong> file types</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Extension</th>
+<th>Count</th>
+<th>What it is</th>
+</tr></thead><tbody>
+<tr>
+<td><code>.sky</code></td>
+<td>10</td>
+<td>Skybox placement/animation data.</td>
+</tr>
+<tr>
+<td><code>.tpk</code></td>
+<td>9</td>
+<td>Texture pack (grouped set of textures), used for skyboxes here.</td>
+</tr>
+<tr>
+<td><code>.bin</code></td>
+<td>1</td>
+<td>Unclassified/raw binary blob.</td>
+</tr>
+</tbody></table></div>
+<h2 id="structure">Structure</h2>
+<p><strong>Files here (20):</strong></p>
+<ul>
+<li><code>001.sky</code> → <code>019.sky</code> (10 files, every 2)</li>
+<li><code>000.tpk</code> → <code>016.tpk</code> (9 files, every 2)</li>
+</ul>
+<p>Other files: <code>018.bin</code></p>
+<hr>
+<p><a href="index.html">← Back to index</a></p>
+    </div>
+  </section>
 </main>
+
 <footer>
-  Generated from the GTExplorer Markdown documentation.
+  GTExplorer documentation · <a href="https://github.com/JeevesGB/GTExplorer">GitHub</a><br>
+  © 2026 JeevesGB
 </footer>
+
+<script src="../../js/docs.js"></script>
 </body>
 </html>

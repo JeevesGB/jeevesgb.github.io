@@ -3,99 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gran Turismo 2 Concept</title>
-  <link rel="stylesheet" href="../../assets/css/bumble.css">
-  
-  <style>
-    .logo {
-      display: block;
-      margin: 20px auto;
-      max-width: 420px;
-      height: auto;
-      border: 3px solid var(--gt-border);
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-    }
-
-    .content {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    ul {
-      line-height: 1.8;
-      font-size: 1.1rem;
-    }
-  </style>
+  <title>Gran Turismo 2 Concept — JeevesGB</title>
+  <link rel="stylesheet" href="../../assets/css/jgb.css">
 </head>
 <body>
+  <div class="parallax-bg"></div>
 
-  <!-- Navigation -->
-  <div class="container">
-    <nav class="field">
-      <a href="../../index.html" class="btn primary">Home</a>
-      <a href="https://soundcloud.com/jeevesbeats" class="btn primary">Music</a>
-      <a href="../../pages/itch.html" class="btn primary">Itch.io</a>
-    </nav>
+  <a href="../../index.html" class="back-btn" title="Back to Home">
+    <img src="../../assets/image/back.png" alt="Back">
+  </a>
 
-    <nav class="field" style="margin-top: 1rem;">
-      <a href="https://discord.gg/m5fmspHa9m" class="btn primary">Gran Turismo 2 Concept & Spec VII Discord</a>
-    </nav>
+  <div class="side-socials">
+    <a href="https://discord.gg/m5fmspHa9m" target="_blank" rel="noopener noreferrer" class="side-social">
+      <img src="../../assets/image/discord.png" alt="Discord">
+      <span class="side-social-label">Discord</span>
+    </a>
+    <a href="https://soundcloud.com/jeevesbeats" target="_blank" rel="noopener noreferrer" class="side-social">
+      <img src="../../assets/image/soundcloud.png" alt="SoundCloud">
+      <span class="side-social-label">SoundCloud</span>
+    </a>
   </div>
 
-    <!-- Page Header -->
-    <img
-      src="images/gt2clogo.png"
-      alt="Gran Turismo 2 Concept Logo"
-      height=""
-      class="screenshot">
-    </img>
+  <main class="page detail-page">
 
+    <header style="text-align: center; margin-bottom: 1.5rem;">
+      <img src="images/gt2clogo.png" alt="Gran Turismo 2 Concept Logo" class="logo" style="max-width: 420px; margin-bottom: 1rem;">
+      <h1 class="title">Gran Turismo 2 Concept</h1>
+    </header>
 
-  <!-- Main Content -->
-  <div class="container content">
-
-    <section>
-      <h2>About</h2>
-      <p>
-        Gran Turismo 2 Concept is a fan-made modification of the original 
-        Gran Turismo 2 game for the PlayStation. This project aims to enhance 
-        the gaming experience by redesigning the menus to resemble those of 
-        Gran Turismo 3, while also introducing new cars and events for players 
-        to enjoy.
-      </p>
-    </section>
-
-    <section>
-      <h2>Features</h2>
-      <ul>
-        <li>Redesigned menus inspired by Gran Turismo 3</li>
-        <li>New cars added to the roster</li>
-        <li>Additional racing events and challenges <strong>(SOON)</strong></li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Download and Installation</h2>
-      <p>
-        To download the latest patch and instructions on how to install it, 
-        please click the link below.
-      </p>
-      
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="gt2c.html" class="btn download">
-          Download GT2 Concept
-        </a>
+    <section class="bento">
+      <div class="panel" style="grid-column: span 12;">
+        <p class="title title-left"><strong>About</strong></p>
+        <p>
+          Gran Turismo 2 Concept is a fan-made modification of the original
+          Gran Turismo 2 game for the PlayStation. This project aims to enhance
+          the gaming experience by redesigning the menus to resemble those of
+          Gran Turismo 3, while also introducing new cars and events for players
+          to enjoy.
+        </p>
       </div>
     </section>
 
-  </div>
-<footer>  
-  © 2026 JejCo 
-</footer>
+    <section class="bento">
+      <div class="panel" style="grid-column: span 12;">
+        <p class="title title-left"><strong>Features</strong></p>
+        <ul style="margin: 0 0 0 1.25rem; line-height: 1.8; color: var(--text);">
+          <li>Redesigned menus inspired by Gran Turismo 3</li>
+          <li>New cars added to the roster</li>
+          <li>Additional racing events and challenges <strong>(SOON)</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bento">
+      <div class="panel" style="grid-column: span 12;">
+        <p class="title title-left"><strong>Download and Installation</strong></p>
+        <p>
+          To download the latest patch and instructions on how to install it,
+          please click the link below.
+        </p>
+        <div style="text-align: center; margin-top: 1.25rem;">
+          <a href="gt2c.html" class="patreon-btn">Download GT2 Concept</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 JeevesGB<br>
+    All rights reserved.
+  </footer>
+
+  <script>
+    const bg = document.querySelector('.parallax-bg');
+    if (bg) {
+      window.addEventListener('scroll', function () {
+        bg.style.backgroundPosition = 'center ' + (window.pageYOffset * -0.15) + 'px';
+      }, { passive: true });
+    }
+  </script>
 </body>
 </html>

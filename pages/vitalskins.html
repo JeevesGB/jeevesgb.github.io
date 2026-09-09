@@ -4,95 +4,101 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vital Skins — JeevesGB</title>
-  <link rel="stylesheet" href="../assets/css/bumble.css">
+  <link rel="stylesheet" href="../assets/css/jgb.css">
 </head>
-<body class="site-wrapper">
+<body>
+  <div class="parallax-bg"></div>
 
-  <!-- Main Container -->
-  <main class="container">
+  <a href="../index.html" class="back-btn" title="Back to Home">
+    <img src="../assets/image/back.png" alt="Back">
+  </a>
 
-    <!-- Header & Navigation -->
-    <header class="header-section">
-      <nav class="field">
-        <a href="../index.html" class="btn">← Home</a>
-        <a href="https://soundcloud.com/jeevesbeats" class="btn" target="_blank" rel="noopener">Music</a>
-        <a href="itch.html" class="btn">Itch.io</a>
-        <a href="https://discord.gg/m5fmspHa9m" class="btn" target="_blank" rel="noopener">GT2 Concept &amp; Spec VII Discord</a>
-      </nav>
+  <div class="side-socials">
+    <a href="https://discord.gg/m5fmspHa9m" target="_blank" rel="noopener noreferrer" class="side-social">
+      <img src="../assets/image/discord.png" alt="Discord">
+      <span class="side-social-label">Discord</span>
+    </a>
+    <a href="https://soundcloud.com/jeevesbeats" target="_blank" rel="noopener noreferrer" class="side-social">
+      <img src="../assets/image/soundcloud.png" alt="SoundCloud">
+      <span class="side-social-label">SoundCloud</span>
+    </a>
+  </div>
 
-      <!-- Vital Logo Link -->
-      <div class="flex-center">
-        <a href="https://vital.audio/" target="_blank" rel="noopener" title="Visit Vital Audio">
-          <img src="../assets/image/vital/logo.png" alt="Vital Audio Logo" class="screenshot">
-        </a>
-      </div>
+  <main class="page detail-page">
 
+    <header style="text-align: center; margin-bottom: 1.5rem;">
+      <a href="https://vital.audio/" target="_blank" rel="noopener" title="Visit Vital Audio">
+        <img src="../assets/image/vital/logo.png" alt="Vital Audio Logo" class="logo" style="max-width: 260px; margin-bottom: 1rem;">
+      </a>
       <h1 class="title">Vital Skins</h1>
     </header>
 
-    <!-- How To Install -->
-    <section class="content-box">
-      <h2>How to Install Vital Skins</h2>
-      <ol style="margin-left: 1.25rem; color: var(--muted);">
-        <li>Download the <code>.vitaltheme</code> file for your desired theme.</li>
-        <li>Open Vital synthesizer and navigate to the <strong>Advanced</strong> tab.</li>
-        <li>Scroll down to the <strong>Skin</strong> section at the bottom.</li>
-        <li>Click <strong>Load Custom Theme...</strong> and select the downloaded file.</li>
-      </ol>
+    <section class="bento">
+      <div class="panel" style="grid-column: span 12;">
+        <p class="title title-left"><strong>How to Install</strong></p>
+        <ol style="margin: 0 0 0 1.25rem; line-height: 1.8; color: var(--text);">
+          <li>Download the <code>.vitaltheme</code> file for your desired theme.</li>
+          <li>Open Vital synthesizer and navigate to the <strong>Advanced</strong> tab.</li>
+          <li>Scroll down to the <strong>Skin</strong> section at the bottom.</li>
+          <li>Click <strong>Load Custom Theme...</strong> and select the downloaded file.</li>
+        </ol>
+      </div>
     </section>
 
-    <!-- Skins Grid -->
-    <section class="projects-section">
-      <div class="projects-grid">
+    <section class="bento">
+      <div class="panel" style="grid-column: span 12;">
+        <p class="title title-left"><strong>Available Skins</strong></p>
 
-        <!-- Magma -->
-        <div class="archive-card">
-          <img src="../assets/image/vital/skins/magma.png" alt="Magma Skin Preview" class="screenshot">
-          <div class="archive-card-label">
-            <strong>Magma</strong>
-            <span style="color: var(--muted); font-size: 0.875rem;">Fiery dark theme</span>
-            <a href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/mag/Magma.vitaltheme" 
-               class="btn download" download>
+        <div class="card-strip" style="overflow: visible; flex-wrap: wrap; justify-content: flex-start; gap: 1.25rem;">
+
+          <div class="archive-card" style="text-align: center; max-width: 200px;">
+            <img src="../assets/image/vital/skins/magma.png" alt="Magma Skin Preview" style="width: 160px;">
+            <p style="margin: 0.5rem 0 0.25rem; color: var(--text); font-weight: 700;">Magma</p>
+            <p style="margin: 0 0 0.75rem; color: var(--muted); font-size: 0.9rem;">Fiery dark theme</p>
+            <a href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/mag/Magma.vitaltheme"
+               class="patreon-btn" style="padding: 0.55rem 1.2rem; font-size: 0.9rem;" download>
               Download
             </a>
           </div>
-        </div>
 
-        <!-- Glacier -->
-        <div class="archive-card">
-          <img src="../assets/image/vital/skins/glacier.png" alt="Glacier Skin Preview" class="screenshot">
-          <div class="archive-card-label">
-            <strong>Glacier</strong>
-            <span style="color: var(--muted); font-size: 0.875rem;">Cool icy theme</span>
-            <a href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/glac/Glacier.vitaltheme" 
-               class="btn download" download>
+          <div class="archive-card" style="text-align: center; max-width: 200px;">
+            <img src="../assets/image/vital/skins/glacier.png" alt="Glacier Skin Preview" style="width: 160px;">
+            <p style="margin: 0.5rem 0 0.25rem; color: var(--text); font-weight: 700;">Glacier</p>
+            <p style="margin: 0 0 0.75rem; color: var(--muted); font-size: 0.9rem;">Cool icy theme</p>
+            <a href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/glac/Glacier.vitaltheme"
+               class="patreon-btn" style="padding: 0.55rem 1.2rem; font-size: 0.9rem;" download>
               Download
             </a>
           </div>
-        </div>
 
-        <!-- Mint -->
-        <div class="archive-card">
-          <img src="../assets/image/vital/skins/mint.png" alt="Mint Skin Preview" class="screenshot">
-          <div class="archive-card-label">
-            <strong>Mint</strong>
-            <span style="color: var(--muted); font-size: 0.875rem;">Fresh green theme</span>
-            <a href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/mint/Mint.vitaltheme" 
-               class="btn download" download>
+          <div class="archive-card" style="text-align: center; max-width: 200px;">
+            <img src="../assets/image/vital/skins/mint.png" alt="Mint Skin Preview" style="width: 160px;">
+            <p style="margin: 0.5rem 0 0.25rem; color: var(--text); font-weight: 700;">Mint</p>
+            <p style="margin: 0 0 0.75rem; color: var(--muted); font-size: 0.9rem;">Fresh green theme</p>
+            <a href="https://github.com/JeevesGB/jeevesgb.github.io/releases/download/mint/Mint.vitaltheme"
+               class="patreon-btn" style="padding: 0.55rem 1.2rem; font-size: 0.9rem;" download>
               Download
             </a>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2026 JeevesGB</p>
+  <footer>
+    © 2026 JeevesGB<br>
+    All rights reserved.
   </footer>
 
+  <script>
+    const bg = document.querySelector('.parallax-bg');
+    if (bg) {
+      window.addEventListener('scroll', function () {
+        bg.style.backgroundPosition = 'center ' + (window.pageYOffset * -0.15) + 'px';
+      }, { passive: true });
+    }
+  </script>
 </body>
 </html>

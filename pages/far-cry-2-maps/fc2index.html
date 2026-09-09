@@ -3,87 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Far Cry 2 Multiplayer Maps</title>
-  <link rel="stylesheet" href="../../assets/css/bumble.css">
+  <title>Far Cry 2 Multiplayer Maps — JeevesGB</title>
+  <link rel="stylesheet" href="../../assets/css/jgb.css">
 </head>
 <body>
+  <div class="parallax-bg"></div>
 
-  <!-- Navigation -->
-  <div class="container">
-    <nav class="field">
-      <a href="../../index.html" class="btn primary">Home</a>
-      <a href="https://soundcloud.com/jeevesbeats" class="btn primary">Music</a>
-      <a href="../../pages/itch.html" class="btn primary">Itch.io</a>
-    </nav>
+  <a href="../../index.html" class="back-btn" title="Back to Home">
+    <img src="../../assets/image/back.png" alt="Back">
+  </a>
 
-    <nav class="field" style="margin-top: 1rem;">
-      <a href="https://discord.gg/m5fmspHa9m" class="btn primary">Gran Turismo 2 Concept & Spec VII Discord</a>
-    </nav>
+  <div class="side-socials">
+    <a href="https://discord.gg/m5fmspHa9m" target="_blank" rel="noopener noreferrer" class="side-social">
+      <img src="../../assets/image/discord.png" alt="Discord">
+      <span class="side-social-label">Discord</span>
+    </a>
+    <a href="https://soundcloud.com/jeevesbeats" target="_blank" rel="noopener noreferrer" class="side-social">
+      <img src="../../assets/image/soundcloud.png" alt="SoundCloud">
+      <span class="side-social-label">SoundCloud</span>
+    </a>
   </div>
 
-  <!-- Page Title -->
-  <div class="container">
-    <p class="title"><strong>Far Cry 2 Multiplayer Maps</strong></p>
-  </div>
+  <main class="page detail-page">
 
-  <!-- Maps Grid -->
-  <div class="container">
-    <div class="projects-grid">  <!-- Reusing your existing grid system -->
+    <header style="text-align: center; margin-bottom: 1.5rem;">
+      <img src="img/fc2log.png" alt="Far Cry 2" class="logo" style="max-width: 280px; margin-bottom: 1rem;">
+      <h1 class="title">Far Cry 2 Multiplayer Maps</h1>
+    </header>
 
-      <!-- Jungle Town -->
-      <a href="town.html" class="archive-card">
-        <img src="img/town/town1.png" alt="Jungle Town">
-        <div class="archive-card-label">
-          <strong>Jungle Town</strong>
+    <section class="bento">
+      <div class="panel" style="grid-column: span 12;">
+        <p class="title title-left"><strong>Maps</strong></p>
+
+        <div class="card-strip" style="overflow: visible; flex-wrap: wrap; justify-content: flex-start; gap: 1rem;">
+
+          <a href="town.html" class="archive-card">
+            <img src="img/town/town1.png" alt="Jungle Town" style="width: 160px;">
+          </a>
+
+          <a href="shipment.html" class="archive-card">
+            <img src="img/ship/ship3.jpg" alt="Shipment" style="width: 160px;">
+          </a>
+
+          <a href="beached.html" class="archive-card">
+            <img src="img/beached/bea1.png" alt="Beached" style="width: 160px;">
+          </a>
+
+          <a href="forgisle.html" class="archive-card">
+            <img src="img/forgisle/isle1.png" alt="Forgotten Isle" style="width: 160px;">
+          </a>
+
+          <a href="beach-assault-1.html" class="archive-card">
+            <img src="img/beach1/beach1.jpg" alt="Beach Assault 1" style="width: 160px;">
+          </a>
+
+          <a href="dcove.html" class="archive-card">
+            <img src="img/cove/cove1.jpg" alt="Diamond Cove" style="width: 160px;">
+          </a>
+
         </div>
-      </a>
+      </div>
+    </section>
 
-      <!-- Shipment -->
-      <a href="shipment.html" class="archive-card">
-        <img src="img/ship/ship3.jpg" alt="Shipment">
-        <div class="archive-card-label">
-          <strong>Shipment</strong>
-        </div>
-      </a>
-
-      <!-- Beached -->
-      <a href="beached.html" class="archive-card">
-        <img src="img/beached/bea1.png" alt="Beached">
-        <div class="archive-card-label">
-          <strong>Beached</strong>
-        </div>
-      </a>
-
-      <!-- Forgotten Isle -->
-      <a href="forgisle.html" class="archive-card">
-        <img src="img/forgisle/isle1.png" alt="Forgotten Isle">
-        <div class="archive-card-label">
-          <strong>Forgotten Isle</strong>
-        </div>
-      </a>
-
-      <!-- Beach Assault 1 -->
-      <a href="beach-assault-1.html" class="archive-card">
-        <img src="img/beach1/beach1.jpg" alt="Beach Assault 1">
-        <div class="archive-card-label">
-          <strong>Beach Assault 1</strong>
-        </div>
-      </a>
-
-      <!-- Diamond Cove -->
-      <a href="dcove.html" class="archive-card">
-        <img src="img/cove/cove1.jpg" alt="Diamond Cove">
-        <div class="archive-card-label">
-          <strong>Diamond Cove</strong>
-        </div>
-      </a>
-
-    </div>
-  </div>
+  </main>
 
   <footer>
-    © 2026 JeevesGB
+    © 2026 JeevesGB<br>
+    All rights reserved.
   </footer>
 
+  <script>
+    const bg = document.querySelector('.parallax-bg');
+    if (bg) {
+      window.addEventListener('scroll', function () {
+        bg.style.backgroundPosition = 'center ' + (window.pageYOffset * -0.15) + 'px';
+      }, { passive: true });
+    }
+  </script>
 </body>
 </html>

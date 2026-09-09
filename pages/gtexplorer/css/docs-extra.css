@@ -1,0 +1,291 @@
+/* GTExplorer docs — supplements jgb.css only */
+
+.doc-page {
+  padding-top: 1.25rem;
+  padding-bottom: 3rem;
+}
+
+.doc-nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: rgba(11, 15, 20, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.65rem 0 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.doc-nav-bar .wrap {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.doc-nav-bar .doc-brand {
+  display: inline-block;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bright-yellow);
+  margin-right: 0.75rem;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.doc-nav-bar .doc-brand:hover {
+  color: var(--racing-red);
+}
+
+.doc-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.4rem;
+  margin-top: 0.45rem;
+}
+
+.doc-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: color var(--ease), border-color var(--ease), background var(--ease);
+}
+
+.doc-nav a:hover {
+  color: var(--bright-yellow);
+  border-color: var(--border);
+}
+
+.doc-nav a.current {
+  color: #0B0F14;
+  background: linear-gradient(135deg, var(--racing-red), var(--deep-crimson));
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.doc-panel {
+  margin-bottom: 1.5rem;
+}
+
+.doc-panel h1.title {
+  margin-top: 0;
+}
+
+.doc-panel h2 {
+  font-size: 1.25rem;
+  margin: 1.6rem 0 0.65rem;
+  color: var(--bright-yellow);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3rem;
+}
+
+.doc-panel h3 {
+  font-size: 1.08rem;
+  margin: 1.25rem 0 0.5rem;
+  color: var(--golden-amber);
+}
+
+.doc-panel h4 {
+  font-size: 1rem;
+  margin: 1rem 0 0.4rem;
+  color: var(--text);
+}
+
+.doc-panel p {
+  margin: 0 0 0.9em;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.doc-panel ul,
+.doc-panel ol {
+  margin: 0 0 1rem 1.25rem;
+  color: var(--text);
+}
+
+.doc-panel li {
+  margin: 0.28rem 0;
+}
+
+.doc-panel strong {
+  color: var(--bright-yellow);
+}
+
+.doc-panel code {
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", Consolas, monospace;
+  font-size: 0.88em;
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--bright-yellow);
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.doc-panel pre {
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  margin: 0 0 1.25rem;
+  box-shadow: var(--shadow-inset);
+}
+
+.doc-panel pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--text);
+  font-size: 0.86rem;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 0 0 1.35rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow: var(--shadow-inset);
+}
+
+.doc-panel table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  margin: 0;
+}
+
+.doc-panel th,
+.doc-panel td {
+  padding: 0.55rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.doc-panel th {
+  background: rgba(59, 130, 246, 0.14);
+  color: var(--bright-yellow);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.doc-panel tr:last-child td {
+  border-bottom: none;
+}
+
+.doc-panel tr:hover td {
+  background: rgba(125, 211, 252, 0.04);
+}
+
+.doc-panel blockquote {
+  margin: 0 0 1rem;
+  padding: 0.7rem 1rem;
+  border-left: 3px solid var(--racing-red);
+  background: rgba(59, 130, 246, 0.08);
+  color: var(--muted);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.doc-panel hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1.75rem 0;
+}
+
+.doc-panel img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.hero-icon {
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 180px;
+  height: auto;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0 1.25rem;
+  justify-content: center;
+}
+
+.badge-row img {
+  height: 22px;
+}
+
+.doc-cta {
+  text-align: center;
+  margin: 1.25rem 0 1.5rem;
+}
+
+.back-link {
+  margin: 1.5rem 0 0;
+}
+
+.back-link a {
+  font-weight: 600;
+}
+
+.back-btn-text {
+  position: fixed;
+  top: 22px;
+  left: 22px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.9rem;
+  background: var(--panel-alpha);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--bright-yellow);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--ease), border-color var(--ease), color var(--ease);
+}
+
+.back-btn-text:hover {
+  transform: translateY(-2px);
+  border-color: var(--racing-red);
+  color: var(--racing-red);
+}
+
+/* README-style centered blocks */
+.doc-panel div[align="center"] {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.doc-panel div[align="center"] img {
+  display: inline-block;
+  margin: 0.35rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 600px) {
+  .doc-nav a {
+    font-size: 0.74rem;
+    padding: 0.18rem 0.4rem;
+  }
+  .doc-panel th,
+  .doc-panel td {
+    padding: 0.4rem 0.55rem;
+  }
+  .back-btn-text {
+    top: 14px;
+    left: 14px;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.82rem;
+  }
+}

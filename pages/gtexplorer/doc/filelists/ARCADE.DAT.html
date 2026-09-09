@@ -3,112 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARCADE.DAT — GTExplorer Documentation</title>
-
-  <link rel="stylesheet" href="../../../../assets/css/bumble.css">
+<title>ARCADE.DAT — GTExplorer</title>
+<link rel="stylesheet" href="../../../../assets/css/jgb.css">
+<link rel="stylesheet" href="../../css/docs-extra.css">
 </head>
 <body>
-<header>
+
+<div class="parallax-bg"></div>
+
+<a class="back-btn-text" href="../../../../index.html" title="Back to site">← Site</a>
+
+<div class="doc-nav-bar">
   <div class="wrap">
-    <strong><a href="../../../index.html">GTExplorer Documentation</a></strong>
+    <a class="doc-brand" href="../../index.html">GTExplorer Docs</a>
     <nav class="doc-nav">
-      <strong><a href="../../index.html">GTExplorer Documentation</a></strong>
-      <a class="" href="https://github.com/JeevesGB/GTExplorer">GTExplorer Github</a>
-      <a class="" href="../formats.html">Detected file types</a>
-      <a class="" href="../archives.html">Known GT1 archives</a>
-      <a class="" href="../usage.html">Usage</a>
-      <a class="current" href="CARCADE.DAT.html">CARCADE.DAT</a>
-      <a class="" href="CAR.DAT.html">CAR.DAT</a>
-      <a class="" href="SOUND.DAT.html">SOUNDS.DAT</a>
-      <a class="" href="REPLAY.DAT.html">REPLAY.DAT</a>
-      <a class="" href="GAMEMENU.DAT.html">GAMEMENU.DAT</a>
-      <a class="" href="PITMENU.DAT.html">PITMENU.DAT</a>
-      <a class="" href="MENU_IMG.ARC.html">MENUIMG.ARC</a>
-      <a class="" href="MENU_RAW.ARC.html">MENURAW.ARC</a>
-      <a class="" href="BG.DAT.html">BG.DAT</a>
-      <a class="" href="ARCADE2.DAT.html">ARCADE2.DAT</a>
-      <a class="" href="ARCADE.DAT.html">ARCADE.DAT</a>
-      <a class="" href="COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../index.html">Overview</a>
+<a href="../../doc/usage.html">Usage</a>
+<a href="../../doc/formats.html">Formats</a>
+<a href="../../doc/archives.html">Archives</a>
+<a href="../../doc/filelists/index.html">File lists</a>
+<a class="current" href="../../doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a href="../../doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a href="../../doc/filelists/BG.DAT.html">BG.DAT</a>
+<a href="../../doc/filelists/CAR.DAT.html">CAR.DAT</a>
+<a href="../../doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a href="../../doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+<a href="../../doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a href="../../doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+<a href="../../doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+<a href="../../doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+<a href="../../doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a href="../../doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a href="../../doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+<a href="../../doc/filelists/GTHTML.html">GTHTML</a>
+<a href="../../CONTRIBUTING.html">Contributing</a>
     </nav>
   </div>
-</header>
-<main>
+</div>
 
+<main class="page doc-page">
+  <section class="bento">
+    <div class="panel doc-panel" style="grid-column: span 12;">
+<h1 class="title title-left" id="arcade-dat">ARCADE.DAT</h1>
+<p><a href="index.html">← Back to index</a></p>
+<p>Texture set for the Arcade mode UI — car-select icons, screen backgrounds, and similar front-end art, stored as sequentially numbered <code>.tim</code> images. The final entry (<code>067.seq</code>) is an animation/sequence script rather than an image.</p>
+<p><strong>68</strong> files · <strong>2</strong> file types</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Extension</th>
+<th>Count</th>
+<th>What it is</th>
+</tr></thead><tbody>
+<tr>
+<td><code>.tim</code></td>
+<td>67</td>
+<td>PlayStation TIM — a raw PS1 image/texture format.</td>
+</tr>
+<tr>
+<td><code>.seq</code></td>
+<td>1</td>
+<td>Animation or playback sequence script.</td>
+</tr>
+</tbody></table></div>
+<h2 id="structure">Structure</h2>
+<details><summary><b>Files here (68)</b> — click to expand</summary>
 
-<h1>ARCADE.DAT</h1>
-<pre><code>    000.tim
-    001.tim
-    002.tim
-    003.tim
-    004.tim
-    005.tim
-    006.tim
-    007.tim
-    008.tim
-    009.tim
-    010.tim
-    011.tim
-    012.tim
-    013.tim
-    014.tim
-    015.tim
-    016.tim
-    017.tim
-    018.tim
-    019.tim
-    020.tim
-    021.tim
-    022.tim
-    023.tim
-    024.tim
-    025.tim
-    026.tim
-    027.tim
-    028.tim
-    029.tim
-    030.tim
-    031.tim
-    032.tim
-    033.tim
-    034.tim
-    035.tim
-    036.tim
-    037.tim
-    038.tim
-    039.tim
-    040.tim
-    041.tim
-    042.tim
-    043.tim
-    044.tim
-    045.tim
-    046.tim
-    047.tim
-    048.tim
-    049.tim
-    050.tim
-    051.tim
-    052.tim
-    053.tim
-    054.tim
-    055.tim
-    056.tim
-    057.tim
-    058.tim
-    059.tim
-    060.tim
-    061.tim
-    062.tim
-    063.tim
-    064.tim
-    065.tim
-    066.tim
-    067.seq    
-</code></pre>
+- `000.tim` → `066.tim` (67 files)
 
+Other files: `067.seq`
+
+</details>
+<hr>
+<p><a href="index.html">← Back to index</a></p>
+    </div>
+  </section>
 </main>
+
 <footer>
-  Generated from the GTExplorer Markdown documentation.
+  GTExplorer documentation · <a href="https://github.com/JeevesGB/GTExplorer">GitHub</a><br>
+  © 2026 JeevesGB
 </footer>
+
+<script src="../../js/docs.js"></script>
 </body>
 </html>
