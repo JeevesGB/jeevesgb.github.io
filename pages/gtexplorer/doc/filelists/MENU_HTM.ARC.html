@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MENU_HTM.ARC — GTExplorer</title>
+<link rel="stylesheet" href="../../../../assets/css/jgb.css">
+<link rel="stylesheet" href="../../css/docs-extra.css">
+</head>
+<body>
+
+<div class="parallax-bg"></div>
+
+<a class="back-btn-text" href="../../../../index.html" title="Back to site">← Site</a>
+
+<div class="doc-nav-bar">
+  <div class="wrap">
+    <a class="doc-brand" href="../../index.html">GTExplorer Docs</a>
+    <nav class="doc-nav">
+<a href="../../index.html">Overview</a>
+<a href="../../doc/usage.html">Usage</a>
+<a href="../../doc/formats.html">Formats</a>
+<a href="../../doc/archives.html">Archives</a>
+<a href="../../doc/filelists/index.html">File lists</a>
+<a href="../../doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a href="../../doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a href="../../doc/filelists/BG.DAT.html">BG.DAT</a>
+<a href="../../doc/filelists/CAR.DAT.html">CAR.DAT</a>
+<a href="../../doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a href="../../doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+<a href="../../doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a class="current" href="../../doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+<a href="../../doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+<a href="../../doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+<a href="../../doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a href="../../doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a href="../../doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+<a href="../../doc/filelists/GTHTML.html">GTHTML</a>
+<a href="../../CONTRIBUTING.html">Contributing</a>
+    </nav>
+  </div>
+</div>
+
+<main class="page doc-page">
+  <section class="bento">
+    <div class="panel doc-panel" style="grid-column: span 12;">
+<h1 class="title title-left" id="menu-menu-htm-arc">MENU/MENU_HTM.ARC</h1>
+<p><strong>Path:</strong> <code>MENU/MENU_HTM.ARC</code> <strong>Files:</strong> 36 <strong>Format:</strong> GT-ARC (<code>content_type</code> <code>0x8001</code>, GT-ZIP compressed entries)</p>
+<h2 id="role">Role</h2>
+<p>GT-mode <strong>menu page scripts</strong> (GTHTML). Each entry is a small binary document describing one screen: background TIM name, clickable regions, and targets (other pages or engine actions).</p>
+<p>This is <strong>not</strong> HTML text.</p>
+<h2 id="naming">Naming</h2>
+<p>Ordered by <code>MENU/HTMLS.IDX</code> (36 lines), for example:</p>
+<ul>
+<li><code>title.htm</code>, <code>gamemode.htm</code>, <code>home.htm</code>, <code>map.htm</code></li>
+<li><code>garage.htm</code>, <code>garage2.htm</code>, <code>garage-info.htm</code></li>
+<li><code>gtf.htm</code>, <code>gtf-champ.htm</code>, <code>gtf-licence.htm</code>, <code>gtf-special*.htm</code></li>
+<li><code>toyota<em>.htm</code>, <code>trd</em>.htm</code></li>
+<li><code>loadsave.htm</code>, <code>option.htm</code>, <code>record.htm</code>, <code>theater.htm</code></li>
+</ul>
+<h2 id="pairing">Pairing</h2>
+<div class="table-wrap"><table><thead><tr>
+<th>This archive</th>
+<th>Companion</th>
+</tr></thead><tbody>
+<tr>
+<td>Page script <code>home.htm</code></td>
+<td>Background <code>home.tim</code> in <code>MENU/MENU_IMG.ARC</code></td>
+</tr>
+<tr>
+<td>Name list</td>
+<td><code>MENU/HTMLS.IDX</code></td>
+</tr>
+</tbody></table></div>
+<h2 id="format-reference">Format reference</h2>
+<p>See <a href="GTHTML_Format_Documentation.html">GTHTML Format Documentation</a>.</p>
+<h2 id="structure-summary">Structure (summary)</h2>
+<pre><code class="language-">@(#)GTHTML\0\0 + reserved
+background: TIM name + &quot;bgmap&quot;
+hotspots:  rect (x0,y0,x1,y1) + target string
+widgets:   compact controls + target string
+end:       AF 8D 00</code></pre>
+<p>Targets are either <code>.HTM</code> page links or action ids such as <code>LIST_GARAGE</code>, <code>SHOW_SPEC</code>, <code>LIST_PARTS</code>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  GTExplorer documentation · <a href="https://github.com/JeevesGB/GTExplorer">GitHub</a><br>
+  © 2026 JeevesGB
+</footer>
+
+<script src="../../js/docs.js"></script>
+</body>
+</html>

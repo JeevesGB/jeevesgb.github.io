@@ -1,11 +1,31 @@
-gt2c/patches
-assets/homoligation-docs
-assets/magazines
-pages/template.html
-test.css
+# Root-level ignored folders
+/doc/
+/rewritten/
+
+# Source design assets & large media
+*.psd
+assets/homoligation-docs/
+assets/magazines/
+
+# Specific unneeded site pages & test files
 bnr34gtr.html
 visitorbadge
-bg.psd
-doc 
-rewritten
+pages/template.html
+test.css
+
+# Project-specific ignored paths
+gt2c/patches/
+
+# Compressed archives
 *.zip
+*.tar.gz
+*.7z
+
+# Operating System temporary files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor metadata
+.vscode/
+.idea/

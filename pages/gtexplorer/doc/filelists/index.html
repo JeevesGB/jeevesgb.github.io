@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File lists — GTExplorer</title>
+<link rel="stylesheet" href="../../../../assets/css/jgb.css">
+<link rel="stylesheet" href="../../css/docs-extra.css">
+</head>
+<body>
+
+<div class="parallax-bg"></div>
+
+<a class="back-btn-text" href="../../../../index.html" title="Back to site">← Site</a>
+
+<div class="doc-nav-bar">
+  <div class="wrap">
+    <a class="doc-brand" href="../../index.html">GTExplorer Docs</a>
+    <nav class="doc-nav">
+<a href="../../index.html">Overview</a>
+<a href="../../doc/usage.html">Usage</a>
+<a href="../../doc/formats.html">Formats</a>
+<a href="../../doc/archives.html">Archives</a>
+<a class="current" href="../../doc/filelists/index.html">File lists</a>
+<a href="../../doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a href="../../doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a href="../../doc/filelists/BG.DAT.html">BG.DAT</a>
+<a href="../../doc/filelists/CAR.DAT.html">CAR.DAT</a>
+<a href="../../doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a href="../../doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+<a href="../../doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a href="../../doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+<a href="../../doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+<a href="../../doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+<a href="../../doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a href="../../doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a href="../../doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+<a href="../../doc/filelists/GTHTML.html">GTHTML</a>
+<a href="../../CONTRIBUTING.html">Contributing</a>
+    </nav>
+  </div>
+</div>
+
+<main class="page doc-page">
+  <section class="bento">
+    <div class="panel doc-panel" style="grid-column: span 12;">
+<h1 class="title title-left" id="gt1-disc-filetype-index">GT1 Disc Filetype Index</h1>
+<p>Reference docs for the archive/<code>.DAT</code> filetypes found on the Gran Turismo 1 disc, as extracted by GTExplorer. Each page lists that archive&#x27;s real folder/file structure; long, repetitive runs (sequential numbers, paired model/texture sets) are collapsed into ranges or tables so the full contents stay scannable.</p>
+<h2 id="filetypes">Filetypes</h2>
+<div class="table-wrap"><table><thead><tr>
+<th>Archive</th>
+<th>Files</th>
+<th>Description</th>
+</tr></thead><tbody>
+<tr>
+<td><a href="ARCADE.DAT.html">ARCADE.DAT</a></td>
+<td>68</td>
+<td>Texture set for the Arcade mode UI — car-select icons, screen backgrounds, and similar front-end art, stored as sequentially numbered <code>.tim</code> images. The final entry (<code>067.seq</code>) is an animation/sequence script rather than an image.</td>
+</tr>
+<tr>
+<td><a href="ARCADE2.DAT.html">ARCADE2.DAT</a></td>
+<td>8</td>
+<td>A small supplementary Arcade-mode archive: a few extra <code>.tim</code> images plus one <code>.car</code>/<code>.tex</code> model pair.</td>
+</tr>
+<tr>
+<td><a href="BG.DAT.html">BG.DAT</a></td>
+<td>20</td>
+<td>Track background environments (skyboxes). <code>.tpk</code> files are texture packs that skin the sky dome/backdrop, and <code>.sky</code> files describe how those textures are placed and animated. <code>018.bin</code> is an unclassified raw entry.</td>
+</tr>
+<tr>
+<td><a href="CAR.DAT.html">CAR.DAT</a></td>
+<td>1353</td>
+<td>The full car garage — every drivable car in the game, stored as a <code>.car</code> 3D model plus a matching <code>.tex</code> (GT-CTEX) texture. Most cars also have a <code>_night</code> variant with different, headlight-lit textures for night races. <code>manifest.txt</code> is GTExplorer&#x27;s own generated index, not a game asset.</td>
+</tr>
+<tr>
+<td><a href="CARCADE.DAT.html">CARCADE.DAT</a></td>
+<td>80</td>
+<td>Cars available in Arcade mode, stored the same way as CAR.DAT (<code>.car</code> model + <code>.tex</code> texture) but addressed by numeric index rather than name, since Arcade mode only needs a fixed, small roster.</td>
+</tr>
+<tr>
+<td><a href="CARINF.DAT.html">CARINF.DAT</a></td>
+<td>—</td>
+<td>Car information database (compressed GT-ARC): SPEC records, part tables (brake, gear, suspension, …), string tables for makers/models/grades. Used by the Car Database editor in GTExplorer.</td>
+</tr>
+<tr>
+<td><a href="COURSE.DAT.html">COURSE.DAT</a></td>
+<td>9088</td>
+<td>Every racetrack in the game. Each course has a <code>.dat</code> (layout/logic) and <code>.ps</code> (polygon/collision mesh) file at the top level, plus a matching <code><track>_tims/</code> folder holding all the scenery, signage, and road-texture <code>.tim</code> images used to render that circuit.</td>
+</tr>
+<tr>
+<td><a href="GAMEMENU.DAT.html">GAMEMENU.DAT</a></td>
+<td>15</td>
+<td><code>.tim</code> images for the main front-end menu screens (title, mode select, etc.).</td>
+</tr>
+<tr>
+<td><a href="MENU_HTM.ARC.html">MENU/MENU_HTM.ARC</a></td>
+<td>36</td>
+<td>GT-mode menu <strong>page scripts</strong> (GTHTML). Each file is a small binary hotspot layout: background TIM name, clickable rectangles, links to other pages or engine actions (<code>LIST_GARAGE</code>, <code>SHOW_SPEC</code>, …). Names from <code>MENU/HTMLS.IDX</code>. See <a href="GTHTML.html">GTHTML format notes</a>.</td>
+</tr>
+<tr>
+<td><a href="MENU_MENU_IMG.ARC.html">MENU/MENU_IMG.ARC</a></td>
+<td>41</td>
+<td>TIM <strong>backgrounds</strong> for the GT-mode shell pages above (<code>home</code>, <code>garage</code>, <code>gtf</code>, <code>toyota</code>, <code>trd</code>, …). Named by <code>MENU/IMAGES.IDX</code>. Companion to <code>MENU_HTM.ARC</code>, not the large root <code>MENU_IMG.ARC</code>.</td>
+</tr>
+<tr>
+<td><a href="MENU_SND.ARC.html">MENU/MENU_SND.ARC</a></td>
+<td>—</td>
+<td>Menu sound bank for the GT-mode shell; indexed by <code>MENU/SOUNDS.IDX</code> (<code>gt.ins</code>, <code>gt.seq</code>).</td>
+</tr>
+<tr>
+<td><a href="MENU_IMG.ARC.html">MENU_IMG.ARC</a></td>
+<td>6 nested × ~1043</td>
+<td><strong>Root</strong> bulk menu-image container (~121 MB). One uncompressed outer GT-ARC holding <strong>six nested language packs</strong> (~19–21 MB each). Each nested ARC is compressed and contains on the order of <strong>1043</strong> files (mainly TIMs for dealers, licence centre, and the full in-game menu set).</td>
+</tr>
+<tr>
+<td><a href="MENU_RAW.ARC.html">MENU_RAW.ARC</a></td>
+<td>6</td>
+<td>Companion to root <code>MENU_IMG.ARC</code>: large <strong>filename lists</strong> (~1043 <code>.htm</code> names, ~1043 image/sound names, 14 <code>.seq</code> names), used-car listing data, and nested support ARCs.</td>
+</tr>
+<tr>
+<td><a href="PITMENU.DAT.html">PITMENU.DAT</a></td>
+<td>24</td>
+<td><code>.tim</code> images for the pit-stop / garage menu screens.</td>
+</tr>
+<tr>
+<td><a href="REPLAY.DAT.html">REPLAY.DAT</a></td>
+<td>1</td>
+<td>Almost empty — a single <code>REPLAY/</code> folder containing one file, <code>REPLAY.DAT</code>. This looks like a placeholder slot the game writes replay data into at runtime rather than a populated asset archive.</td>
+</tr>
+<tr>
+<td><a href="SOUND.DAT.html">SOUND.DAT</a></td>
+<td>4076</td>
+<td>The game&#x27;s audio bank. Top-level <code>.ins</code> (VAB instrument headers) and <code>.es</code> (engine/event sound definitions) files drive the sound engine, while 249 numbered <code><n>_samples/</code> folders each hold one sound bank&#x27;s raw waveform data as paired <code>.adpcm</code> (PlayStation ADPCM audio) and <code>.wav</code> files.</td>
+</tr>
+</tbody></table></div>
+<h3 id="menu-folder-disc-path-menu">MENU folder (disc path <code>MENU/</code>)</h3>
+<p>Self-contained <strong>GT Home / map / garage / Toyota / TRD</strong> shell:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>File</th>
+<th>Role</th>
+</tr></thead><tbody>
+<tr>
+<td><code>HTMLS.IDX</code></td>
+<td>Ordered list of 36 <code>.htm</code> page names</td>
+</tr>
+<tr>
+<td><code>MENU_HTM.ARC</code></td>
+<td><a href="GTHTML.html">GTHTML</a> page scripts</td>
+</tr>
+<tr>
+<td><code>IMAGES.IDX</code></td>
+<td>Ordered list of 40 <code>.tim</code> names</td>
+</tr>
+<tr>
+<td><code>MENU_IMG.ARC</code></td>
+<td>Page background TIMs</td>
+</tr>
+<tr>
+<td><code>SOUNDS.IDX</code></td>
+<td><code>gt.ins</code> / <code>gt.seq</code></td>
+</tr>
+<tr>
+<td><code>MENU_SND.ARC</code></td>
+<td>Menu sounds</td>
+</tr>
+</tbody></table></div>
+<p>Background TIM for a page is resolved by basename (e.g. <code>home.htm</code> ↔ <code>HOME.tim</code> / <code>home.tim</code>).</p>
+<hr>
+<h2 id="format-glossary">Format glossary</h2>
+<p>Quick reference for extensions used across these archives:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Extension</th>
+<th>Meaning</th>
+</tr></thead><tbody>
+<tr>
+<td><code>.adpcm</code></td>
+<td>PlayStation ADPCM — compressed audio sample.</td>
+</tr>
+<tr>
+<td><code>.arc</code></td>
+<td>GT-ARC container (may be nested).</td>
+</tr>
+<tr>
+<td><code>.bin</code></td>
+<td>Unclassified/raw binary blob.</td>
+</tr>
+<tr>
+<td><code>.car</code></td>
+<td>3D car model/mesh (GT-CAR).</td>
+</tr>
+<tr>
+<td><code>.dat</code></td>
+<td>Course layout / game logic data, or generic archive.</td>
+</tr>
+<tr>
+<td><code>.es</code></td>
+<td>Engine/event sound definition.</td>
+</tr>
+<tr>
+<td><code>.htm</code></td>
+<td><strong>GTHTML</strong> menu page script (<code>@(#)GTHTML</code>) — not web HTML. Hotspots, TIM name, links/actions.</td>
+</tr>
+<tr>
+<td><code>.idx</code></td>
+<td>Index file listing names for a sibling <code>.ARC</code> (e.g. <code>HTMLS.IDX</code>, <code>IMAGES.IDX</code>).</td>
+</tr>
+<tr>
+<td><code>.ins</code></td>
+<td>VAB instrument header (sound engine patch data).</td>
+</tr>
+<tr>
+<td><code>.ps</code></td>
+<td>Course polygon or collision mesh data.</td>
+</tr>
+<tr>
+<td><code>.seq</code></td>
+<td>Animation or playback sequence script.</td>
+</tr>
+<tr>
+<td><code>.sky</code></td>
+<td>Skybox placement/animation data.</td>
+</tr>
+<tr>
+<td><code>.tex</code> / GT-CTEX</td>
+<td>Car colour/texture package (palettes + 4bpp image), paired with <code>.car</code>.</td>
+</tr>
+<tr>
+<td><code>.tim</code></td>
+<td>PlayStation TIM — PS1 image/texture format.</td>
+</tr>
+<tr>
+<td><code>.tpk</code></td>
+<td>Texture pack (grouped set of textures), used for skyboxes here.</td>
+</tr>
+<tr>
+<td><code>.txt</code></td>
+<td>Plain-text index or manifest (GTExplorer metadata, not a game asset).</td>
+</tr>
+<tr>
+<td><code>.usedcar</code></td>
+<td>Used-car dealership listing data.</td>
+</tr>
+<tr>
+<td><code>.wav</code></td>
+<td>Uncompressed PCM audio sample.</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="related-docs">Related docs</h2>
+<ul>
+<li><a href="GTHTML.html">GTHTML Format Documentation</a> — binary layout of menu page scripts (<code>MENU_HTM.ARC</code>).</li>
+</ul>
+<hr>
+<p class="back-link"><a href="../../index.html">← Back to overview</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  GTExplorer documentation · <a href="https://github.com/JeevesGB/GTExplorer">GitHub</a><br>
+  © 2026 JeevesGB
+</footer>
+
+<script src="../../js/docs.js"></script>
+</body>
+</html>

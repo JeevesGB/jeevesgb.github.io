@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CARINF.DAT — GTExplorer</title>
+<link rel="stylesheet" href="../../../../assets/css/jgb.css">
+<link rel="stylesheet" href="../../css/docs-extra.css">
+</head>
+<body>
+
+<div class="parallax-bg"></div>
+
+<a class="back-btn-text" href="../../../../index.html" title="Back to site">← Site</a>
+
+<div class="doc-nav-bar">
+  <div class="wrap">
+    <a class="doc-brand" href="../../index.html">GTExplorer Docs</a>
+    <nav class="doc-nav">
+<a href="../../index.html">Overview</a>
+<a href="../../doc/usage.html">Usage</a>
+<a href="../../doc/formats.html">Formats</a>
+<a href="../../doc/archives.html">Archives</a>
+<a href="../../doc/filelists/index.html">File lists</a>
+<a href="../../doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a href="../../doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a href="../../doc/filelists/BG.DAT.html">BG.DAT</a>
+<a href="../../doc/filelists/CAR.DAT.html">CAR.DAT</a>
+<a href="../../doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a class="current" href="../../doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+<a href="../../doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a href="../../doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+<a href="../../doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+<a href="../../doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+<a href="../../doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a href="../../doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a href="../../doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+<a href="../../doc/filelists/GTHTML.html">GTHTML</a>
+<a href="../../CONTRIBUTING.html">Contributing</a>
+    </nav>
+  </div>
+</div>
+
+<main class="page doc-page">
+  <section class="bento">
+    <div class="panel doc-panel" style="grid-column: span 12;">
+<h1 class="title title-left" id="carinf-dat">CARINF.DAT</h1>
+<p><strong>Path:</strong> <code>CARINF.DAT</code> (disc root) <strong>Format:</strong> Compressed GT-ARC (mangled <code>@(#)GT-A</code> / <code>RC</code> style header possible)</p>
+<h2 id="role">Role</h2>
+<p>Car <strong>information database</strong>: performance SPEC records, part tables (brakes, gears, suspension, tyres, …), and string tables (maker, model, grade, aspiration, layout).</p>
+<h2 id="gtexplorer">GTExplorer</h2>
+<p>Opened via the <strong>Car Database</strong> canvas for browsing and light editing of tables; joins SPEC rows to part codes where possible.</p>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>SPEC records are fixed-size binary rows (dense fields: power, torque, weight, dimensions, gear ratios, etc.).</li>
+<li>Part tables use short codes that embed the car code for joining.</li>
+</ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  GTExplorer documentation · <a href="https://github.com/JeevesGB/GTExplorer">GitHub</a><br>
+  © 2026 JeevesGB
+</footer>
+
+<script src="../../js/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTHTML — GTExplorer</title>
+<link rel="stylesheet" href="../../../../assets/css/jgb.css">
+<link rel="stylesheet" href="../../css/docs-extra.css">
+</head>
+<body>
+
+<div class="parallax-bg"></div>
+
+<a class="back-btn-text" href="../../../../index.html" title="Back to site">← Site</a>
+
+<div class="doc-nav-bar">
+  <div class="wrap">
+    <a class="doc-brand" href="../../index.html">GTExplorer Docs</a>
+    <nav class="doc-nav">
+<a href="../../index.html">Overview</a>
+<a href="../../doc/usage.html">Usage</a>
+<a href="../../doc/formats.html">Formats</a>
+<a href="../../doc/archives.html">Archives</a>
+<a href="../../doc/filelists/index.html">File lists</a>
+<a href="../../doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+<a href="../../doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+<a href="../../doc/filelists/BG.DAT.html">BG.DAT</a>
+<a href="../../doc/filelists/CAR.DAT.html">CAR.DAT</a>
+<a href="../../doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+<a href="../../doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+<a href="../../doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+<a href="../../doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+<a href="../../doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+<a href="../../doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+<a href="../../doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+<a href="../../doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+<a href="../../doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+<a href="../../doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+<a href="../../doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+<a class="current" href="../../doc/filelists/GTHTML.html">GTHTML</a>
+<a href="../../CONTRIBUTING.html">Contributing</a>
+    </nav>
+  </div>
+</div>
+
+<main class="page doc-page">
+  <section class="bento">
+    <div class="panel doc-panel" style="grid-column: span 12;">
+<p><a href="index.html">← Back to index</a></p>
+<h1 class="title title-left" id="gthtml-documentation">GTHTML Documentation</h1>
+<p>Based on reverse-engineering all <strong>36</strong> pages in <code>MENU/MENU_HTM.ARC</code> (PAL-era disc layout). This is <strong>not</strong> HTML; it is a compact binary <strong>menu page / hotspot script</strong> used by the GT1 front-end.</p>
+<hr>
+<h2 id="1-role-in-the-game">1. Role in the game</h2>
+<p>GTHTML files describe <strong>one menu screen</strong>:</p>
+<ul>
+<li>Which <strong>background TIM</strong> to draw</li>
+<li><strong>Clickable regions</strong> (rectangles) and what they do</li>
+<li>Links to <strong>other pages</strong> (<code>.HTM</code>) or <strong>engine actions</strong> (<code>LIST_GARAGE</code>, <code>SHOW_SPEC</code>, …)</li>
+</ul>
+<p>They live in <code>MENU/MENU_HTM.ARC</code>, named by <code>MENU/HTMLS.IDX</code>. Backgrounds come from <code>MENU/MENU_IMG.ARC</code> / <code>IMAGES.IDX</code> (e.g. <code>home.htm</code> → <code>HOME.tim</code>).</p>
+<hr>
+<h2 id="2-file-layout-overview">2. File layout (overview)</h2>
+<pre><code class="language-">Offset  Size   Description
+──────  ─────  ───────────────────────────────────────────
+0x00    12     Magic: &quot;@(#)GTHTML\0\0&quot;
+0x0C     4     Padding / reserved (always 00 00 00 00 in MENU_HTM)
+0x10    …      Body (commands)
+EOF-3    3     End marker: AF 8D 00</code></pre>
+<p>Total size is typically <strong>60–350 bytes</strong>. No embedded images or text paragraphs—only structure and names.</p>
+<hr>
+<h2 id="3-header">3. Header</h2>
+<pre><code class="language-">40 28 23 29 47 54 48 54 4D 4C 00 00   ; &quot;@(#)GTHTML\0\0&quot;
+00 00 00 00                           ; reserved</code></pre>
+<p>Detection: <code>data.startswith(b&quot;@(#)GTHTML&quot;)</code>.</p>
+<hr>
+<h2 id="4-body-command-stream">4. Body command stream</h2>
+<p>Body starts at <strong>offset 0x10</strong>. It is a sequence of records. Known records:</p>
+<h3 id="4-1-page-background-0x0d-0x02-always-first">4.1 Page background (<code>0x0D 0x02</code>) — always first</h3>
+<pre><code class="language-">0D 02
+&lt;u8 len&gt; &lt;len bytes ASCII TIM name&gt;
+2F                                      ; &#x27;/&#x27;
+&lt;u8 len&gt; &lt;len bytes ASCII mode&gt;         ; always &quot;bgmap&quot; in MENU_HTM</code></pre>
+<p><strong>Example</strong> (<code>home.htm</code>):</p>
+<pre><code class="language-">0D 02 08 48 4F 4D 45 2E 74 69 6D 2F 05 62 67 6D 61 70
+        |  H  O  M  E  .  t  i  m  /  |  b  g  m  a  p</code></pre>
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr></thead><tbody>
+<tr>
+<td>TIM name</td>
+<td>Background texture, e.g. <code>HOME.tim</code>, <code>TRD.tim</code> (matched case-insensitively to <code>MENU_IMG</code>)</td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>Literal separator</td>
+</tr>
+<tr>
+<td>Mode</td>
+<td>Always <code>bgmap</code> in this archive (background map mode)</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h3 id="4-2-hotspot-type-1-0x05-0x01">4.2 Hotspot — type 1 (<code>0x05 0x01</code>)</h3>
+<p>Rectangular click target in <strong>screen coordinates</strong>.</p>
+<pre><code class="language-">05 01
+04          ; parameter count (always 4 for x0,y0,x1,y1)
+00          ; padding / flags (always 00 here)
+&lt;u16 le x0&gt; &lt;u16 le y0&gt; &lt;u16 le x1&gt; &lt;u16 le y1&gt;
+&lt;u8 len&gt; &lt;len bytes ASCII target&gt;</code></pre>
+<p><strong>Coordinates:</strong> corners of a box in PS1 display space (origin top-left; full screen often <strong>640×480</strong>, e.g. title page uses <code>(0,0)–(640,480)</code> = <code>00 00 00 00 80 02 E0 01</code>).</p>
+<p><strong>Example</strong> (<code>home.htm</code> → Garage):</p>
+<pre><code class="language-">05 01 04 00 A4 00 FC 00 08 01 60 01 0A 47 41 52 41 47 45 2E 48 54 4D
+              x0=164 y0=252 x1=264 y1=352     | GARAGE.HTM</code></pre>
+<p><strong>Target string</strong> is either:</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Kind</th>
+<th>Examples</th>
+<th>Meaning</th>
+</tr></thead><tbody>
+<tr>
+<td>Page link</td>
+<td><code>MAP.HTM</code>, <code>HOME.HTM</code>, <code>TRD-BRAKE.HTM</code></td>
+<td>Navigate to another GTHTML page</td>
+</tr>
+<tr>
+<td>Action</td>
+<td><code>LIST_GARAGE</code>, <code>SHOW_SPEC</code>, <code>BUY</code>, <code>ARCADE</code></td>
+<td>Call game logic (not a file)</td>
+</tr>
+<tr>
+<td>Submenu id</td>
+<td><code>menu1</code>…<code>menu4</code>, <code>CHAMP1</code>…</td>
+<td>Local / mode-specific ids</td>
+</tr>
+</tbody></table></div>
+<p>Names are <strong>ASCII</strong>, length-prefixed (max practical length ≤ 64). Case is as stored (<code>MAP.HTM</code>, <code>HOME.tim</code>).</p>
+<hr>
+<h3 id="4-3-widget-compact-control-type-2-0x05-0x02">4.3 Widget / compact control — type 2 (<code>0x05 0x02</code>)</h3>
+<p>Smaller control, often sidebar / icon-style navigation (exact engine semantics partly inferred).</p>
+<pre><code class="language-">05 02
+03          ; parameter count (always 3 in MENU_HTM)
+00          ; padding
+&lt;u16 le a&gt; &lt;u16 le b&gt; &lt;u16 le c&gt;
+&lt;u8 len&gt; &lt;len bytes ASCII target&gt;</code></pre>
+<p><strong>Example</strong> (many pages — “back” control toward parent):</p>
+<pre><code class="language-">05 02 03 00 30 00 64 00 19 00 07 48 4F 4D 45 2E 48 54 4D
+              48     100    25       HOME.HTM</code></pre>
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Typical use (inferred)</th>
+</tr></thead><tbody>
+<tr>
+<td><code>a</code>, <code>b</code></td>
+<td>Position (e.g. x=48, y=100)</td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>Size / icon id / hit padding (e.g. 25)</td>
+</tr>
+<tr>
+<td>target</td>
+<td>Page or action (<code>HOME.HTM</code>, <code>CARINFO_BACK</code>, <code>CHANGE_CAR</code>)</td>
+</tr>
+</tbody></table></div>
+<p>Same target string rules as hotspots. Common on pages that share the left <strong>Map / Home</strong> chrome.</p>
+<hr>
+<h3 id="4-4-end-marker">4.4 End marker</h3>
+<pre><code class="language-">AF 8D 00</code></pre>
+<p>Always present at end of MENU_HTM pages. Treat as EOF for the command stream.</p>
+<hr>
+<h2 id="5-string-encoding">5. String encoding</h2>
+<p>All names use the same scheme:</p>
+<pre><code class="language-">&lt;u8 length N&gt; &lt;N bytes ASCII&gt;</code></pre>
+<ul>
+<li>No null terminator inside the string</li>
+<li>Characters are printable ASCII (letters, digits, <code>.</code>, <code>_</code>, <code>-</code>)</li>
+<li>TIM names often end in <code>.tim</code>; pages in <code>.HTM</code></li>
+<li>Actions have <strong>no</strong> extension (<code>LIST_PARTS</code>, <code>REPLAY_DEMO</code>)</li>
+</ul>
+<hr>
+<h2 id="6-coordinate-system">6. Coordinate system</h2>
+<ul>
+<li><strong>u16 little-endian</strong></li>
+<li>Screen space roughly <strong>0…640</strong> × <strong>0…480</strong> (NTSC/PAL menu rendering)</li>
+<li>Hotspot type 1: axis-aligned box <code>(x0,y0)–(x1,y1)</code></li>
+<li>Type 2: point-like / compact hit area, not a full box in the file</li>
+</ul>
+<p>Overlays for tools should draw type-1 rects; type-2 can be shown as a marker at <code>(a,b)</code> with radius from <code>c</code> or a fixed pad.</p>
+<hr>
+<h2 id="7-semantic-target-catalogue-menu-htm">7. Semantic target catalogue (MENU_HTM)</h2>
+<h3 id="page-links-subset">Page links (subset)</h3>
+<p><code>HOME.HTM</code>, <code>MAP.HTM</code>, <code>GTF.HTM</code>, <code>GARAGE.HTM</code>, <code>TOYOTA.HTM</code>, <code>TRD.HTM</code>, <code>GAMEMODE.HTM</code>, <code>GTF-CHAMP.HTM</code>, <code>GTF-LICENCE.HTM</code>, <code>GTF-SPECIAL<em>.HTM</code>, <code>TOYOTA-NEW.HTM</code>, <code>TOYOTA-USED</em>.HTM</code>, <code>TRD-*.HTM</code>, …</p>
+<h3 id="engine-actions-subset">Engine actions (subset)</h3>
+<div class="table-wrap"><table><thead><tr>
+<th>Action</th>
+<th>Role</th>
+</tr></thead><tbody>
+<tr>
+<td><code>LIST_GARAGE</code></td>
+<td>Show owned cars</td>
+</tr>
+<tr>
+<td><code>LIST_CAR_TOYOTA</code></td>
+<td>Toyota car list</td>
+</tr>
+<tr>
+<td><code>LIST_PARTS</code></td>
+<td>Parts list for TRD category</td>
+</tr>
+<tr>
+<td><code>SHOW_SPEC</code></td>
+<td>Spec sheet</td>
+</tr>
+<tr>
+<td><code>CHANGE_CAR</code></td>
+<td>Change car in garage</td>
+</tr>
+<tr>
+<td><code>BUY</code> / <code>USED_SELL</code> / <code>MOREINFO</code></td>
+<td>Dealership flows</td>
+</tr>
+<tr>
+<td><code>ARCADE</code> / <code>REPLAY_DEMO</code></td>
+<td>Mode launch</td>
+</tr>
+<tr>
+<td><code>SINGLE_RACE</code> / <code>FREE_RUN</code> / <code>VS</code></td>
+<td>GT mode race types</td>
+</tr>
+<tr>
+<td><code>CHAMP1</code>…<code>CHAMP11</code></td>
+<td>Championship entries</td>
+</tr>
+<tr>
+<td><code>LICENCE1</code>…<code>LICENCE8</code></td>
+<td>Licence tests</td>
+</tr>
+<tr>
+<td><code>menu1</code>…<code>menu4</code></td>
+<td>Garage2 submenu rows</td>
+</tr>
+<tr>
+<td><code>CARINFO_BACK</code> / <code>CARINFO_RIDE</code></td>
+<td>Garage info chrome</td>
+</tr>
+</tbody></table></div>
+<p>Rule of thumb: if the target contains <code>.HTM</code>, it is a <strong>page</strong>; otherwise it is an <strong>action id</strong>.</p>
+<hr>
+<h2 id="8-full-page-example-title-htm-63-bytes">8. Full page example (<code>title.htm</code>, 63 bytes)</h2>
+<pre><code class="language-">0000  40 28 23 29 47 54 48 54 4D 4C 00 00   @(#)GTHTML\0\0
+000C  00 00 00 00                           reserved
+0010  0D 02                                 background cmd
+0012  09 &quot;TITLE.tim&quot; 2F 05 &quot;bgmap&quot;          TIM + mode
+0022  05 01 04 00
+      00 00  00 00  80 02  E0 01            rect (0,0)-(640,480)
+      0C &quot;GAMEMODE.HTM&quot;                     entire screen → gamemode
+003D  AF 8D 00                              end</code></pre>
+<p>Meaning: show <code>TITLE.tim</code>; any click goes to <code>GAMEMODE.HTM</code>.</p>
+<hr>
+<h2 id="9-full-page-example-home-htm">9. Full page example (<code>home.htm</code>)</h2>
+<div class="table-wrap"><table><thead><tr>
+<th>Element</th>
+<th>Target</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td>Background</td>
+<td><code>HOME.tim</code> / <code>bgmap</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Widget</td>
+<td><code>MAP.HTM</code></td>
+<td>vals <code>(48,100,25)</code> — side control</td>
+</tr>
+<tr>
+<td>Hotspot</td>
+<td><code>MAP.HTM</code></td>
+<td>small rect ~<code>(31,150)–(63,183)</code></td>
+</tr>
+<tr>
+<td>Hotspot</td>
+<td><code>HOME.HTM</code></td>
+<td>~<code>(31,233)–(63,266)</code></td>
+</tr>
+<tr>
+<td>Hotspot</td>
+<td><code>HOME.HTM</code></td>
+<td>larger middle rect</td>
+</tr>
+<tr>
+<td>Hotspot</td>
+<td><code>GARAGE.HTM</code></td>
+<td><code>(164,252)–(264,352)</code></td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="10-relationship-to-other-menu-files">10. Relationship to other MENU files</h2>
+<pre><code class="language-">MENU/
+  HTMLS.IDX      ← ordered list of .htm names (36 lines)
+  MENU_HTM.ARC   ← GTHTML binaries in that order
+  IMAGES.IDX     ← ordered list of .tim names (40 lines)
+  MENU_IMG.ARC   ← TIM binaries in that order
+  MENU_SND.ARC   ← sounds (separate)</code></pre>
+<ul>
+<li>GTHTML <strong>does not</strong> store image pixels; it only stores the <strong>TIM file name</strong>.</li>
+<li>Loader resolves <code>HOME.tim</code> via IDX / archive binding.</li>
+<li>Root disc <code>MENU_IMG.ARC</code> (large, 6 language packs) is a <strong>different</strong> asset set; the small <code>MENU/MENU_IMG.ARC</code> is what these pages use.</li>
+</ul>
+<hr>
+<h2 id="11-editing-implications">11. Editing implications</h2>
+<p>Safe, high-value edits:</p>
+<ol>
+<li><strong>Retarget</strong> — change length-prefixed string (same length, or rewrite record and shift tail).</li>
+<li><strong>Swap background TIM name</strong> — same length easiest (<code>HOME.tim</code> → other 8-char name); longer names require memmove of the body.</li>
+<li><strong>Move hotspot</strong> — rewrite the four <code>u16</code> values; keep <code>05 01 04 00</code> prefix.</li>
+</ol>
+<p>Harder:</p>
+<ul>
+<li>Insert/delete records (must fix stream and file size; ARC in-place slot may not fit if larger).</li>
+<li>New pages (need new ARC entry + IDX line + matching TIM).</li>
+</ul>
+<p>Preserve:</p>
+<ul>
+<li>Magic + 4 zero bytes</li>
+<li>Leading <code>0D 02</code> background block</li>
+<li>Trailing <code>AF 8D 00</code></li>
+<li><code>05 01</code> / <code>05 02</code> layouts unless the engine is fully re-verified</li>
+</ul>
+<hr>
+<h2 id="12-unknown-open-questions">12. Unknown / open questions</h2>
+<div class="table-wrap"><table><thead><tr>
+<th>Topic</th>
+<th>Status</th>
+</tr></thead><tbody>
+<tr>
+<td>Reserved dword at <code>0x0C</code></td>
+<td>Always zero in this ARC; purpose unknown</td>
+</tr>
+<tr>
+<td>Meaning of <code>0x0D 0x02</code> opcode values</td>
+<td>Fixed as “set background”; other opcodes not seen here</td>
+</tr>
+<tr>
+<td>Type <code>0x02</code> fields <code>a,b,c</code></td>
+<td>Position + size/id inferred; not fully confirmed</td>
+</tr>
+<tr>
+<td>Byte after count (<code>00</code>)</td>
+<td>Always zero here; may be flags in other ARCs</td>
+</tr>
+<tr>
+<td>Hit-test inclusion rules</td>
+<td>Whether edges are inclusive unknown</td>
+</tr>
+<tr>
+<td>Large menu GTHTML (root 1043-page set)</td>
+<td>May share this format; not verified in this pass</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="13-minimal-parser-pseudocode">13. Minimal parser pseudocode</h2>
+<pre><code class="language-">assert data[0:12] == &quot;@(#)GTHTML\0\0&quot;
+i = 16
+assert data[i:i+2] == 0x0D 0x02; i += 2
+tim = read_pascal_string(data, i); i = after
+assert data[i] == &#x27;/&#x27;; i += 1
+mode = read_pascal_string(data, i); i = after
+
+while i &lt; len:
+  if data[i:i+3] == AF 8D 00: break
+  if data[i] == 0x05 and data[i+1] == 0x01:
+    i += 2
+    assert data[i] == 4; i += 1
+    assert data[i] == 0; i += 1
+    x0,y0,x1,y1 = u16le×4; i += 8
+    target = read_pascal_string(data, i); i = after
+    emit HOTSPOT(rect, target)
+  elif data[i] == 0x05 and data[i+1] == 0x02:
+    i += 2
+    assert data[i] == 3; i += 1
+    assert data[i] == 0; i += 1
+    a,b,c = u16le×3; i += 6
+    target = read_pascal_string(data, i); i = after
+    emit WIDGET(a,b,c, target)
+  else:
+    error unknown opcode</code></pre>
+<hr>
+<h2 id="14-summary">14. Summary</h2>
+<p>GTHTML is a <strong>tiny hotspot script</strong>:</p>
+<ol>
+<li>Header magic</li>
+<li>Background TIM + <code>bgmap</code></li>
+<li>List of <strong>hotspots</strong> (rect + target) and <strong>widgets</strong> (compact control + target)</li>
+<li>End marker <code>AF 8D 00</code></li>
+</ol>
+<p>Targets are either <strong>other menu pages</strong> or <strong>hard-coded game actions</strong>. For tooling, parsing to <code>{background, hotspots[], widgets[]}</code> is enough for preview, navigation graph, link retargeting, and TIM pairing—without treating the file as real HTML.</p>
+<hr>
+<p><em>Document generated from MENU/MENU_HTM.ARC analysis (36 pages).</em></p>
+<hr>
+<p><a href="index.html">← Back to index</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  GTExplorer documentation · <a href="https://github.com/JeevesGB/GTExplorer">GitHub</a><br>
+  © 2026 JeevesGB
+</footer>
+
+<script src="../../js/docs.js"></script>
+</body>
+</html>
