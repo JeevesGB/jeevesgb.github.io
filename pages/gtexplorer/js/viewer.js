@@ -142,7 +142,9 @@ async function switchModel(modelKey) {
           map: texture,
           roughness: 0.35,
           metalness: 0.1,
-          side: THREE.DoubleSide
+          side: THREE.DoubleSide,
+          transparent: true,
+          alphaTest: 0.1 // PS1 index-0 transparency without full sort cost
         });
       }
     } catch (texErr) {
@@ -198,9 +200,12 @@ function parseGT1Car(buffer) {
   }
 
   // 2. Read Header Table
-  let ptr = headerOffset + 0x10 + 32 + 8; // Skip Magic + Wheels + Menu dimensions
+  // Layout matches gtcar.py GTCarModel.from_bytes:
+  //   seek 0x10 → 4 wheels (32) → menu dims (8) → 4-byte pad → lod_count → skip 0x42
+  let ptr = headerOffset + 0x10 + 32 + 8; // After magic padding + wheels + menu dimensions
+  ptr += 4; // 4-byte pad before LOD count (required — without this lodCount reads as 0)
   const lodCount = view.getUint16(ptr, true);
-  ptr += 2 + 0x42; // Advance through LOD header padding
+  ptr += 2 + 0x42; // Advance past lod_count + LOD table padding
 
   if (lodCount < 1 || lodCount > 8) {
     console.error(`[GT1 Parser] Invalid LOD count: ${lodCount}`);
@@ -354,15 +359,26 @@ function parseGT1RawStream(view, length) {
 
 /**
  * PS1 .tex CTEX Texture Parser
+ * Layout (matches ctex.py):
+ *   0x00  @(#)GT-CTEX
+ *   0x0E  u16 palette_set_count
+ *   0x60  256×256 4bpp image (32768 bytes)
+ *   0x8060  palette sets (each 16 CLUTs × 16 colours × 2 bytes BGR555)
  */
-function generateTexCanvas(buffer) {
+function generateTexCanvas(buffer, paletteIndex = 0, clutIndex = 0) {
   const canvas = document.createElement('canvas');
   canvas.width = 256;
   canvas.height = 256;
   const ctx = canvas.getContext('2d');
   const imgData = ctx.createImageData(256, 256);
 
-  if (buffer.byteLength < 0x20) {
+  const IMAGE_OFF = 0x60;
+  const IMAGE_SIZE = 256 * 256 / 2; // 4bpp
+  const PAL_OFF = 0x8060;
+  const PAL_STRIDE = 512; // 16 CLUTs × 32 bytes
+  const CLUT_SIZE = 32;
+
+  if (buffer.byteLength < IMAGE_OFF + IMAGE_SIZE) {
     ctx.fillStyle = '#888888';
     ctx.fillRect(0, 0, 256, 256);
     return canvas;
@@ -371,38 +387,51 @@ function generateTexCanvas(buffer) {
   const view = new DataView(buffer);
   const bytes = new Uint8Array(buffer);
 
-  // Extract BGR555 Palette
-  const palette = [];
-  let clutOffset = 0x20;
+  // Palette set count from header (fallback 1)
+  let palCount = 1;
+  if (buffer.byteLength >= 0x10) {
+    palCount = Math.max(1, view.getUint16(0x0E, true) || 1);
+  }
+  paletteIndex = Math.max(0, Math.min(paletteIndex, palCount - 1));
+  clutIndex = Math.max(0, Math.min(clutIndex, 15));
 
+  // Prefer real CLUT at 0x8060; fall back to legacy offset if file is short
+  let clutOffset = PAL_OFF + paletteIndex * PAL_STRIDE + clutIndex * CLUT_SIZE;
+  if (clutOffset + CLUT_SIZE > buffer.byteLength) {
+    clutOffset = 0x20; // older / truncated assets
+  }
+
+  const palette = [];
   for (let c = 0; c < 16; c++) {
-    if (clutOffset + (c * 2) + 2 > buffer.byteLength) break;
-    const color16 = view.getUint16(clutOffset + (c * 2), true);
-    
+    if (clutOffset + c * 2 + 1 >= buffer.byteLength) {
+      palette.push([128, 128, 128, 255]);
+      continue;
+    }
+    const color16 = view.getUint16(clutOffset + c * 2, true);
     const r = (color16 & 0x1F) << 3;
     const g = ((color16 >> 5) & 0x1F) << 3;
     const b = ((color16 >> 10) & 0x1F) << 3;
-    palette.push([r, g, b]);
+    // Index 0 is typically transparent on PS1
+    const a = color16 === 0 ? 0 : 255;
+    palette.push([r, g, b, a]);
   }
 
-  // Unpack 4-bit pixel array
-  const texOffset = 0x60;
+  // Unpack only the 256×256 4bpp image block
   let pxIndex = 0;
-
-  for (let i = texOffset; i < bytes.length && pxIndex < imgData.data.length; i++) {
+  const texEnd = IMAGE_OFF + IMAGE_SIZE;
+  for (let i = IMAGE_OFF; i < texEnd && pxIndex < imgData.data.length; i++) {
     const byte = bytes[i];
-    
     const idx1 = byte & 0x0F;
     const idx2 = (byte >> 4) & 0x0F;
 
-    [idx1, idx2].forEach(colorIdx => {
-      const color = palette[colorIdx] || [128, 128, 128];
-      imgData.data[pxIndex]     = color[0];
+    for (const colorIdx of [idx1, idx2]) {
+      const color = palette[colorIdx] || [128, 128, 128, 255];
+      imgData.data[pxIndex] = color[0];
       imgData.data[pxIndex + 1] = color[1];
       imgData.data[pxIndex + 2] = color[2];
-      imgData.data[pxIndex + 3] = 255;
+      imgData.data[pxIndex + 3] = color[3];
       pxIndex += 4;
-    });
+    }
   }
 
   ctx.putImageData(imgData, 0, 0);
