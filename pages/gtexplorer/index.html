@@ -3,9 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GTExplorer</title>
+<title>GTExplorer Docs</title>
 <link rel="stylesheet" href="../../assets/css/jgb.css">
 <link rel="stylesheet" href="css/docs-extra.css">
+<link rel="stylesheet" href="css/viewer.css">
+
+<!-- Three.js Dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
 </head>
 <body>
 
@@ -13,269 +19,357 @@
 
 <a class="back-btn-text" href="../../index.html" title="Back to site">← Site</a>
 
+<!-- Header Navigation -->
 <div class="doc-nav-bar">
   <div class="wrap">
     <a class="doc-brand" href="index.html">GTExplorer Docs</a>
     <nav class="doc-nav">
-<a class="current" href="index.html">Overview</a>
-<a href="doc/usage.html">Usage</a>
-<a href="doc/formats.html">Formats</a>
-<a href="doc/archives.html">Archives</a>
-<a href="doc/filelists/index.html">File lists</a>
-<a href="doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
-<a href="doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
-<a href="doc/filelists/BG.DAT.html">BG.DAT</a>
-<a href="doc/filelists/CAR.DAT.html">CAR.DAT</a>
-<a href="doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
-<a href="doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
-<a href="doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
-<a href="doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
-<a href="doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
-<a href="doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
-<a href="doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
-<a href="doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
-<a href="doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
-<a href="doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
-<a href="doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
-<a href="doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
-<a href="doc/filelists/GTHTML.html">GTHTML</a>
-<a href="CONTRIBUTING.html">Contributing</a>
+      <a class="current" href="index.html">Overview</a>
+      <a href="doc/usage.html">Usage</a>
+      <a href="doc/formats.html">Formats</a>
+      <a href="doc/archives.html">Archives</a>
+      <a href="doc/filelists/index.html">File lists</a>
+      <a href="doc/filelists/ARCADE.DAT.html">ARCADE.DAT</a>
+      <a href="doc/filelists/ARCADE2.DAT.html">ARCADE2.DAT</a>
+      <a href="doc/filelists/BG.DAT.html">BG.DAT</a>
+      <a href="doc/filelists/CAR.DAT.html">CAR.DAT</a>
+      <a href="doc/filelists/CARCADE.DAT.html">CARCADE.DAT</a>
+      <a href="doc/filelists/CARINF.DAT.html">CARINF.DAT</a>
+      <a href="doc/filelists/COURSE.DAT.html">COURSE.DAT</a>
+      <a href="doc/filelists/GAMEMENU.DAT.html">GAMEMENU.DAT</a>
+      <a href="doc/filelists/MENU_HTM.ARC.html">MENU_HTM.ARC</a>
+      <a href="doc/filelists/MENU_IMG.ARC.html">MENU_IMG.ARC</a>
+      <a href="doc/filelists/MENU_MENU_IMG.ARC.html">MENU_MENU_IMG.ARC</a>
+      <a href="doc/filelists/MENU_RAW.ARC.html">MENU_RAW.ARC</a>
+      <a href="doc/filelists/MENU_SND.ARC.html">MENU_SND.ARC</a>
+      <a href="doc/filelists/PITMENU.DAT.html">PITMENU.DAT</a>
+      <a href="doc/filelists/REPLAY.DAT.html">REPLAY.DAT</a>
+      <a href="doc/filelists/SOUND.DAT.html">SOUND.DAT</a>
+      <a href="doc/filelists/GTHTML.html">GTHTML</a>
+      <a href="CONTRIBUTING.html">Contributing</a>
     </nav>
   </div>
 </div>
 
-<main class="page doc-page">
-  <section class="bento">
-    <div class="panel doc-panel" style="grid-column: span 12;">
-<div align="center">
+<!-- Bento Grid Layout -->
+<main class="bento-container">
 
-  <img src="img/gtexplorericon.png" width="220" alt="GTExplorer Logo">
+  <!-- HERO CARD -->
+  <div class="bento-card col-12 hero-card">
+    <img src="img/gtexplorericon.png" width="220" alt="GTExplorer Logo">
+    <h1>GTExplorer</h1>
+    <p><b>An all-in-one extractor, viewer, editor, and repacker for Gran Turismo 1 (PS1) archive files.</b></p>
 
-  <h1>GTExplorer</h1>
-
-  <p><b>An all-in-one extractor, viewer, editor, and repacker for Gran Turismo 1 (PS1) archive files.</b></p>
-
-  <a href="https://github.com/JeevesGB/GTExplorer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.8%2B-blue.svg" alt="Python"></a>
-  <a href="https://www.riverbankcomputing.com/software/pyqt/"><img src="https://img.shields.io/badge/UI-PyQt6-41CD52.svg" alt="PyQt"></a>
-  <img src="https://img.shields.io/badge/platform-Windows-lightgrey.svg" alt="Platform">
-  <img src="https://img.shields.io/badge/Gran%20Turismo-1-white?logo=playstation&amp;logoColor=white" alt="Gran Turismo 1">
-  <a href="https://github.com/JeevesGB/GTExplorer/commits/main"><img src="https://img.shields.io/github/last-commit/JeevesGB/GTExplorer" alt="Last commit"></a>
-  <a href="https://github.com/JeevesGB/GTExplorer/releases"><img src="https://img.shields.io/github/v/release/JeevesGB/GTExplorer" alt="GitHub release"></a>
-
-</div>
-<hr>
-<div align="center">
-  <img src="img/viper/combined-images.png" alt="3D Model Viewer" width="48%">
-  <img src="img/harlq.gif" alt="GTExplorer Demo" width="48%">
-  <img src="img/supr.png" alt="Paltette Editor" width="48%">
-  <img src="img/corv.png" alt="Edited Color Preview" width="48%">
-</div>
-<hr>
-<h2 id="features">Features</h2>
-<ul>
-<li><strong>Archive Management</strong> — Extract and repack <strong>GT-ARC</strong> / <strong>GT-ZIP</strong> archives (<code>.DAT</code> / <code>.ARC</code>). Uses <code>manifest.txt</code> when present.</li>
-<li><strong>Asset Viewer</strong> — View TIM, TIM packs (<code>.tpk</code>), CTEX, GT-PS, and other GT assets.</li>
-<li><strong>3D Model Viewer</strong> — Preview 3D car and track models.</li>
-<li><strong>Built-in Editors</strong> — Edit save data, view car databases, adjust color palettes, and run debug tools.</li>
-<li><strong>Preview Options</strong> — Inspect text files, GTHTML, SPEC / COLOR tables, and sound sequences.</li>
-<li><strong>TIM Tools</strong> — Convert, re-encode, replace, swap palettes, and batch-process TIM textures (requires Pillow).</li>
-<li><strong>Region Support</strong> — Built-in regional file lists for accurate asset identification.</li>
-<li><strong>TIM &amp; Expansion Tools</strong> — Optional TIM packing and INST/ENGN sample expansion.</li>
-<li><strong>Disc Rebuilding Pipeline</strong> — Integrated wrapper for <a href="https://github.com/Lameguy64/mkpsxiso">mkpsxiso</a> (<code>dumpsxiso</code> / <code>mkpsxiso</code>) directly within the GUI.</li>
-<li><strong>In-App Help</strong> — Built-in user guide (Help button or <strong>Help → User Guide</strong>).</li>
-</ul>
-<blockquote><p>💡 <strong>Tip:</strong> Always perform a clean <strong>Extract All</strong> (with <code>manifest.txt</code>) prior to modifying assets for seamless repacking.</p></blockquote>
-<hr>
-<h2 id="work-in-progress">Work in Progress</h2>
-<h3 id="palette-editor">Palette Editor</h3>
-<p><img src="https://github.com/user-attachments/assets/21bda318-2ecb-45bc-8eb3-be4b1577646d" alt="Palette Editor"> In latest build</p>
-<h3 id="database-editor">Database Editor</h3>
-<p><img src="https://github.com/user-attachments/assets/3ef5510d-df22-4f35-9d70-f4e5aa0d0cbd" alt="Database Editor"></p>
-<hr>
-<h2 id="known-limitations">Known Limitations</h2>
-<ul>
-<li><strong>TIM Pack Repacking:</strong> Repacking <code>.tpk</code> files is not yet implemented. Loose <code>.TIM</code> files can be edited normally.</li>
-<li><strong>Model Renderer:</strong> Model viewing is experimental. Models currently lack wheels (using placeholders for now) and may cause performance slowdowns or crashes.</li>
-<li><strong>Repack Workflow:</strong> You must open the folder you wish to repack via <strong>File → Open Folder</strong> before running a repack operation (<strong>Extract/Repack</strong>).</li>
-<li><strong>Disc Rebuilding:</strong> Automatic disc rebuilding with <code>mkpsxiso</code> can occasionally fail after repacking. Moving modified files into the disc folder manually is recommended.</li>
-</ul>
-<hr>
-<h2 id="setup-workspace">Setup / Workspace</h2>
-<p>Open <strong>File → Setup / Workspace…</strong> to configure paths:</p>
-<div class="table-wrap"><table><thead><tr>
-<th>Section</th>
-<th>Purpose</th>
-</tr></thead><tbody>
-<tr>
-<td><strong>1. Working folders</strong></td>
-<td><strong>Input</strong> = original <code>.DAT</code> / <code>.ARC</code> files (read-only). <strong>Output</strong> = extracts and repacked output.</td>
-</tr>
-<tr>
-<td><strong>2. Disc dump &amp; rebuild</strong></td>
-<td><em>(Optional)</em> Paths for disc image, <code>dumpsxiso</code> XML, disc file tree, and built <code>.bin</code>/<code>.cue</code>.</td>
-</tr>
-</tbody></table></div>
-<h3 id="suggested-layout">Suggested Layout</h3>
-<p>C:\GT1_Modding\ ├── GAMEFILES\        ← Original game archives (.DAT / .ARC) ├── _mods\            ← Extracted assets &amp; repacked edits ├── disc_files\       ← ISO files dumped via dumpsxiso ├── gt1.xml           ← Project configuration XML └── _built\           ← Output directory for rebuilt .bin / .cue</p>
-<p>For a simple single-root setup, point the default project paths at something like <code>C:/GT1/</code>.</p>
-<hr>
-<h2 id="typical-modding-workflow">Typical Modding Workflow</h2>
-<p>[Dump ISO] ──► [Extract DAT/ARC] ──► [Edit Assets/TIMs] ──► [Repack Archive] ──► [Rebuild ISO]</p>
-<ol>
-<li><strong>Dump Game Disc</strong> <em>(Optional, once)</em> — Run <strong>Tools → Dump disc (dumpsxiso)…</strong> or set up via Setup.</li>
-<li><strong>Extract Archives</strong> — Open a target <code>.DAT</code> file and click <strong>Extract → Extract All</strong>.</li>
-<li><strong>Modify Assets</strong> — Edit texture files (<code>.TIM</code>), text, or other assets in your output directory.</li>
-<li><strong>Repack</strong> — Run <strong>Extract → Repack</strong> to generate an updated archive file.</li>
-<li><strong>Rebuild Disc</strong> — Copy the modded <code>.DAT</code> into the disc file tree (matching the original path), then run <strong>Tools → Build disc (mkpsxiso)…</strong> and boot the new <code>.cue</code> in an emulator.</li>
-</ol>
-<hr>
-<h2 id="supported-file-formats-doc-formats-md"><a href="doc/formats.html">Supported File Formats</a></h2>
-<h3 id="archive-kinds-doc-archives-md"><a href="doc/archives.html">Archive Kinds</a></h3>
-<div class="table-wrap"><table><thead><tr>
-<th>Kind</th>
-<th>Detection</th>
-<th>Examples</th>
-</tr></thead><tbody>
-<tr>
-<td><strong>Standard GT-ARC</strong></td>
-<td><code>@(#)GT-ARC</code></td>
-<td><code>COURSE.DAT</code>, <code>CAR.DAT</code>, <code>SOUND.DAT</code>, <code>MENU_RAW.ARC</code></td>
-</tr>
-<tr>
-<td><strong>Compressed GT-ARC</strong></td>
-<td>Mangled <code>@(#)GT-A</code> / <code>RC</code></td>
-<td><code>CARINF.DAT</code></td>
-</tr>
-<tr>
-<td><strong>Raw GT-ZIP</strong></td>
-<td>No ARC wrapper</td>
-<td><code>GAMEFONT.DAT</code></td>
-</tr>
-</tbody></table></div>
-<h3 id="detected-file-types-doc-filelists-index-md"><a href="doc/filelists/index.html">Detected File Types</a></h3>
-<div class="table-wrap"><table><thead><tr>
-<th>Content</th>
-<th>Extension</th>
-<th>Notes</th>
-</tr></thead><tbody>
-<tr>
-<td>TIM texture</td>
-<td><code>.tim</code></td>
-<td>Preview, replace, re-encode</td>
-</tr>
-<tr>
-<td>TIM pack</td>
-<td><code>.tpk</code></td>
-<td>Expand / rebuild with Extract TIMs</td>
-</tr>
-<tr>
-<td>GT-PS / GT-CAR / GT-CTEX / GT-SKY</td>
-<td><code>.ps</code> / <code>.car</code> / <code>.tex</code> / <code>.sky</code></td>
-<td>Models &amp; textures</td>
-</tr>
-<tr>
-<td>Nested GT-ARC</td>
-<td><code>.arc</code></td>
-<td>Open Nested ARC</td>
-</tr>
-<tr>
-<td>GTHTML</td>
-<td><code>.gthtml</code></td>
-<td>Menu / script data</td>
-</tr>
-<tr>
-<td>INST / ENGN / SEQG</td>
-<td><code>.ins</code> / <code>.es</code> / <code>.seq</code></td>
-<td>Sound &amp; sequences</td>
-</tr>
-<tr>
-<td>SPEC, COLOR, TIRE, …</td>
-<td>matching</td>
-<td>Car part tables</td>
-</tr>
-<tr>
-<td>Filename lists / text</td>
-<td><code>.idx</code> / <code>.txt</code></td>
-<td>Name tables &amp; messages</td>
-</tr>
-</tbody></table></div>
-<hr>
-<h2 id="requirements-quick-start">Requirements &amp; Quick Start</h2>
-<h3 id="prerequisites">Prerequisites</h3>
-<ul>
-<li><strong>Python 3.8+</strong></li>
-<li><strong>PyQt6</strong> ≥ 6.4</li>
-<li><strong>Pillow</strong> &amp; <strong>NumPy</strong></li>
-</ul>
-<h3 id="installation">Installation</h3>
-<p>git clone https://github.com/JeevesGB/GTExplorer.git cd GTExplorer pip install -r requirements.txt</p>
-<h3 id="running-gtexplorer">Running GTExplorer</h3>
-<p><strong>Windows</strong> run.bat</p>
-<p><strong>From terminal</strong> python src/main.py</p>
-<ol>
-<li>On first launch, complete <strong>Setup</strong> (input / output folders).</li>
-<li><strong>File → Open .DAT</strong> — or click an archive in the Input list.</li>
-<li><em>(Optional)</em> Pick a region <strong>Names</strong> list in the toolbar.</li>
-<li><strong>Extract → Extract All</strong> into your output folder.</li>
-<li>Edit files on disk, then <strong>Extract → Repack</strong>.</li>
-</ol>
-<p>Press <kbd>F1</kbd> or click <strong>Help</strong> in the toolbar for the full User Guide.</p>
-<h5 id="usage-doc-usage-md"><a href="doc/usage.html">Usage</a></h5>
-<hr>
-<h2 id="tools-folder">Tools Folder</h2>
-<p>GTExplorer does <strong>not</strong> ship <code>mkpsxiso</code>. To dump or rebuild full disc images:</p>
-<ol>
-<li>Download the official release: <a href="https://github.com/Lameguy64/mkpsxiso/releases/latest">Lameguy64/mkpsxiso</a></li>
-<li>Place <code>mkpsxiso.exe</code> and <code>dumpsxiso.exe</code> in the project&#x27;s <code>tools/</code> directory.</li>
-</ol>
-<p>tools/ ├── README.txt          ← Ships with the project ├── mkpsxiso.exe        ← You add (official release) └── dumpsxiso.exe       ← You add</p>
-<hr>
-<h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
-<div class="table-wrap"><table><thead><tr>
-<th>Shortcut</th>
-<th>Action</th>
-</tr></thead><tbody>
-<tr>
-<td><kbd>Ctrl</kbd> + <kbd>O</kbd></td>
-<td>Open archive</td>
-</tr>
-<tr>
-<td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd></td>
-<td>Open extract folder</td>
-</tr>
-<tr>
-<td><kbd>Ctrl</kbd> + <kbd>E</kbd></td>
-<td>Extract selected</td>
-</tr>
-<tr>
-<td><kbd>Ctrl</kbd> + <kbd>F</kbd></td>
-<td>Focus filter</td>
-</tr>
-<tr>
-<td><kbd>F1</kbd></td>
-<td>Open User Guide</td>
-</tr>
-</tbody></table></div>
-<hr>
-<h2 id="credits">Credits</h2>
-<ul>
-<li><a href="https://github.com/pez2k/gt2tools">pez2k / gt2tools</a> — foundational prior research into GT1&#x27;s archive and asset formats, without which much of GTExplorer&#x27;s format support would not have been possible.</li>
-</ul>
-<ul>
-<li><a href="https://github.com/Lameguy64/mkpsxiso">Lameguy64 / mkpsxiso</a> — provides the <code>dumpsxiso</code> / <code>mkpsxiso</code> tools GTExplorer wraps for optional disc dumping and rebuilding.</li>
-</ul>
-<ul>
-<li>The Gran Turismo modding and PS1 reverse-engineering community — for ongoing research, testing, and format documentation that continues to inform this project. Many of GT1&#x27;s file formats are still being actively researched; see <a href="CONTRIBUTING.html">Contributing</a> if you&#x27;d like to help.</li>
-</ul>
-<hr>
-<h2 id="contributing">Contributing</h2>
-<p>Contributions are welcome! Please see <a href="CONTRIBUTING.html">CONTRIBUTING.md</a> for setup instructions, coding guidelines, and a list of areas that need help (see <a href="#known-limitations">Known Limitations</a> above for good starting points).</p>
-<hr>
-<h2 id="license">License</h2>
-<p>Distributed under the <a href="https://github.com/JeevesGB/GTExplorer/blob/main/LICENSE">MIT License</a>.</p>
+    <div class="hero-badges">
+      <a href="https://github.com/JeevesGB/GTExplorer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+      <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.8%2B-blue.svg" alt="Python"></a>
+      <a href="https://www.riverbankcomputing.com/software/pyqt/"><img src="https://img.shields.io/badge/UI-PyQt6-41CD52.svg" alt="PyQt"></a>
+      <img src="https://img.shields.io/badge/platform-Windows-lightgrey.svg" alt="Platform">
+      <img src="https://img.shields.io/badge/Gran%20Turismo-1-white?logo=playstation&amp;logoColor=white" alt="Gran Turismo 1">
+      <a href="https://github.com/JeevesGB/GTExplorer/commits/main"><img src="https://img.shields.io/github/last-commit/JeevesGB/GTExplorer" alt="Last commit"></a>
+      <a href="https://github.com/JeevesGB/GTExplorer/releases"><img src="https://img.shields.io/github/v/release/JeevesGB/GTExplorer" alt="GitHub release"></a>
     </div>
-  </section>
+
+    <div class="hero-gallery">
+      <img src="img/viper/combined-images.png" alt="3D Model Viewer">
+      <img src="img/harlq.gif" alt="GTExplorer Demo">
+      <img src="img/supr.png" alt="Palette Editor">
+      <img src="img/corv.png" alt="Edited Color Preview">
+    </div>
+  </div>
+
+  <!-- 3D MODEL VIEWER -->
+  <div class="bento-card col-7">
+  <h2>3D Mesh Preview</h2>
+  
+  <!-- Model Switcher Control -->
+  <div class="control-group" style="margin-bottom: 12px;">
+    <label for="modelSelect">Select Car Model</label>
+    <select id="modelSelect" class="gt-select" onchange="switchModel(this.value)">
+      <option value="_npron">NPRON (Day)</option>
+      <option value="_npron_night">NPRON (Night)</option>
+      <option value="_npror">NPROR (Day)</option>
+      <option value="_npror_night">NPROR (Night)</option>
+    </select>
+  </div>
+
+  <div id="model-viewer-container" class="model-canvas-box">
+    <div id="viewer-overlay" class="viewer-overlay">
+      <span>Click & Drag to rotate | Scroll to zoom</span>
+    </div>
+  </div>
+</div>
+
+  <!-- FEATURES -->
+  <div class="bento-card col-5">
+    <h2 id="features">Features</h2>
+    <ul>
+      <li><strong>Archive Management</strong> — Extract and repack <strong>GT-ARC</strong> / <strong>GT-ZIP</strong> archives (<code>.DAT</code> / <code>.ARC</code>). Uses <code>manifest.txt</code> when present.</li>
+      <li><strong>Asset Viewer</strong> — View TIM, TIM packs (<code>.tpk</code>), CTEX, GT-PS, and other GT assets.</li>
+      <li><strong>3D Model Viewer</strong> — Preview 3D car and track models.</li>
+      <li><strong>Built-in Editors</strong> — Edit save data, view car databases, adjust color palettes, and run debug tools.</li>
+      <li><strong>Preview Options</strong> — Inspect text files, GTHTML, SPEC / COLOR tables, and sound sequences.</li>
+      <li><strong>TIM Tools</strong> — Convert, re-encode, replace, swap palettes, and batch-process TIM textures (requires Pillow).</li>
+      <li><strong>Region Support</strong> — Built-in regional file lists for accurate asset identification.</li>
+      <li><strong>TIM &amp; Expansion Tools</strong> — Optional TIM packing and INST/ENGN sample expansion.</li>
+      <li><strong>Disc Rebuilding Pipeline</strong> — Integrated wrapper for <a href="https://github.com/Lameguy64/mkpsxiso">mkpsxiso</a> (<code>dumpsxiso</code> / <code>mkpsxiso</code>) directly within the GUI.</li>
+      <li><strong>In-App Help</strong> — Built-in user guide (Help button or <strong>Help → User Guide</strong>).</li>
+    </ul>
+    <blockquote style="margin-top: 12px;"><p>💡 <strong>Tip:</strong> Always perform a clean <strong>Extract All</strong> (with <code>manifest.txt</code>) prior to modifying assets for seamless repacking.</p></blockquote>
+  </div>
+
+  <!-- WORK IN PROGRESS -->
+  <div class="bento-card col-6">
+    <h2 id="work-in-progress">Work in Progress</h2>
+    <h3 id="palette-editor">Palette Editor</h3>
+    <p><img src="https://github.com/user-attachments/assets/21bda318-2ecb-45bc-8eb3-be4b1577646d" alt="Palette Editor" style="max-width: 100%; border-radius: 6px;"> In latest build</p>
+    <h3 id="database-editor">Database Editor</h3>
+    <p><img src="https://github.com/user-attachments/assets/3ef5510d-df22-4f35-9d70-f4e5aa0d0cbd" alt="Database Editor" style="max-width: 100%; border-radius: 6px;"></p>
+  </div>
+
+  <!-- KNOWN LIMITATIONS -->
+  <div class="bento-card col-6">
+    <h2 id="known-limitations">Known Limitations</h2>
+    <ul>
+      <li><strong>TIM Pack Repacking:</strong> Repacking <code>.tpk</code> files is not yet implemented. Loose <code>.TIM</code> files can be edited normally.</li>
+      <li><strong>Model Renderer:</strong> Model viewing is experimental. Models currently lack wheels (using placeholders for now) and may cause performance slowdowns or crashes.</li>
+      <li><strong>Repack Workflow:</strong> You must open the folder you wish to repack via <strong>File → Open Folder</strong> before running a repack operation (<strong>Extract/Repack</strong>).</li>
+      <li><strong>Disc Rebuilding:</strong> Automatic disc rebuilding with <code>mkpsxiso</code> can occasionally fail after repacking. Moving modified files into the disc folder manually is recommended.</li>
+    </ul>
+  </div>
+
+  <!-- TYPICAL MODDING WORKFLOW -->
+  <div class="bento-card col-6">
+    <h2 id="typical-modding-workflow">Typical Modding Workflow</h2>
+    <p><code>[Dump ISO] ──► [Extract DAT/ARC] ──► [Edit Assets/TIMs] ──► [Repack Archive] ──► [Rebuild ISO]</code></p>
+    <ol>
+      <li><strong>Dump Game Disc</strong> <em>(Optional, once)</em> — Run <strong>Tools → Dump disc (dumpsxiso)…</strong> or set up via Setup.</li>
+      <li><strong>Extract Archives</strong> — Open a target <code>.DAT</code> file and click <strong>Extract → Extract All</strong>.</li>
+      <li><strong>Modify Assets</strong> — Edit texture files (<code>.TIM</code>), text, or other assets in your output directory.</li>
+      <li><strong>Repack</strong> — Run <strong>Extract → Repack</strong> to generate an updated archive file.</li>
+      <li><strong>Rebuild Disc</strong> — Copy the modded <code>.DAT</code> into the disc file tree (matching the original path), then run <strong>Tools → Build disc (mkpsxiso)…</strong> and boot the new <code>.cue</code> in an emulator.</li>
+    </ol>
+  </div>
+
+  <!-- SETUP & WORKSPACE -->
+  <div class="bento-card col-6">
+    <h2 id="setup-workspace">Setup / Workspace</h2>
+    <p>Open <strong>File → Setup / Workspace…</strong> to configure paths:</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Section</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Working folders</strong></td>
+            <td><strong>Input</strong> = original <code>.DAT</code> / <code>.ARC</code> files (read-only). <strong>Output</strong> = extracts and repacked output.</td>
+          </tr>
+          <tr>
+            <td><strong>2. Disc dump &amp; rebuild</strong></td>
+            <td><em>(Optional)</em> Paths for disc image, <code>dumpsxiso</code> XML, disc file tree, and built <code>.bin</code>/<code>.cue</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="suggested-layout">Suggested Layout</h3>
+    <pre><code>C:\GT1_Modding\
+├── GAMEFILES\        ← Original game archives (.DAT / .ARC)
+├── _mods\            ← Extracted assets & repacked edits
+├── disc_files\       ← ISO files dumped via dumpsxiso
+├── gt1.xml           ← Project configuration XML
+└── _built\           ← Output directory for rebuilt .bin / .cue</code></pre>
+    <p>For a simple single-root setup, point the default project paths at something like <code>C:/GT1/</code>.</p>
+  </div>
+
+  <!-- SUPPORTED FILE FORMATS -->
+  <div class="bento-card col-8">
+    <h2 id="supported-file-formats-doc-formats-md"><a href="doc/formats.html" style="color: inherit;">Supported File Formats</a></h2>
+    <h3 id="archive-kinds-doc-archives-md"><a href="doc/archives.html" style="color: inherit;">Archive Kinds</a></h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Kind</th>
+            <th>Detection</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Standard GT-ARC</strong></td>
+            <td><code>@(#)GT-ARC</code></td>
+            <td><code>COURSE.DAT</code>, <code>CAR.DAT</code>, <code>SOUND.DAT</code>, <code>MENU_RAW.ARC</code></td>
+          </tr>
+          <tr>
+            <td><strong>Compressed GT-ARC</strong></td>
+            <td>Mangled <code>@(#)GT-A</code> / <code>RC</code></td>
+            <td><code>CARINF.DAT</code></td>
+          </tr>
+          <tr>
+            <td><strong>Raw GT-ZIP</strong></td>
+            <td>No ARC wrapper</td>
+            <td><code>GAMEFONT.DAT</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="detected-file-types-doc-filelists-index-md"><a href="doc/filelists/index.html" style="color: inherit;">Detected File Types</a></h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Content</th>
+            <th>Extension</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TIM texture</td>
+            <td><code>.tim</code></td>
+            <td>Preview, replace, re-encode</td>
+          </tr>
+          <tr>
+            <td>TIM pack</td>
+            <td><code>.tpk</code></td>
+            <td>Expand / rebuild with Extract TIMs</td>
+          </tr>
+          <tr>
+            <td>GT-PS / GT-CAR / GT-CTEX / GT-SKY</td>
+            <td><code>.ps</code> / <code>.car</code> / <code>.tex</code> / <code>.sky</code></td>
+            <td>Models &amp; textures</td>
+          </tr>
+          <tr>
+            <td>Nested GT-ARC</td>
+            <td><code>.arc</code></td>
+            <td>Open Nested ARC</td>
+          </tr>
+          <tr>
+            <td>GTHTML</td>
+            <td><code>.gthtml</code></td>
+            <td>Menu / script data</td>
+          </tr>
+          <tr>
+            <td>INST / ENGN / SEQG</td>
+            <td><code>.ins</code> / <code>.es</code> / <code>.seq</code></td>
+            <td>Sound &amp; sequences</td>
+          </tr>
+          <tr>
+            <td>SPEC, COLOR, TIRE, …</td>
+            <td>matching</td>
+            <td>Car part tables</td>
+          </tr>
+          <tr>
+            <td>Filename lists / text</td>
+            <td><code>.idx</code> / <code>.txt</code></td>
+            <td>Name tables &amp; messages</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- REQUIREMENTS & QUICK START -->
+  <div class="bento-card col-4">
+    <h2 id="requirements-quick-start">Requirements &amp; Quick Start</h2>
+    <h3>Prerequisites</h3>
+    <ul>
+      <li><strong>Python 3.8+</strong></li>
+      <li><strong>PyQt6</strong> ≥ 6.4</li>
+      <li><strong>Pillow</strong> &amp; <strong>NumPy</strong></li>
+    </ul>
+
+    <h3>Installation</h3>
+    <pre><code>git clone https://github.com/JeevesGB/GTExplorer.git
+cd GTExplorer
+pip install -r requirements.txt</code></pre>
+
+    <h3>Running GTExplorer</h3>
+    <p><strong>Windows:</strong> <code>run.bat</code></p>
+    <p><strong>From terminal:</strong> <code>python src/main.py</code></p>
+    <ol>
+      <li>On first launch, complete <strong>Setup</strong> (input / output folders).</li>
+      <li><strong>File → Open .DAT</strong> — or click an archive in the Input list.</li>
+      <li><em>(Optional)</em> Pick a region <strong>Names</strong> list in the toolbar.</li>
+      <li><strong>Extract → Extract All</strong> into your output folder.</li>
+      <li>Edit files on disk, then <strong>Extract → Repack</strong>.</li>
+    </ol>
+    <p>Press <kbd>F1</kbd> or click <strong>Help</strong> in the toolbar for the full User Guide.</p>
+    <p><a href="doc/usage.html">Detailed Usage Docs</a></p>
+  </div>
+
+  <!-- TOOLS FOLDER & SHORTCUTS -->
+  <div class="bento-card col-6">
+    <h2 id="tools-folder">Tools Folder</h2>
+    <p>GTExplorer does <strong>not</strong> ship <code>mkpsxiso</code>. To dump or rebuild full disc images:</p>
+    <ol>
+      <li>Download the official release: <a href="https://github.com/Lameguy64/mkpsxiso/releases/latest">Lameguy64/mkpsxiso</a></li>
+      <li>Place <code>mkpsxiso.exe</code> and <code>dumpsxiso.exe</code> in the project's <code>tools/</code> directory.</li>
+    </ol>
+    <pre><code>tools/
+├── README.txt           ← Ships with the project
+├── mkpsxiso.exe        ← You add (official release)
+└── dumpsxiso.exe       ← You add</code></pre>
+  </div>
+
+  <div class="bento-card col-6">
+    <h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Shortcut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><kbd>Ctrl</kbd> + <kbd>O</kbd></td>
+            <td>Open archive</td>
+          </tr>
+          <tr>
+            <td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd></td>
+            <td>Open extract folder</td>
+          </tr>
+          <tr>
+            <td><kbd>Ctrl</kbd> + <kbd>E</kbd></td>
+            <td>Extract selected</td>
+          </tr>
+          <tr>
+            <td><kbd>Ctrl</kbd> + <kbd>F</kbd></td>
+            <td>Focus filter</td>
+          </tr>
+          <tr>
+            <td><kbd>F1</kbd></td>
+            <td>Open User Guide</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CREDITS, CONTRIBUTING, LICENSE -->
+  <div class="bento-card col-12">
+    <h2 id="credits">Credits</h2>
+    <ul>
+      <li><a href="https://github.com/pez2k/gt2tools">pez2k / gt2tools</a> — foundational prior research into GT1's archive and asset formats, without which much of GTExplorer's format support would not have been possible.</li>
+      <li><a href="https://github.com/Lameguy64/mkpsxiso">Lameguy64 / mkpsxiso</a> — provides the <code>dumpsxiso</code> / <code>mkpsxiso</code> tools GTExplorer wraps for optional disc dumping and rebuilding.</li>
+      <li>The Gran Turismo modding and PS1 reverse-engineering community — for ongoing research, testing, and format documentation that continues to inform this project. Many of GT1's file formats are still being actively researched; see <a href="CONTRIBUTING.html">Contributing</a> if you'd like to help.</li>
+    </ul>
+
+    <h2 id="contributing" style="margin-top: 16px;">Contributing</h2>
+    <p>Contributions are welcome! Please see <a href="CONTRIBUTING.html">CONTRIBUTING.md</a> for setup instructions, coding guidelines, and a list of areas that need help (see <a href="#known-limitations">Known Limitations</a> above for good starting points).</p>
+
+    <h2 id="license" style="margin-top: 16px;">License</h2>
+    <p>Distributed under the <a href="https://github.com/JeevesGB/GTExplorer/blob/main/LICENSE">MIT License</a>.</p>
+  </div>
+
 </main>
 
 <footer>
@@ -284,5 +378,6 @@
 </footer>
 
 <script src="js/docs.js"></script>
+<script src="js/viewer.js"></script>
 </body>
 </html>
