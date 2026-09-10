@@ -51,6 +51,14 @@ const MODEL_MANIFEST = {
     car: `${BASE_PATH}mdl/_npror_night.car`,
     tex: `${BASE_PATH}mdl/_npror_night.tex`,
   },
+//  _n432r:{
+//    car: `${BASE_PATH}mdl/_n432r.car`,
+//    tex: `${BASE_PATH}mdl/_n432r.tex`,
+//  },
+//  _n432n:{
+//    car: `${BASE_PATH}mdl/_n432n.car`,
+//    tex: `${BASE_PATH}mdl/_n432n.tex`,
+//  },
 };
 
 const FACTORY_COLORS = [
