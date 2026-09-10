@@ -160,7 +160,6 @@ async function switchModel(modelKey) {
   const modelData = MODEL_MANIFEST[modelKey];
   if (!modelData || !currentScene) return;
 
-  // Invalidate any in-flight load from a previous selection
   const myGen = ++loadGeneration;
 
   clearModelMeshes();
@@ -169,7 +168,7 @@ async function switchModel(modelKey) {
 
   try {
     const carRes = await fetch(modelData.car);
-    if (myGen !== loadGeneration) return; // superseded
+    if (myGen !== loadGeneration) return;
     if (!carRes.ok) throw new Error(`HTTP ${carRes.status} loading ${modelData.car}`);
     const carBuffer = await carRes.arrayBuffer();
     if (myGen !== loadGeneration) return;
@@ -192,18 +191,11 @@ async function switchModel(modelKey) {
         const texBuffer = await texRes.arrayBuffer();
         if (myGen !== loadGeneration) return;
 
-        // Desktop masks palette_index with & 0x0F (CLUT 0..15 within set).
-        // Always atlas all 16 CLUTs so headlights / decals / glass never fall
-        // back to the body row when a face references a less-used CLUT.
         const usedSet = new Set();
         for (const f of parsed.faces) {
           usedSet.add(f.pidx & 0x0f);
         }
         const usedKeys = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-        console.log(
-          "[Viewer] face CLUTs used:",
-          [...usedSet].sort((a, b) => a - b).join(", ")
-        );
 
         const atlas = generateTexAtlas(texBuffer, 0, usedKeys);
         if (myGen !== loadGeneration) return;
@@ -244,12 +236,69 @@ async function switchModel(modelKey) {
       });
     }
 
-    // Clear again in case a stale load slipped a mesh in
     clearModelMeshes();
 
-    const geometry = buildGeometryFromFaces(parsed, keyToRow, nRows);
+    const bodyArrays = buildBodyArrays(parsed, keyToRow, nRows);
+    const wheelArrays = buildAllWheelArrays(bodyArrays.triplets, parsed.wheels);
+
+    let center = [0, 0, 0];
+    if (bodyArrays.triplets.length) {
+      const xs = bodyArrays.triplets.map((p) => p[0]);
+      const ys = bodyArrays.triplets.map((p) => p[1]);
+      const zs = bodyArrays.triplets.map((p) => p[2]);
+      center = [
+        (Math.min(...xs) + Math.max(...xs)) / 2,
+        (Math.min(...ys) + Math.max(...ys)) / 2,
+        (Math.min(...zs) + Math.max(...zs)) / 2,
+      ];
+    }
+
+    // Shift body vertices around center
+    for (let i = 0; i < bodyArrays.positions.length; i += 3) {
+      bodyArrays.positions[i] -= center[0];
+      bodyArrays.positions[i + 1] -= center[1];
+      bodyArrays.positions[i + 2] -= center[2];
+    }
+
+    // Shift wheel vertices with the exact same offset
+    for (let i = 0; i < wheelArrays.positions.length; i += 3) {
+      wheelArrays.positions[i] -= center[0];
+      wheelArrays.positions[i + 1] -= center[1];
+      wheelArrays.positions[i + 2] -= center[2];
+    }
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute(
+      "position",
+      new THREE.Float32BufferAttribute(bodyArrays.positions, 3)
+    );
+    geometry.setAttribute("uv", new THREE.Float32BufferAttribute(bodyArrays.uvs, 2));
+    geometry.computeVertexNormals();
+
     activeModelMesh = new THREE.Mesh(geometry, material);
     currentScene.add(activeModelMesh);
+
+    if (wheelArrays.positions.length) {
+      const wheelGeometry = new THREE.BufferGeometry();
+      wheelGeometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(wheelArrays.positions, 3)
+      );
+      wheelGeometry.setAttribute(
+        "color",
+        new THREE.Float32BufferAttribute(wheelArrays.colors, 3)
+      );
+      wheelGeometry.setIndex(wheelArrays.indices);
+      wheelGeometry.computeVertexNormals();
+      const wheelMaterial = new THREE.MeshStandardMaterial({
+        vertexColors: true,
+        roughness: 0.75,
+        metalness: 0.15,
+        side: THREE.DoubleSide,
+      });
+      const wheelMesh = new THREE.Mesh(wheelGeometry, wheelMaterial);
+      currentScene.add(wheelMesh);
+    }
 
     geometry.computeBoundingSphere();
     if (geometry.boundingSphere) {
@@ -266,7 +315,7 @@ async function switchModel(modelKey) {
     }
 
     console.log(
-      `[Viewer] ${modelKey}: ${parsed.faces.length} UV faces, atlas rows=${nRows}`
+      `[Viewer] ${modelKey}: ${parsed.faces.length} UV faces, atlas rows=${nRows}, wheels=${wheelArrays.positions.length ? 4 : 0}`
     );
   } catch (err) {
     if (myGen === loadGeneration) {
@@ -276,13 +325,12 @@ async function switchModel(modelKey) {
 }
 
 // ---------------------------------------------------------------------------
-// GT-CAR face parser (collects verts + UV faces with palette_index)
+// GT-CAR face parser
 // ---------------------------------------------------------------------------
 function parseGT1CarFaces(buffer) {
   const view = new DataView(buffer);
   const bytes = new Uint8Array(buffer);
 
-  // Find @(#)GT-CAR
   let headerOffset = -1;
   for (let i = 0; i < Math.min(buffer.byteLength - 10, 64); i++) {
     if (
@@ -306,7 +354,6 @@ function parseGT1CarFaces(buffer) {
     return null;
   }
 
-  // Header: 0x10 + 4 wheels (32) + menu dims (8) + pad (4) + lod_count + 0x42
   let ptr = headerOffset + 0x10 + 32 + 8;
   ptr += 4;
   const lodCount = view.getUint16(ptr, true);
@@ -332,20 +379,34 @@ function parseGT1CarFaces(buffer) {
     (scaleAmount < 0 ? 1.0 / (1 << -scaleAmount) : 1 << scaleAmount) *
     UNITS_TO_METRES;
 
+  // Raw header wheel positions (fixed 1/4096 unit factor)
+  const wheels = [];
+  {
+    let wp = headerOffset + 0x10;
+    for (let w = 0; w < 4; w++) {
+      wheels.push({
+        x: view.getInt16(wp, true) * UNITS_TO_METRES,
+        y: view.getInt16(wp + 2, true) * UNITS_TO_METRES,
+        z: view.getInt16(wp + 4, true) * UNITS_TO_METRES,
+      });
+      wp += 8;
+    }
+  }
+
   // Vertices
   const vertices = [];
   for (let i = 0; i < vertexCount; i++) {
     if (ptr + 8 > buffer.byteLength) break;
     const x = view.getInt16(ptr, true) * scaleFactor;
     const y = view.getInt16(ptr + 2, true) * scaleFactor;
-    const z = -view.getInt16(ptr + 4, true) * scaleFactor; // GT1 Z flip
+    const z = view.getInt16(ptr + 4, true) * scaleFactor;
     vertices.push([x, y, z]);
     ptr += 8;
   }
 
   ptr += normalCount * 8;
-  ptr += triangleCount * 16; // untextured tris
-  ptr += quadCount * 16; // untextured quads
+  ptr += triangleCount * 16;
+  ptr += quadCount * 16;
 
   function unpackFaceVertices(p) {
     const b0 = bytes[p],
@@ -355,8 +416,8 @@ function parseGT1CarFaces(buffer) {
       b4 = bytes[p + 4],
       b5 = bytes[p + 5];
     const v0 = (b1 & 1) * 256 + b0;
-    const v1 = (b2 & 2) * 128 + (b2 & 1) * 128 + (b1 >> 1);
-    const v2 = (b3 & 4) * 64 + (b3 & 2) * 64 + (b3 & 1) * 64 + (b2 >> 2);
+    const v1 = (b2 & 3) * 128 + (b1 >> 1);
+    const v2 = (b3 & 7) * 64 + (b2 >> 2);
     const v3 = (b5 & 1) * 256 + b4;
     return [
       vertices[v0] || vertices[0],
@@ -366,21 +427,13 @@ function parseGT1CarFaces(buffer) {
     ];
   }
 
-  /**
-   * UV face layout after 16-byte base (verts+normals+face type):
-   *   +0  uv0.x, uv0.y
-   *   +2  raw_pal (u16 LE) → palette_index = (raw>>4)+(raw&0x3F)
-   *   +4  uv1.x, uv1.y
-   *   +6  unk, unk
-   *   +8  uv2.x, uv2.y
-   *   +10 uv3.x, uv3.y
-   * Total face = 28 bytes
-   */
   const faces = [];
 
   for (let i = 0; i < uvTriangleCount; i++) {
     if (ptr + 28 > buffer.byteLength) break;
     const [v0, v1, v2] = unpackFaceVertices(ptr);
+    const nb2 = bytes[ptr + 7];
+    const renderOrder = nb2 & 0x80 ? 0b10001 : 0b10000;
     const uv0x = bytes[ptr + 16];
     const uv0y = bytes[ptr + 17];
     const rawPal = view.getUint16(ptr + 18, true);
@@ -397,6 +450,7 @@ function parseGT1CarFaces(buffer) {
         [uv2x, uv2y],
       ],
       pidx,
+      renderOrder,
       isQuad: false,
     });
     ptr += 28;
@@ -405,6 +459,8 @@ function parseGT1CarFaces(buffer) {
   for (let i = 0; i < uvQuadCount; i++) {
     if (ptr + 28 > buffer.byteLength) break;
     const [v0, v1, v2, v3] = unpackFaceVertices(ptr);
+    const nb2 = bytes[ptr + 7];
+    const renderOrder = nb2 & 0x80 ? 0b10001 : 0b10000;
     const uv0x = bytes[ptr + 16];
     const uv0y = bytes[ptr + 17];
     const rawPal = view.getUint16(ptr + 18, true);
@@ -424,35 +480,38 @@ function parseGT1CarFaces(buffer) {
         [uv3x, uv3y],
       ],
       pidx,
+      renderOrder,
       isQuad: true,
     });
     ptr += 28;
   }
 
-  console.log(
-    `[GT1 Parser] LOD0: ${vertexCount} verts, ${uvTriangleCount} UV tris, ${uvQuadCount} UV quads`
-  );
-  return { faces, scaleFactor };
+  faces.sort((a, b) => {
+    if (a.renderOrder !== b.renderOrder) return a.renderOrder - b.renderOrder;
+    return a.pidx - b.pidx;
+  });
+
+  return { faces, scaleFactor, wheels };
 }
 
 // ---------------------------------------------------------------------------
 // Geometry from faces + atlas row mapping
 // ---------------------------------------------------------------------------
 function uvNorm(x, y, row, nRows) {
-  // Match desktop GL / software raster (no V-flip)
   const u = (x + 0.5) / 256.0;
   const vLocal = (y + 0.5) / 256.0;
   const v = (row + vLocal) / Math.max(1, nRows);
   return [u, v];
 }
 
-function buildGeometryFromFaces(parsed, keyToRow, nRows) {
+function buildBodyArrays(parsed, keyToRow, nRows) {
   const positions = [];
   const uvs = [];
+  const triplets = [];
 
   const pushCorner = (vert, uvxy, pidx) => {
     positions.push(vert[0], vert[1], vert[2]);
-    // Match desktop collect_palette_usage: palette_index & 0x0F
+    triplets.push(vert);
     const key = pidx & 0x0f;
     const row = keyToRow.has(key) ? keyToRow.get(key) : key;
     const [u, v] = uvNorm(uvxy[0], uvxy[1], row, nRows);
@@ -460,45 +519,148 @@ function buildGeometryFromFaces(parsed, keyToRow, nRows) {
   };
 
   for (const f of parsed.faces) {
-    // tri 0-1-2
     pushCorner(f.verts[0], f.uvsRaw[0], f.pidx);
     pushCorner(f.verts[1], f.uvsRaw[1], f.pidx);
     pushCorner(f.verts[2], f.uvsRaw[2], f.pidx);
     if (f.isQuad) {
-      // tri 0-2-3
       pushCorner(f.verts[0], f.uvsRaw[0], f.pidx);
       pushCorner(f.verts[2], f.uvsRaw[2], f.pidx);
       pushCorner(f.verts[3], f.uvsRaw[3], f.pidx);
     }
   }
 
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute(
-    "position",
-    new THREE.Float32BufferAttribute(positions, 3)
-  );
-  geometry.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
-  geometry.computeVertexNormals();
-  geometry.center();
-  return geometry;
+  return { positions, uvs, triplets };
+}
+
+function computeWheelTargets(bodyTriplets, wheelsRaw) {
+  if (!wheelsRaw || wheelsRaw.length < 4) return null;
+
+  let min_y = 0, max_y = 0, min_x = 0, max_x = 0;
+  if (bodyTriplets.length) {
+    const xs = bodyTriplets.map((p) => p[0]);
+    const ys = bodyTriplets.map((p) => p[1]);
+    min_x = Math.min(...xs); max_x = Math.max(...xs);
+    min_y = Math.min(...ys); max_y = Math.max(...ys);
+  }
+
+  const body_h = Math.max(1e-6, max_y - min_y);
+  const body_w = Math.max(1e-6, max_x - min_x);
+
+  // Increased base radius from 0.16 -> 0.22 and width from 0.065 -> 0.085
+  const radius = Math.max(0.08, Math.min(0.35, body_h * 0.22));
+  const width = Math.max(0.05, Math.min(0.18, body_w * 0.075));
+
+  // Vertical shift to move wheels up into arches (+Y is up in World Space)
+  const yOffset = body_h * 0.18; 
+
+  const targets = [];
+  for (let i = 0; i < 4; i++) {
+    const raw = wheelsRaw[i];
+    const isFront = i < 2;
+
+    targets.push({
+      cx: raw.x,
+      cy: -raw.y + yOffset, // Lift wheels higher into the arches
+      cz: raw.z,
+      isFront
+    });
+  }
+
+  return {
+    targets,
+    radius_f: radius,
+    radius_r: radius * 1.02,
+    width_f: width,
+    width_r: width * 1.04,
+  };
+}
+
+function buildWheelGeometry(cx, cy, cz, radius, width, segments = 20) {
+  const positions = [];
+  const colors = [];
+  const indices = [];
+  if (radius <= 1e-6) return { positions, colors, indices };
+
+  const half = Math.max(radius * 0.18, Math.abs(width) * 0.5);
+  const tyreInner = radius * 0.72;
+  const rimInner = radius * 0.28;
+  const tyreCol = [0.06, 0.06, 0.07];
+  const sidewallCol = [0.1, 0.1, 0.11];
+  const rimCol = [0.55, 0.55, 0.58];
+  const hubCol = [0.22, 0.22, 0.24];
+
+  const add = (px, py, pz, col) => {
+    positions.push(px, py, pz);
+    colors.push(col[0], col[1], col[2]);
+    return positions.length / 3 - 1;
+  };
+
+  const t_ol = [], t_or = [], r_ol = [], r_or = [], h_ol = [], h_or = [];
+
+  for (let i = 0; i < segments; i++) {
+    const a = (2.0 * Math.PI * i) / segments;
+    const sy = Math.sin(a), cz_ = Math.cos(a);
+
+    const y = cy + radius * sy, z = cz + radius * cz_;
+    t_ol.push(add(cx - half, y, z, tyreCol));
+    t_or.push(add(cx + half, y, z, tyreCol));
+
+    const yi = cy + tyreInner * sy, zi = cz + tyreInner * cz_;
+    r_ol.push(add(cx - half * 0.85, yi, zi, sidewallCol));
+    r_or.push(add(cx + half * 0.85, yi, zi, sidewallCol));
+
+    const yh = cy + rimInner * sy, zh = cz + rimInner * cz_;
+    h_ol.push(add(cx - half * 0.35, yh, zh, rimCol));
+    h_or.push(add(cx + half * 0.35, yh, zh, rimCol));
+  }
+
+  for (let i = 0; i < segments; i++) {
+    const j = (i + 1) % segments;
+    indices.push(t_ol[i], t_or[i], t_or[j], t_ol[i], t_or[j], t_ol[j]);
+    indices.push(t_ol[i], t_ol[j], r_ol[j], t_ol[i], r_ol[j], r_ol[i]);
+    indices.push(t_or[i], r_or[i], r_or[j], t_or[i], r_or[j], t_or[j]);
+    indices.push(r_ol[i], r_ol[j], h_ol[j], r_ol[i], h_ol[j], h_ol[i]);
+    indices.push(r_or[i], h_or[i], h_or[j], r_or[i], h_or[j], r_or[j]);
+  }
+
+  const hub_l = add(cx - half * 0.15, cy, cz, hubCol);
+  const hub_r = add(cx + half * 0.15, cy, cz, hubCol);
+  for (let i = 0; i < segments; i++) {
+    const j = (i + 1) % segments;
+    indices.push(hub_l, h_ol[j], h_ol[i]);
+    indices.push(hub_r, h_or[i], h_or[j]);
+  }
+
+  return { positions, colors, indices };
+}
+
+function buildAllWheelArrays(bodyTriplets, wheelsRaw) {
+  const result = computeWheelTargets(bodyTriplets, wheelsRaw);
+  const positions = [];
+  const colors = [];
+  const indices = [];
+  if (!result) return { positions, colors, indices };
+
+  for (const t of result.targets) {
+    const r = t.isFront ? result.radius_f : result.radius_r;
+    const w = t.isFront ? result.width_f : result.width_r;
+    const wheel = buildWheelGeometry(t.cx, t.cy, t.cz, r, w);
+    const base = positions.length / 3;
+    positions.push(...wheel.positions);
+    colors.push(...wheel.colors);
+    for (const idx of wheel.indices) indices.push(base + idx);
+  }
+  return { positions, colors, indices };
 }
 
 // ---------------------------------------------------------------------------
 // GT-CTEX → vertical palette atlas
 // ---------------------------------------------------------------------------
-/**
- * Decode 4bpp image once, then expand with each requested CLUT into a
- * stacked atlas (256 wide × 256*nRows tall).
- *
- * @param {ArrayBuffer} buffer  raw .tex
- * @param {number} paletteSet   colour / palette-set index (usually 0)
- * @param {number[]} usedKeys   CLUT indices to include (e.g. [0,1,3,14])
- */
 function generateTexAtlas(buffer, paletteSet, usedKeys) {
   const IMAGE_OFF = 0x60;
   const IMAGE_SIZE = (256 * 256) / 2;
   const PAL_OFF = 0x8060;
-  const PAL_STRIDE = 512; // 16 CLUTs × 32 bytes
+  const PAL_STRIDE = 512;
   const CLUT_SIZE = 32;
 
   const view = new DataView(buffer);
@@ -513,11 +675,9 @@ function generateTexAtlas(buffer, paletteSet, usedKeys) {
   if (!usedKeys || usedKeys.length === 0) {
     usedKeys = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   }
-  // Row index = position in usedKeys (identity when usedKeys is 0..15)
   const keyToRow = new Map(usedKeys.map((k, i) => [k & 0x0f, i]));
   const nRows = usedKeys.length;
 
-  // 4bpp indices
   const indices = new Uint8Array(256 * 256);
   if (buffer.byteLength >= IMAGE_OFF + IMAGE_SIZE) {
     let pi = 0;
@@ -531,7 +691,7 @@ function generateTexAtlas(buffer, paletteSet, usedKeys) {
   function readClut(clutIndex) {
     let off = PAL_OFF + paletteSet * PAL_STRIDE + clutIndex * CLUT_SIZE;
     if (off + CLUT_SIZE > buffer.byteLength) {
-      off = 0x20; // legacy fallback
+      off = 0x20;
     }
     const pal = [];
     for (let c = 0; c < 16; c++) {
@@ -543,7 +703,6 @@ function generateTexAtlas(buffer, paletteSet, usedKeys) {
       const r = (c16 & 0x1f) << 3;
       const g = ((c16 >> 5) & 0x1f) << 3;
       const b = ((c16 >> 10) & 0x1f) << 3;
-      // PS1 / GT: colour 0 is transparent
       const a = c16 === 0 ? 0 : 255;
       pal.push([r, g, b, a]);
     }
@@ -574,21 +733,8 @@ function generateTexAtlas(buffer, paletteSet, usedKeys) {
   return { canvas, usedKeys, keyToRow, nRows };
 }
 
-// Keep old single-CLUT helper for any external callers / palette editor preview
-function generateTexCanvas(buffer, paletteIndex = 0, clutIndex = 0) {
-  const atlas = generateTexAtlas(buffer, paletteIndex, [clutIndex]);
-  // Return a 256×256 slice of row 0
-  const src = atlas.canvas;
-  const canvas = document.createElement("canvas");
-  canvas.width = 256;
-  canvas.height = 256;
-  const ctx = canvas.getContext("2d");
-  ctx.drawImage(src, 0, 0, 256, 256, 0, 0, 256, 256);
-  return canvas;
-}
-
 // ---------------------------------------------------------------------------
-// Palette editor UI (demo recolour of reddish body pixels)
+// Palette editor UI
 // ---------------------------------------------------------------------------
 function initPaletteEditor(mesh, textureCanvas) {
   currentCtx = textureCanvas.getContext("2d");
@@ -650,8 +796,6 @@ function applyPaletteToCanvas(targetR, targetG, targetB) {
   );
   const data = imgData.data;
 
-  // Simple body-paint heuristic (same as before) — for a full editor you'd
-  // rewrite CLUT entries and rebuild the atlas.
   for (let i = 0; i < data.length; i += 4) {
     const r = data[i];
     const g = data[i + 1];
@@ -668,18 +812,6 @@ function applyPaletteToCanvas(targetR, targetG, targetB) {
   if (activeModelMesh && activeModelMesh.material && activeModelMesh.material.map) {
     activeModelMesh.material.map.needsUpdate = true;
   }
-}
-
-function applyPresetColor(presetIndex) {
-  const preset = FACTORY_COLORS[presetIndex];
-  if (!preset) return;
-  const colorPicker = document.getElementById("palettePicker");
-  const hexLabel = document.querySelector(".hex-code");
-  if (colorPicker) colorPicker.value = preset.hex;
-  if (hexLabel) hexLabel.textContent = preset.hex;
-  const [r, g, b] = preset.rgb;
-  updateActiveSwatch(r, g, b);
-  applyPaletteToCanvas(r, g, b);
 }
 
 function rgbToHex(r, g, b) {
