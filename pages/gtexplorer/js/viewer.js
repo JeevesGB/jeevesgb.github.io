@@ -18,6 +18,17 @@ let activeSwatchIndex = 0;
 let currentAtlasMeta = null; // { usedKeys, keyToRow, nRows }
 let loadGeneration = 0; // bumps on every switchModel to drop stale async loads
 
+// Wheel UV calibration (tuned against GT1 NPRON/NPROR CTEX tiles)
+const WHEEL_UV_CALIB = { offU: 2.5, offV: 0, scale: 1.09, rotDeg: 0 };
+let activeWheelMesh = null;
+
+// CTEX palette-set (paint colour) switching
+let currentTexBuffer = null;
+let currentPaletteSet = 0;
+let currentPaletteSetCount = 1;
+let currentUsedKeys = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+let cameraFramedOnce = false; // keep orbit pose when switching cars
+
 const BASE_PATH = window.location.pathname.substring(
   0,
   window.location.pathname.lastIndexOf("/") + 1
@@ -154,6 +165,7 @@ function clearModelMeshes() {
   });
   for (const m of toRemove) disposeMesh(m);
   activeModelMesh = null;
+  activeWheelMesh = null;
 }
 
 async function switchModel(modelKey) {
@@ -165,6 +177,9 @@ async function switchModel(modelKey) {
   clearModelMeshes();
   currentTextureCanvas = null;
   currentAtlasMeta = null;
+  currentTexBuffer = null;
+  currentPaletteSet = 0;
+  currentPaletteSetCount = 1;
 
   try {
     const carRes = await fetch(modelData.car);
@@ -191,13 +206,12 @@ async function switchModel(modelKey) {
         const texBuffer = await texRes.arrayBuffer();
         if (myGen !== loadGeneration) return;
 
-        const usedSet = new Set();
-        for (const f of parsed.faces) {
-          usedSet.add(f.pidx & 0x0f);
-        }
-        const usedKeys = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+        currentTexBuffer = texBuffer;
+        currentUsedKeys = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+        currentPaletteSetCount = readPaletteSetCount(texBuffer);
+        currentPaletteSet = 0;
 
-        const atlas = generateTexAtlas(texBuffer, 0, usedKeys);
+        const atlas = generateTexAtlas(texBuffer, currentPaletteSet, currentUsedKeys);
         if (myGen !== loadGeneration) return;
 
         currentTextureCanvas = atlas.canvas;
@@ -211,6 +225,7 @@ async function switchModel(modelKey) {
         texture.wrapS = THREE.ClampToEdgeWrapping;
         texture.wrapT = THREE.ClampToEdgeWrapping;
         texture.flipY = false;
+        texture.name = modelData.tex;
 
         material = new THREE.MeshStandardMaterial({
           map: texture,
@@ -220,6 +235,10 @@ async function switchModel(modelKey) {
           transparent: true,
           alphaTest: 0.5,
         });
+        buildPaintColorStrip(texBuffer, currentPaletteSetCount);
+        console.log(
+          `[Viewer] CTEX loaded: ${modelData.tex} → atlas ${atlas.canvas.width}x${atlas.canvas.height}, palette sets=${currentPaletteSetCount}, wheel @ ${WHEEL_TEX_X0},${WHEEL_TEX_Y0} size=${WHEEL_TEX_SIZE}`
+        );
       }
     } catch (texErr) {
       console.warn("[Viewer] Texture load failed:", texErr);
@@ -239,7 +258,7 @@ async function switchModel(modelKey) {
     clearModelMeshes();
 
     const bodyArrays = buildBodyArrays(parsed, keyToRow, nRows);
-    const wheelArrays = buildAllWheelArrays(bodyArrays.triplets, parsed.wheels);
+    const wheelArrays = buildAllWheelArrays(bodyArrays.triplets, parsed.wheels, keyToRow, nRows);
 
     let center = [0, 0, 0];
     if (bodyArrays.triplets.length) {
@@ -278,6 +297,8 @@ async function switchModel(modelKey) {
     activeModelMesh = new THREE.Mesh(geometry, material);
     currentScene.add(activeModelMesh);
 
+    activeWheelMesh = null;
+
     if (wheelArrays.positions.length) {
       const wheelGeometry = new THREE.BufferGeometry();
       wheelGeometry.setAttribute(
@@ -285,29 +306,47 @@ async function switchModel(modelKey) {
         new THREE.Float32BufferAttribute(wheelArrays.positions, 3)
       );
       wheelGeometry.setAttribute(
-        "color",
-        new THREE.Float32BufferAttribute(wheelArrays.colors, 3)
+        "uv",
+        new THREE.Float32BufferAttribute(wheelArrays.uvs, 2)
       );
       wheelGeometry.setIndex(wheelArrays.indices);
       wheelGeometry.computeVertexNormals();
-      const wheelMaterial = new THREE.MeshStandardMaterial({
-        vertexColors: true,
-        roughness: 0.75,
-        metalness: 0.15,
-        side: THREE.DoubleSide,
-      });
-      const wheelMesh = new THREE.Mesh(wheelGeometry, wheelMaterial);
-      currentScene.add(wheelMesh);
+
+      // Wheel faces sample the SAME CTEX atlas as the body (this car's .tex).
+      let wheelMaterial;
+      if (material && material.map) {
+        wheelMaterial = new THREE.MeshStandardMaterial({
+          map: material.map,
+          roughness: 0.5,
+          metalness: 0.25,
+          side: THREE.DoubleSide,
+          transparent: false,
+          alphaTest: 0,
+          vertexColors: false,
+        });
+      } else {
+        console.warn("[Viewer] No CTEX map for wheels — solid fallback");
+        wheelMaterial = new THREE.MeshStandardMaterial({
+          color: 0x222226,
+          roughness: 0.75,
+          metalness: 0.15,
+          side: THREE.DoubleSide,
+        });
+      }
+      activeWheelMesh = new THREE.Mesh(wheelGeometry, wheelMaterial);
+      currentScene.add(activeWheelMesh);
     }
 
+    // Frame camera only on the first model load — keep rotation/zoom when switching cars
     geometry.computeBoundingSphere();
-    if (geometry.boundingSphere) {
+    if (!cameraFramedOnce && geometry.boundingSphere && currentCamera) {
       const r = geometry.boundingSphere.radius || 1;
       currentCamera.position.set(0, r * 0.6, r * 3.2);
       if (currentControls) {
         currentControls.target.set(0, 0, 0);
         currentControls.update();
       }
+      cameraFramedOnce = true;
     }
 
     if (currentTextureCanvas) {
@@ -575,85 +614,311 @@ function computeWheelTargets(bodyTriplets, wheelsRaw) {
   };
 }
 
-function buildWheelGeometry(cx, cy, cz, radius, width, segments = 20) {
+/**
+ * Wheel UVs sample the shared GT-CTEX atlas.
+ * Wheel face art lives in the top-left of the 256×256 image (typically ~64×64).
+ * Atlas rows stack one CLUT-coloured copy of the image per used palette key;
+ * disc faces are mapped into the chosen palette row's top-left region.
+ */
+// Defaults match GT2-style top-left tile; overridden at runtime from CTEX content.
+let WHEEL_TEX_X0 = 0;
+let WHEEL_TEX_Y0 = 0;
+let WHEEL_TEX_SIZE = 47;
+let WHEEL_TEX_CX = 23.5; // absolute pixel centre of painted wheel
+let WHEEL_TEX_CY = 23.5;
+
+/**
+ * Locate the wheel face in the top-left of a 256×256 CTEX index image.
+ * GT2: ~47×47 at (0,0).  GT1 demo cars: 47×47 with top at first content row (~y=32).
+ * UV centre = geometric centre of that tile (the painted wheel is centred in it).
+ */
+function detectWheelRegion(indices) {
+  const xMax = 56;
+  const yMax = 96;
+  let firstY = -1;
+  let lastY = -1;
+  for (let y = 0; y < yMax; y++) {
+    for (let x = 0; x < xMax; x++) {
+      const v = indices[y * 256 + x];
+      if (v !== 0 && v !== 15) {
+        if (firstY < 0) firstY = y;
+        lastY = y;
+      }
+    }
+  }
+  const size = 47;
+  if (firstY < 0) {
+    return { x0: 0, y0: 0, size, cx: size * 0.5, cy: size * 0.5 };
+  }
+  // GT2-style flush top
+  if (firstY <= 2 && lastY <= 55) {
+    return { x0: 0, y0: 0, size, cx: size * 0.5, cy: size * 0.5 };
+  }
+  // GT1: tile starts at first content row
+  let y0 = firstY;
+  if (y0 + size > 256) y0 = 256 - size;
+  const x0 = 0;
+  const cx = x0 + size * 0.5;
+  const cy = y0 + size * 0.5;
+  return { x0, y0, size, cx, cy };
+}
+
+function buildWheelGeometry(cx, cy, cz, radius, width, segments, atlasRow, nRows) {
   const positions = [];
-  const colors = [];
+  const uvs = [];
   const indices = [];
-  if (radius <= 1e-6) return { positions, colors, indices };
+  if (radius <= 1e-6) return { positions, uvs, indices };
 
   const half = Math.max(radius * 0.18, Math.abs(width) * 0.5);
-  const tyreInner = radius * 0.72;
-  const rimInner = radius * 0.28;
-  const tyreCol = [0.06, 0.06, 0.07];
-  const sidewallCol = [0.1, 0.1, 0.11];
-  const rimCol = [0.55, 0.55, 0.58];
-  const hubCol = [0.22, 0.22, 0.24];
+  const tyreInner = radius * 0.72; // outer edge of rim face / start of tyre face
+  const rimInner = radius * 0.28;  // hub opening
 
-  const add = (px, py, pz, col) => {
+  const row = Math.max(0, atlasRow | 0);
+  const rows = Math.max(1, nRows | 0);
+  const mapUv = (px, py) => {
+    const u = (px + 0.5) / 256.0;
+    const vLocal = (py + 0.5) / 256.0;
+    const v = (row + vLocal) / rows;
+    return [u, v];
+  };
+
+  // Centre + radius of the wheel face in the CTEX image
+  // Geometric centre of the 47×47 wheel tile — painted art is centred there
+  const wcx = WHEEL_TEX_CX;
+  const wcy = WHEEL_TEX_CY;
+  const wr = WHEEL_TEX_SIZE * 0.5 * 0.98;
+
+  // Fixed calibration — applied by default on every load
+  const rot = (WHEEL_UV_CALIB.rotDeg * Math.PI) / 180;
+  const sc = WHEEL_UV_CALIB.scale;
+  const ox = WHEEL_UV_CALIB.offU;
+  const oy = WHEEL_UV_CALIB.offV;
+
+  // Polar mapping onto the wheel tile:
+  //   mesh a=0 (+Z) → right of texture centre
+  //   mesh a=π/2 (+Y up) → top of texture (smaller py)
+  const faceUv = (t, a) => {
+    const tt = t / sc;
+    const ang = a + rot;
+    const px = wcx + ox + wr * tt * Math.cos(ang);
+    const py = wcy + oy - wr * tt * Math.sin(ang);
+    return mapUv(px, py);
+  };
+
+  // Sample near the outer tyre of the face for tread rubber
+  const treadUv = faceUv(0.92, 0);
+
+  const add = (px, py, pz, u, v) => {
     positions.push(px, py, pz);
-    colors.push(col[0], col[1], col[2]);
+    uvs.push(u, v);
     return positions.length / 3 - 1;
   };
 
-  const t_ol = [], t_or = [], r_ol = [], r_or = [], h_ol = [], h_or = [];
+  // Rings:
+  //  t_ol / t_or  — outer tyre edge of the *tread* cylinder (dark rubber UV)
+  //  f_ol / f_or  — outer tyre edge on the *face* (t=1 of wheel texture)
+  //  r_ol / r_or  — tyre/rim boundary on the face (t ≈ tyreInner/radius)
+  //  h_ol / h_or  — hub opening on the face (t ≈ rimInner/radius)
+  const t_ol = [], t_or = [];
+  const f_ol = [], f_or = [];
+  const r_ol = [], r_or = [];
+  const h_ol = [], h_or = [];
+
+  const tRim = tyreInner / radius; // ~0.72
+  const tHub = rimInner / radius;  // ~0.28
 
   for (let i = 0; i < segments; i++) {
     const a = (2.0 * Math.PI * i) / segments;
     const sy = Math.sin(a), cz_ = Math.cos(a);
 
     const y = cy + radius * sy, z = cz + radius * cz_;
-    t_ol.push(add(cx - half, y, z, tyreCol));
-    t_or.push(add(cx + half, y, z, tyreCol));
+    // Tread outer cylinder
+    t_ol.push(add(cx - half, y, z, treadUv[0], treadUv[1]));
+    t_or.push(add(cx + half, y, z, treadUv[0], treadUv[1]));
 
+    // Face outer ring (same world pos as tread edge, but face UVs)
+    const [uO, vO] = faceUv(1.0, a);
+    f_ol.push(add(cx - half, y, z, uO, vO));
+    f_or.push(add(cx + half, y, z, uO, vO));
+
+    // Tyre/rim boundary on the face
     const yi = cy + tyreInner * sy, zi = cz + tyreInner * cz_;
-    r_ol.push(add(cx - half * 0.85, yi, zi, sidewallCol));
-    r_or.push(add(cx + half * 0.85, yi, zi, sidewallCol));
+    const [uR, vR] = faceUv(tRim, a);
+    r_ol.push(add(cx - half * 0.85, yi, zi, uR, vR));
+    r_or.push(add(cx + half * 0.85, yi, zi, uR, vR));
 
+    // Hub opening on the face
     const yh = cy + rimInner * sy, zh = cz + rimInner * cz_;
-    h_ol.push(add(cx - half * 0.35, yh, zh, rimCol));
-    h_or.push(add(cx + half * 0.35, yh, zh, rimCol));
+    const [uH, vH] = faceUv(tHub, a);
+    h_ol.push(add(cx - half * 0.35, yh, zh, uH, vH));
+    h_or.push(add(cx + half * 0.35, yh, zh, uH, vH));
   }
 
   for (let i = 0; i < segments; i++) {
     const j = (i + 1) % segments;
+    // Tread (outer cylinder)
     indices.push(t_ol[i], t_or[i], t_or[j], t_ol[i], t_or[j], t_ol[j]);
-    indices.push(t_ol[i], t_ol[j], r_ol[j], t_ol[i], r_ol[j], r_ol[i]);
-    indices.push(t_or[i], r_or[i], r_or[j], t_or[i], r_or[j], t_or[j]);
-    indices.push(r_ol[i], r_ol[j], h_ol[j], r_ol[i], h_ol[j], h_ol[i]);
-    indices.push(r_or[i], h_or[i], h_or[j], r_or[i], h_or[j], r_or[j]);
+    // Outer tyre face annulus (texture t=1 → tRim)
+    // Left face (-X): winding so normal points outward (-X)
+    indices.push(f_ol[i], r_ol[i], r_ol[j], f_ol[i], r_ol[j], f_ol[j]);
+    // Right face (+X): winding so normal points outward (+X)
+    indices.push(f_or[i], f_or[j], r_or[j], f_or[i], r_or[j], r_or[i]);
+    // Rim face annulus (texture tRim → tHub)
+    indices.push(r_ol[i], h_ol[i], h_ol[j], r_ol[i], h_ol[j], r_ol[j]);
+    indices.push(r_or[i], r_or[j], h_or[j], r_or[i], h_or[j], h_or[i]);
   }
 
-  const hub_l = add(cx - half * 0.15, cy, cz, hubCol);
-  const hub_r = add(cx + half * 0.15, cy, cz, hubCol);
+  // Hub centres — centre of wheel texture
+  const [uHub, vHub] = faceUv(0.0, 0);
+  const hub_l = add(cx - half * 0.15, cy, cz, uHub, vHub);
+  const hub_r = add(cx + half * 0.15, cy, cz, uHub, vHub);
   for (let i = 0; i < segments; i++) {
     const j = (i + 1) % segments;
-    indices.push(hub_l, h_ol[j], h_ol[i]);
-    indices.push(hub_r, h_or[i], h_or[j]);
+    // Left hub: normal -X
+    indices.push(hub_l, h_ol[i], h_ol[j]);
+    // Right hub: normal +X
+    indices.push(hub_r, h_or[j], h_or[i]);
   }
 
-  return { positions, colors, indices };
+  return { positions, uvs, indices };
 }
 
-function buildAllWheelArrays(bodyTriplets, wheelsRaw) {
+function buildAllWheelArrays(bodyTriplets, wheelsRaw, keyToRow, nRows) {
   const result = computeWheelTargets(bodyTriplets, wheelsRaw);
   const positions = [];
-  const colors = [];
+  const uvs = [];
   const indices = [];
-  if (!result) return { positions, colors, indices };
+  if (!result) return { positions, uvs, indices };
+
+  // Always sample CLUT 0 for wheel faces — that is the intended wheel colouring
+  // in the car's .tex. Other CLUTs are body materials and mis-colour the same
+  // indices (e.g. NPROR + CLUT 3 → red/black mess + white wedges).
+  let atlasRow = 0;
+  if (keyToRow && keyToRow.has(0)) atlasRow = keyToRow.get(0);
+  else if (keyToRow && keyToRow.size) atlasRow = keyToRow.values().next().value;
+  const rows = Math.max(1, nRows || 1);
 
   for (const t of result.targets) {
     const r = t.isFront ? result.radius_f : result.radius_r;
     const w = t.isFront ? result.width_f : result.width_r;
-    const wheel = buildWheelGeometry(t.cx, t.cy, t.cz, r, w);
+    const wheel = buildWheelGeometry(t.cx, t.cy, t.cz, r, w, 24, atlasRow, rows);
     const base = positions.length / 3;
     positions.push(...wheel.positions);
-    colors.push(...wheel.colors);
+    uvs.push(...wheel.uvs);
     for (const idx of wheel.indices) indices.push(base + idx);
   }
-  return { positions, colors, indices };
+  return { positions, uvs, indices };
 }
 
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Paint colour (CTEX palette-set) switching
+// ---------------------------------------------------------------------------
+function readPaletteSetCount(buffer) {
+  if (!buffer || buffer.byteLength < 0x10) return 1;
+  const view = new DataView(buffer);
+  return Math.max(1, view.getUint16(0x0e, true) || 1);
+}
+
+/** Representative RGB for a palette set — used for the colour swatches. */
+function previewColorForPaletteSet(buffer, paletteSet) {
+  const PAL_OFF = 0x8060;
+  const PAL_STRIDE = 512;
+  const CLUT_SIZE = 32;
+  const view = new DataView(buffer);
+  const setCount = readPaletteSetCount(buffer);
+  const ps = Math.max(0, Math.min(paletteSet, setCount - 1));
+  // Sample mid-tones from CLUTs 1–4 (typical body materials)
+  const samples = [];
+  for (const clut of [1, 2, 3, 4]) {
+    const off = PAL_OFF + ps * PAL_STRIDE + clut * CLUT_SIZE;
+    for (const entry of [4, 6, 8, 10]) {
+      if (off + entry * 2 + 1 >= buffer.byteLength) continue;
+      const c16 = view.getUint16(off + entry * 2, true);
+      if (c16 === 0) continue;
+      const r = (c16 & 0x1f) << 3;
+      const g = ((c16 >> 5) & 0x1f) << 3;
+      const b = ((c16 >> 10) & 0x1f) << 3;
+      if (r + g + b > 30) {
+        samples.push([r, g, b]);
+        break;
+      }
+    }
+  }
+  if (!samples.length) return { r: 80, g: 80, b: 80 };
+  const n = samples.length;
+  return {
+    r: Math.round(samples.reduce((s, c) => s + c[0], 0) / n),
+    g: Math.round(samples.reduce((s, c) => s + c[1], 0) / n),
+    b: Math.round(samples.reduce((s, c) => s + c[2], 0) / n),
+  };
+}
+
+function buildPaintColorStrip(texBuffer, setCount) {
+  const strip = document.getElementById("paintColorStrip");
+  if (!strip) return;
+  strip.innerHTML = "";
+  if (!texBuffer || setCount < 1) return;
+
+  for (let i = 0; i < setCount; i++) {
+    const col = previewColorForPaletteSet(texBuffer, i);
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "paint-swatch" + (i === currentPaletteSet ? " active" : "");
+    btn.title = `Paint set ${i}`;
+    btn.setAttribute("aria-label", `Paint colour set ${i}`);
+    btn.style.backgroundColor = `rgb(${col.r},${col.g},${col.b})`;
+    btn.dataset.setIndex = String(i);
+    btn.addEventListener("click", () => switchPaintColor(i));
+    strip.appendChild(btn);
+  }
+}
+
+/**
+ * Rebuild the CTEX atlas with a different palette set and push it to
+ * the body + wheel materials. Geometry is left alone.
+ */
+function switchPaintColor(setIndex) {
+  if (!currentTexBuffer || !currentScene) return;
+  const setCount = currentPaletteSetCount || 1;
+  const next = Math.max(0, Math.min(setIndex, setCount - 1));
+  if (next === currentPaletteSet && currentTextureCanvas) {
+    // still refresh active swatch UI
+  }
+  currentPaletteSet = next;
+
+  const atlas = generateTexAtlas(currentTexBuffer, currentPaletteSet, currentUsedKeys);
+  currentTextureCanvas = atlas.canvas;
+  currentAtlasMeta = atlas;
+
+  const texture = new THREE.CanvasTexture(atlas.canvas);
+  texture.magFilter = THREE.NearestFilter;
+  texture.minFilter = THREE.NearestFilter;
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.flipY = false;
+
+  // Update body material
+  if (activeModelMesh && activeModelMesh.material) {
+    const oldMap = activeModelMesh.material.map;
+    activeModelMesh.material.map = texture;
+    activeModelMesh.material.needsUpdate = true;
+    if (oldMap && oldMap !== texture) oldMap.dispose();
+  }
+  // Update wheel material (shared look, same atlas)
+  if (activeWheelMesh && activeWheelMesh.material) {
+    activeWheelMesh.material.map = texture;
+    activeWheelMesh.material.needsUpdate = true;
+  }
+
+  // Active swatch highlight
+  document.querySelectorAll(".paint-swatch").forEach((btn) => {
+    btn.classList.toggle("active", Number(btn.dataset.setIndex) === currentPaletteSet);
+  });
+
+  console.log(`[Viewer] paint colour → set ${currentPaletteSet}/${setCount}`);
+}
+
 // GT-CTEX → vertical palette atlas
 // ---------------------------------------------------------------------------
 function generateTexAtlas(buffer, paletteSet, usedKeys) {
@@ -730,7 +995,19 @@ function generateTexAtlas(buffer, paletteSet, usedKeys) {
   }
 
   ctx.putImageData(imgData, 0, 0);
-  return { canvas, usedKeys, keyToRow, nRows };
+
+  // Detect wheel tile once from the 4bpp index image (shared across CLUT rows)
+  const wheelRegion = detectWheelRegion(indices);
+  WHEEL_TEX_X0 = wheelRegion.x0;
+  WHEEL_TEX_Y0 = wheelRegion.y0;
+  WHEEL_TEX_SIZE = wheelRegion.size;
+  WHEEL_TEX_CX = wheelRegion.cx;
+  WHEEL_TEX_CY = wheelRegion.cy;
+  console.log(
+    `[Viewer] wheel CTEX region: ${WHEEL_TEX_X0},${WHEEL_TEX_Y0} size=${WHEEL_TEX_SIZE} centre=(${WHEEL_TEX_CX.toFixed(1)},${WHEEL_TEX_CY.toFixed(1)})`
+  );
+
+  return { canvas, usedKeys, keyToRow, nRows, wheelRegion };
 }
 
 // ---------------------------------------------------------------------------
