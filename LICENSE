@@ -1,0 +1,101 @@
+All Rights Reserved License
+
+Copyright (c) 2026 JeevesGB
+Repository: jeevesgb.github.io
+
+Summary (Not Legally Binding)
+
+This License means: you may look at this website and its code, but you may not copy, reuse, redistribute, modify, or sell any part of it without asking the Owner first. Some parts (four Gran Turismo 1 vehicle models, and CSS licensed from Misfire) belong to other parties and are not covered by this License at all. This summary is provided for convenience only; the numbered sections below are the operative terms.
+
+1. Definitions
+
+"Repository" refers to the jeevesgb.github.io codebase and all files contained within it, whether hosted on GitHub or deployed elsewhere.
+"Content" refers collectively to source code, markup, stylesheets, scripts, images, text, media, and any other files within the Repository.
+"Owner" refers to the copyright holder identified above.
+"You" refers to any individual or entity accessing, viewing, or interacting with the Repository or the hosted website.
+
+2. Ownership
+
+All Content contained within this Repository — including but not limited to HTML, CSS, JavaScript, images, graphics, text, layout, and design elements — is the exclusive property of the Owner unless explicitly stated otherwise in this License.
+
+3. Restrictions
+
+No part of this Repository may be:
+- Copied or reproduced, in whole or in part, in any form or by any means
+- Distributed, published, or made publicly available
+- Modified, adapted, or used to create derivative works
+- Sold, sublicensed, rented, or used for commercial purposes
+- Incorporated into another project, product, or website
+- Used to train, fine-tune, or otherwise develop machine learning or AI models
+
+without the prior written permission of the Owner.
+
+4. Permitted Use
+
+Viewing the publicly hosted website and its source code for personal, non-commercial reference is permitted. This does not grant any right to copy, reuse, redistribute, or otherwise exploit the Content, and no license is granted by implication, estoppel, or otherwise except as expressly stated in this section.
+
+5. Third-Party Materials
+
+Any third-party libraries, frameworks, fonts, or assets included in this Repository remain subject to their own respective licenses, and this License does not override those terms.
+
+This Repository includes 4 vehicle models originally created for Gran Turismo 1, which are the property of Sony Interactive Entertainment / Polyphony Digital. These assets are not covered by this License, are not owned by the Owner, and may not be redistributed, extracted, or reused independently of this Repository. Their inclusion here does not constitute a claim of ownership or an official license from the rights holder, and any use of them remains subject to the rights holder's own terms.
+
+6. Related Licensed Material
+
+The CSS and associated styling used in this Repository are licensed separately by Misfire and are used here under a separate agreement held by the Owner. This styling is not covered by this License and may not be reused, copied, or redistributed independently of that separate agreement.
+
+7. Trademarks
+
+Any names, logos, or branding associated with the Owner, "JeevesGB," or related projects are not licensed under this document and may not be used without separate written permission.
+
+8. No Warranty
+
+This Repository and its Content are provided "as is," without warranty of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, title, and non-infringement. The Owner does not warrant that the Repository will be error-free, secure, or continuously available.
+
+9. Limitation of Liability
+
+To the fullest extent permitted by law, the Owner shall not be liable for any direct, indirect, incidental, special, consequential, or exemplary damages arising from or related to the use of, or inability to use, this Repository or its Content, even if advised of the possibility of such damages.
+
+10. Termination
+
+Any permitted use under Section 4 is automatically revoked if You breach any term of this License. Upon revocation, You must immediately cease all access to and use of the Content.
+
+11. Enforcement
+
+Unauthorized use, reproduction, or distribution of this Repository or its Content is strictly prohibited and may result in legal action, including claims for damages and injunctive relief.
+
+12. Governing Law
+
+This License shall be governed by and construed in accordance with the laws of England and Wales, without regard to conflict of law principles. Any disputes arising under this License shall be subject to the exclusive jurisdiction of the courts of England and Wales.
+
+13. Severability
+
+If any provision of this License is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall remain in full force and effect.
+
+14. Changes to This License
+
+The Owner reserves the right to update or modify this License at any time. Continued access to the Repository after changes are made constitutes acceptance of the revised terms.
+
+15. No Waiver
+
+No failure or delay by the Owner in exercising any right under this License shall operate as a waiver of that right, nor shall any single or partial exercise of a right preclude any other or further exercise of that or any other right.
+
+16. Assignment
+
+You may not assign or transfer any rights or obligations under this License. The Owner may assign or transfer this License, in whole or in part, without restriction, including in connection with a transfer of ownership of the Repository or related business.
+
+17. Entire Agreement
+
+This License constitutes the entire agreement between You and the Owner regarding the Repository and supersedes any prior understandings or agreements, whether written or oral, relating to its subject matter, except for any separate written agreements expressly referenced herein (such as the Misfire styling agreement in Section 6).
+
+18. Reporting Unauthorized Use
+
+If You become aware of any unauthorized copying, reproduction, or distribution of this Repository or its Content, You are encouraged to report it to the Owner using the contact details in Section 20.
+
+19. Notices
+
+Any notices required or permitted under this License shall be given in writing and shall be deemed effective when delivered to the Owner via the contact method specified in Section 20.
+
+20. Permissions and Contact
+
+For permission requests, licensing inquiries, or to report unauthorized use, please contact the Owner directly at it.is.jej@gmail.com.
